@@ -1,0 +1,65 @@
+﻿@model IEnumerable<App.Marriage.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 dir="rtl">المستخدمين</h2>
+
+<p dir="rtl" style="font-size:18px">
+    @Html.ActionLink("إضافة مستخدم جديد", "Create")
+</p>
+<table  dir="rtl" align="right" border="1">
+    <tr>
+        <th width="300" style="text-align:center">
+            @*@Html.DisplayNameFor(model => model.UserName)*@
+            <text>اسم المستخدم</text>
+        </th>
+        
+        <th width="100" style="text-align:center">
+            @*@Html.DisplayNameFor(model => model.IsActive)*@
+            <text>فعال ؟</text>
+        </th>
+        @*<th width="200" style="text-align:center">
+            @Html.DisplayNameFor(model => model.UserType)
+        </th>*@
+        <th width="200" style="text-align:center">
+           @* @Html.DisplayNameFor(model => model.Role_Id)*@
+            <text>الدور</text>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+      
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.UserType)
+        </td>*@
+        <td>
+           @* @Html.DisplayFor(modelItem => item.Role_Id)*@
+            @{ 
+                List<SelectListItem> roleList;
+                roleList = ViewData["roles"] as List<SelectListItem>;
+                //g[2].ToString();
+                
+                <text>@roleList.Where(p => p.Value == item.Role_Id.ToString()).First().Text</text>
+            }
+            
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.Id }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+             @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
