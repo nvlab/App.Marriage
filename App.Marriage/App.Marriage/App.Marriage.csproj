@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -198,12 +200,74 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="Entities\Articles.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Category.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Country.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Messages.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Nationality.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Permissons.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Person.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\QuestionBank.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RegisterRequests.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RelationRequest.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestQuestionSenario.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RolePermissions.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Roles.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagrams.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Users.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1086,6 +1150,16 @@
     <Content Include="Content\admin\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Entities\Sokna.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+      <LastGenOutput>Sokna.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Sokna.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+      <LastGenOutput>Sokna.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1133,6 +1207,13 @@
     <Content Include="Content\admin\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="Content\admin\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\admin\plugins\input-mask\phone-codes\phone-codes.json" />
+    <EntityDeploy Include="Entities\Sokna.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Sokna.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\Sokna.edmx.diagram">
+      <DependentUpon>Sokna.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1191,6 +1272,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
