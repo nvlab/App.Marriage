@@ -1180,9 +1180,18 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_Layout-theme-01.cshtml" />
+    <Content Include="Views\Shared\Layout-theme-01\_footer-theme-01.cshtml" />
+    <Content Include="Views\Shared\Layout-theme-01\_header-theme-01.cshtml" />
+    <Content Include="Views\Shared\Layout-admin\_footer-admin.cshtml" />
+    <Content Include="Views\Shared\Layout-admin\_header-admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\theme-01\css\" />
+    <Folder Include="Content\theme-01\fonts\" />
+    <Folder Include="Content\theme-01\img\" />
+    <Folder Include="Content\theme-01\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
