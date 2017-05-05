@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace App.Marriage.Controllers
 {
-    public class ControlPanelController : Controller
+    public class ControlPanelController : BaseController
     {
         // GET: ControlPanel
         public ActionResult Index()
