@@ -1,0 +1,5 @@
+body>nav .menu-wrapper ul.menu>li+li {
+    margin-left: inherit;
+    margin-right: 3em;
+}
+

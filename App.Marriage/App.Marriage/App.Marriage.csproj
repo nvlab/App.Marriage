@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +209,24 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\theme-01\rtl.css" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.css" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.min.css" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-rtl.css" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-rtl.min.css" />
+    <Content Include="Content\theme-01\bootstrap-rtl\js\holder.js" />
+    <Content Include="Content\theme-01\bootstrap-rtl\js\html5shiv.js" />
+    <Content Include="Content\theme-01\bootstrap-rtl\js\jquery.min.js" />
+    <Content Include="Content\theme-01\bootstrap-rtl\js\respond.min.js" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-flipped.css" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-flipped.min.css" />
+    <Content Include="Content\admin\rtl.css" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-rtl.css" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-rtl.min.css" />
+    <Content Include="Content\admin\bootstrap-rtl\js\holder.js" />
+    <Content Include="Content\admin\bootstrap-rtl\js\html5shiv.js" />
+    <Content Include="Content\admin\bootstrap-rtl\js\jquery.min.js" />
+    <Content Include="Content\admin\bootstrap-rtl\js\respond.min.js" />
     <Content Include="Content\admin\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\admin\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\admin\bootstrap\css\bootstrap.css" />
@@ -1133,6 +1152,10 @@
     <Content Include="Content\admin\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="Content\admin\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\admin\plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-flipped.css.map" />
+    <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-rtl.css.map" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.css.map" />
+    <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-rtl.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1185,6 +1208,7 @@
     <Content Include="Views\Shared\Layout-theme-01\_header-theme-01.cshtml" />
     <Content Include="Views\Shared\Layout-admin\_footer-admin.cshtml" />
     <Content Include="Views\Shared\Layout-admin\_header-admin.cshtml" />
+    <Content Include="Views\ControlPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
