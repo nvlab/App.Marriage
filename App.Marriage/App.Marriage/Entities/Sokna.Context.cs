@@ -40,5 +40,7 @@ namespace App.Marriage.Entities
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+
+        public System.Data.Entity.DbSet<App.Marriage.Models.PersonMV.PersonViewModel> PersonViewModels { get; set; }
     }
 }
