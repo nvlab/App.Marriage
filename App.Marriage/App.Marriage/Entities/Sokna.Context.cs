@@ -28,5 +28,10 @@ namespace App.Marriage.Entities
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Nationality> Nationality { get; set; }
         public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Articles> Articles { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<QuestionBank> QuestionBank { get; set; }
     }
 }

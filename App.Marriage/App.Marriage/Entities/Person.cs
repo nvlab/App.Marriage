@@ -41,5 +41,6 @@ namespace App.Marriage.Entities
     
         public virtual Country Country { get; set; }
         public virtual Nationality Nationality { get; set; }
+        public virtual Users Users { get; set; }
     }
 }
