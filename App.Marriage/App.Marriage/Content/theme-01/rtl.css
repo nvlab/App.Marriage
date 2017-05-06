@@ -1,5 +1,109 @@
-body>nav .menu-wrapper ul.menu>li+li {
+body > nav .menu-wrapper ul.menu {
+    letter-spacing: 0px;
+}
+
+body > nav .menu-wrapper ul.menu > li + li {
     margin-left: inherit;
     margin-right: 3em;
 }
 
+.btn.btn-primary {
+    letter-spacing: 0px;
+}
+
+body > nav .menu-wrapper ul.menu {
+    letter-spacing: 0px;
+}
+
+section h2 {
+    letter-spacing: 0px;
+}
+
+section.section-rsvp form > .form-wrapper .right ul.events li p {
+    letter-spacing: 3px;
+}
+
+section.section-gallery .gallery-overlay .gallery-modal .modal-main .left ul > li.name-cat h3 + p {
+    letter-spacing: 0px;
+}
+
+section.section-gallery header ul.gallery-cats {
+    letter-spacing: 0px;
+}
+
+section.section-events ul.event-list > li .event-details .cta a.btn {
+    letter-spacing: 0px;
+}
+
+.uppercase {
+    letter-spacing: 0px;
+}
+
+.call-to-action {
+    letter-spacing: 0px;
+}
+
+.btn {
+    letter-spacing: 0px;
+}
+
+.btn.btn-primary {
+    letter-spacing: 0px;
+}
+
+section.section-story ul.timeline>li .desc {
+    padding-left: 0;
+    padding-right: 6vw;
+}
+section.section-story ul.timeline>li:nth-child(2n) .desc {
+    padding-right: 0;
+    padding-left: 6vw;
+}
+section.section-story ul.timeline>li:nth-child(2n) .meta .timeline-thumbnail {
+    margin-left: 0;
+    margin-right: auto;
+    position: relative;
+}
+section.section-story ul.timeline>li:nth-child(2n) .meta .date {
+    right: 2em;
+    right: 6vw;
+    left: auto;
+}
+section.section-story ul.timeline>li .meta .date {
+    left: 2em;
+    left: 6vw;
+    right: auto;
+}
+section.section-events ul.event-list>li .event-thumbnail {
+    margin-right: 0;
+    margin-left: 3em;
+}
+section.section-events ul.event-list>li .event-details .cta a.btn+a.btn {
+    margin-right: 1em;
+    margin-left: 0;
+}
+section.section-rsvp form>.form-wrapper .right {
+    margin-left: 0;
+    margin-right: 1em;
+}
+section.section-gallery header ul.gallery-cats>li+li {
+    margin-left: 0;
+    margin-right: 2em;
+}
+section.section-story ul.timeline>li .meta {
+    position: relative;
+    padding-left: 4em;
+    padding-left: 6vw;
+    padding-right: 0;
+}
+section.section-story ul.timeline>li:nth-child(2n) .meta {
+    padding-left: 0;
+    padding-right: 4em;
+    padding-right: 6vw;
+}
+body>nav .menu-wrapper ul.menu{
+    font-size: 1em;
+}
+body>nav .menu-wrapper ul.menu>li.current-menu-item:before{
+    top: calc(.828em - 12px);
+}

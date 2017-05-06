@@ -241,6 +241,13 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\theme-01\images\1.jpg" />
+    <Content Include="Content\theme-01\images\2.jpg" />
+    <Content Include="Content\theme-01\images\image-1.jpg" />
+    <Content Include="Content\theme-01\images\image-2.jpg" />
+    <Content Include="Content\theme-01\images\image-3.jpg" />
+    <Content Include="Content\theme-01\images\image-4.jpg" />
+    <Content Include="Content\theme-01\images\image-5.jpg" />
     <Content Include="Content\theme-01\rtl.css" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.css" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.min.css" />
@@ -1241,6 +1248,7 @@
     <Content Include="Views\Shared\Layout-admin\_footer-admin.cshtml" />
     <Content Include="Views\Shared\Layout-admin\_header-admin.cshtml" />
     <Content Include="Views\ControlPanel\Index.cshtml" />
+    <Content Include="Views\Shared\Layout-theme-01\_Slider-theme-01.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
