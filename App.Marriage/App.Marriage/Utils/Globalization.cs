@@ -85,77 +85,78 @@ namespace App.Marriage.Utils
                 return (string)"غير متعلم";
             }
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string FullName
+        {
+            get
+            {
+                return (string)"الاسم";
+            }
+        }
+        public static string PlaceBirth
+        {
+            get
+            {
+                return (string)"مكان الولادة";
+            }
+        }
+            //public static string Nationality
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
 
-        //}
-        //}
+            //}
+            //}
 
-        //}
-    }
+            //}
+        }
 }

@@ -1260,6 +1260,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Upload\Images\img1.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1303,6 +1304,8 @@
     <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\Shared\Layout-theme-01\_Slider-theme-01.cshtml" />
     <Content Include="Views\SearchPerson\Index.cshtml" />
+    <Content Include="Views\SearchPerson\_PersonGVP.cshtml" />
+    <Content Include="Views\SearchPerson\_PersonPVG.cshtml" />
     <Content Include="Views\RegisterRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
