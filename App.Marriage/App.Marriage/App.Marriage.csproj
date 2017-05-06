@@ -234,16 +234,51 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
+    <Compile Include="Controllers\RegisterRequestController.cs" />
     <Compile Include="DAL\CountryDAL.cs" />
+    <Compile Include="DAL\RegisterRequestsDAL.cs" />
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="Entities\Articles.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Category.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ChatRoomMessage.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Country.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Messages.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Nationality.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Permissons.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Person.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\QuestionBank.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RegisterRequests.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RelationRequest.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestQuestionSenario.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RolePermissions.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Roles.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sokna.Context.cs">
@@ -261,6 +296,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sokna.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Users.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -268,6 +306,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
+    <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Enums.cs" />
@@ -1192,6 +1231,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Migrations\01-GenerateScript.sql" />
+    <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1306,6 +1346,8 @@
     <Content Include="Views\SearchPerson\_PersonGVP.cshtml" />
     <Content Include="Views\SearchPerson\_PersonPVG.cshtml" />
     <Content Include="Views\SearchPerson\_PersonSearchResult.cshtml" />
+    <Content Include="Views\RegisterRequest\Index.cshtml" />
+    <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
