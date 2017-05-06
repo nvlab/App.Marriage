@@ -1,0 +1,125 @@
+@using App.Marriage.Models.PersonMV;
+@using App.Marriage.Utils;
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "RegisterRequestGV";
+        settings.CallbackRouteValues = new { Controller = "RegisterRequest", Action = "RegisterRequestGVP" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "RegisterRequest", Action = "RegisterRequestGVPAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "RegisterRequest", Action = "RegisterRequestGVPUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "RegisterRequest", Action = "RegisterRequestGVPDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = false;
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        // Custom Command Button
+        GridViewCommandColumnCustomButton DetailsButton = new GridViewCommandColumnCustomButton() { ID = "detailsButton", Text = "ÇáÊÝÇÕíá" };
+        GridViewCommandColumnCustomButton AcceptButton = new GridViewCommandColumnCustomButton() { ID = "acceptButton", Text = "ÇáÞÈæá" };
+        GridViewCommandColumnCustomButton RejectButton = new GridViewCommandColumnCustomButton() { ID = "rejectButton", Text = "ÇáÑÝÖ" };
+        settings.CommandColumn.CustomButtons.Add(DetailsButton);
+        settings.CommandColumn.CustomButtons.Add(AcceptButton);
+        settings.CommandColumn.CustomButtons.Add(RejectButton);
+        // DXCOMMENT - Handle the MVCxClientGridView.CustomButtonClick event to add actions on the custom button's click
+        settings.ClientSideEvents.CustomButtonClick =
+            string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Detail", "RegisterRequest"));
+
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        int i = 0;
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "RequestDate";
+            column.Caption = "RequestDate";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Person_Id";
+            column.Caption = "Person_Id";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true; column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = PersonViewModel.GetPersonsComboList();
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "RequestStatus";
+            column.Caption = "RequestStatus";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = GetEnumList.GetRequestStatusList();
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ResponseMessage";
+            column.Caption = "ResponseMessage";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = false;
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Links";
+            column.Caption = "Links";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = false;
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "RequestMessage";
+            column.Caption = "RequestMessage";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = false;
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+        });
+
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

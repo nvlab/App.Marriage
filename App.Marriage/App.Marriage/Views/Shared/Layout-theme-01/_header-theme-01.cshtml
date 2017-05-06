@@ -1,5 +1,12 @@
 ﻿<div class="preloader"></div>
-@Html.Partial("layout-theme-01/_Slider-theme-01")
+@{
+    bool ShowSlider = (ViewData["ShowSlider"] != null ) ? true : false;
+    if (ShowSlider) {
+        <text>
+        @Html.Partial("layout-theme-01/_Slider-theme-01");
+        </text>
+    }
+}
 <nav>
     <div class="menu-wrapper">
         <button class="open-menu">Menu</button>

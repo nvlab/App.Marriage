@@ -17,6 +17,7 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Roles()
         {
+            this.RolePermissions = new HashSet<RolePermissions>();
             this.Users = new HashSet<Users>();
         }
     
@@ -25,6 +26,8 @@ namespace App.Marriage.Entities
         public string Description { get; set; }
         public string RoleStatus { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RolePermissions> RolePermissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
     }

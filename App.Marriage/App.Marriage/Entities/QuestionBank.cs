@@ -14,6 +14,12 @@ namespace App.Marriage.Entities
     
     public partial class QuestionBank
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public QuestionBank()
+        {
+            this.RequestQuestionSenario = new HashSet<RequestQuestionSenario>();
+        }
+    
         public int Id { get; set; }
         public string Question { get; set; }
         public Nullable<int> Category_Id { get; set; }
@@ -21,5 +27,7 @@ namespace App.Marriage.Entities
         public Nullable<int> Entity_Order { get; set; }
     
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestQuestionSenario> RequestQuestionSenario { get; set; }
     }
 }

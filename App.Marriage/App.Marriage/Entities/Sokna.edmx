@@ -29,6 +29,17 @@
           <Property Name="Entity_Order" Type="int" />
           <Property Name="CatType" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ChatRoomMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="RelationRequest_Id" Type="int" />
+          <Property Name="SenderUser_Id" Type="int" />
+          <Property Name="MsgDate" Type="datetime" />
+          <Property Name="Entity_Order" Type="int" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Id" />
@@ -36,7 +47,28 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameL1" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MsgHeader" Type="nvarchar" MaxLength="250" />
+          <Property Name="User_Id" Type="int" />
+          <Property Name="MsgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Messages" Type="nvarchar(max)" />
+          <Property Name="MsgDate" Type="datetime" />
+          <Property Name="MsgStatus" Type="nchar" MaxLength="10" />
+          <Property Name="ReciverUser_Id" Type="int" />
+          <Property Name="Person_Id" Type="int" />
+        </EntityType>
         <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameL1" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Permissons">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -62,8 +94,8 @@
           <Property Name="SocialStatus" Type="int" />
           <Property Name="Color" Type="nvarchar" MaxLength="250" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Photo1" Type="image" />
-          <Property Name="Photo2" Type="image" />
+          <Property Name="Photo1" Type="nvarchar(max)" />
+          <Property Name="Photo2" Type="nvarchar(max)" />
           <Property Name="User_Id" Type="int" />
           <Property Name="NationalityNumber" Type="nvarchar" MaxLength="250" />
           <Property Name="PassportNumber" Type="nvarchar" MaxLength="250" />
@@ -81,6 +113,53 @@
           <Property Name="Category_Id" Type="int" />
           <Property Name="Image" Type="image" />
           <Property Name="Entity_Order" Type="int" />
+        </EntityType>
+        <EntityType Name="RegisterRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="Person_Id" Type="int" />
+          <Property Name="RequestStatus" Type="int" />
+          <Property Name="ResponseMessage" Type="int" />
+          <Property Name="Links" Type="nvarchar" MaxLength="250" />
+          <Property Name="RequestMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RelationRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestUser_Id" Type="int" />
+          <Property Name="RegisterRequests_Id" Type="int" />
+          <Property Name="TargetUser_Id" Type="int" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="RequestMessage" Type="nvarchar(max)" />
+          <Property Name="ResponseMessage" Type="nvarchar(max)" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="AllowChatRoom" Type="bit" />
+          <Property Name="ResponsibleManager_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="RequestQuestionSenario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question_id" Type="int" />
+          <Property Name="Answers" Type="nvarchar" MaxLength="250" />
+          <Property Name="RegisterRequests_Id" Type="int" />
+          <Property Name="Entity_Order" Type="int" />
+        </EntityType>
+        <EntityType Name="RolePermissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Permission_Id" Type="int" />
+          <Property Name="Roles_Id" Type="int" />
+          <Property Name="InsertDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -111,6 +190,66 @@
             </Principal>
             <Dependent Role="Articles">
               <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatRoomMessage_RelationRequest">
+          <End Role="RelationRequest" Type="Self.RelationRequest" Multiplicity="0..1" />
+          <End Role="ChatRoomMessage" Type="Self.ChatRoomMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RelationRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatRoomMessage">
+              <PropertyRef Name="RelationRequest_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatRoomMessage_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ChatRoomMessage" Type="Self.ChatRoomMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatRoomMessage">
+              <PropertyRef Name="SenderUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ReciverUser_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -162,6 +301,114 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RegisterRequests_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="RegisterRequests" Type="Self.RegisterRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegisterRequests">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_RegisterRequests">
+          <End Role="RegisterRequests" Type="Self.RegisterRequests" Multiplicity="0..1" />
+          <End Role="RelationRequest" Type="Self.RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="RegisterRequests_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="RelationRequest" Type="Self.RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="RequestUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="RelationRequest" Type="Self.RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="TargetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users2">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="RelationRequest" Type="Self.RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="ResponsibleManager_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestQuestionSenario_QuestionBank">
+          <End Role="QuestionBank" Type="Self.QuestionBank" Multiplicity="0..1" />
+          <End Role="RequestQuestionSenario" Type="Self.RequestQuestionSenario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionBank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestQuestionSenario">
+              <PropertyRef Name="Question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestQuestionSenario_RegisterRequests">
+          <End Role="RegisterRequests" Type="Self.RegisterRequests" Multiplicity="0..1" />
+          <End Role="RequestQuestionSenario" Type="Self.RequestQuestionSenario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestQuestionSenario">
+              <PropertyRef Name="RegisterRequests_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermissions_Permissons">
+          <End Role="Permissons" Type="Self.Permissons" Multiplicity="0..1" />
+          <End Role="RolePermissions" Type="Self.RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="Permission_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermissions_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="RolePermissions" Type="Self.RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="Roles_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -177,15 +424,42 @@
         <EntityContainer Name="SOKNAModelStoreContainer">
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatRoomMessage" EntityType="Self.ChatRoomMessage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nationality" EntityType="Self.Nationality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permissons" EntityType="Self.Permissons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionBank" EntityType="Self.QuestionBank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegisterRequests" EntityType="Self.RegisterRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelationRequest" EntityType="Self.RelationRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestQuestionSenario" EntityType="Self.RequestQuestionSenario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolePermissions" EntityType="Self.RolePermissions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Articles_Category" Association="Self.FK_Articles_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Articles" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatRoomMessage_RelationRequest" Association="Self.FK_ChatRoomMessage_RelationRequest">
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+            <End Role="ChatRoomMessage" EntitySet="ChatRoomMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatRoomMessage_Users" Association="Self.FK_ChatRoomMessage_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ChatRoomMessage" EntitySet="ChatRoomMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Person" Association="Self.FK_Messages_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users" Association="Self.FK_Messages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users1" Association="Self.FK_Messages_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
           </AssociationSet>
           <AssociationSet Name="FK_Person_Country" Association="Self.FK_Person_Country">
             <End Role="Country" EntitySet="Country" />
@@ -203,6 +477,42 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="QuestionBank" EntitySet="QuestionBank" />
           </AssociationSet>
+          <AssociationSet Name="FK_RegisterRequests_Person" Association="Self.FK_RegisterRequests_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_RegisterRequests" Association="Self.FK_RelationRequest_RegisterRequests">
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users" Association="Self.FK_RelationRequest_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users1" Association="Self.FK_RelationRequest_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users2" Association="Self.FK_RelationRequest_Users2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestQuestionSenario_QuestionBank" Association="Self.FK_RequestQuestionSenario_QuestionBank">
+            <End Role="QuestionBank" EntitySet="QuestionBank" />
+            <End Role="RequestQuestionSenario" EntitySet="RequestQuestionSenario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestQuestionSenario_RegisterRequests" Association="Self.FK_RequestQuestionSenario_RegisterRequests">
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+            <End Role="RequestQuestionSenario" EntitySet="RequestQuestionSenario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermissions_Permissons" Association="Self.FK_RolePermissions_Permissons">
+            <End Role="Permissons" EntitySet="Permissons" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermissions_Roles" Association="Self.FK_RolePermissions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -215,6 +525,23 @@
         <EntityContainer Name="SOKNAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Country" EntityType="SOKNAModel.Country" />
           <EntitySet Name="Nationality" EntityType="SOKNAModel.Nationality" />
+          <EntitySet Name="Category" EntityType="SOKNAModel.Category" />
+          <EntitySet Name="QuestionBank" EntityType="SOKNAModel.QuestionBank" />
+          <EntitySet Name="RegisterRequests" EntityType="SOKNAModel.RegisterRequests" />
+          <EntitySet Name="RequestQuestionSenario" EntityType="SOKNAModel.RequestQuestionSenario" />
+          <AssociationSet Name="FK_QuestionBank_Category" Association="SOKNAModel.FK_QuestionBank_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="QuestionBank" EntitySet="QuestionBank" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestQuestionSenario_QuestionBank" Association="SOKNAModel.FK_RequestQuestionSenario_QuestionBank">
+            <End Role="QuestionBank" EntitySet="QuestionBank" />
+            <End Role="RequestQuestionSenario" EntitySet="RequestQuestionSenario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestQuestionSenario_RegisterRequests" Association="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests">
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+            <End Role="RequestQuestionSenario" EntitySet="RequestQuestionSenario" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="SOKNAModel.Users" />
           <EntitySet Name="Person" EntityType="SOKNAModel.Person" />
           <AssociationSet Name="FK_Person_Country" Association="SOKNAModel.FK_Person_Country">
             <End Role="Country" EntitySet="Country" />
@@ -224,26 +551,72 @@
             <End Role="Nationality" EntitySet="Nationality" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <EntitySet Name="Roles" EntityType="SOKNAModel.Roles" />
-          <EntitySet Name="Users" EntityType="SOKNAModel.Users" />
           <AssociationSet Name="FK_Person_Users" Association="SOKNAModel.FK_Person_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_Roles" Association="SOKNAModel.FK_Users_Roles">
-            <End Role="Roles" EntitySet="Roles" />
+          <AssociationSet Name="FK_RegisterRequests_Person" Association="SOKNAModel.FK_RegisterRequests_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+          </AssociationSet>
+          <EntitySet Name="ChatRoomMessage" EntityType="SOKNAModel.ChatRoomMessage" />
+          <AssociationSet Name="FK_ChatRoomMessage_Users" Association="SOKNAModel.FK_ChatRoomMessage_Users">
             <End Role="Users" EntitySet="Users" />
+            <End Role="ChatRoomMessage" EntitySet="ChatRoomMessage" />
           </AssociationSet>
           <EntitySet Name="Articles" EntityType="SOKNAModel.Articles" />
-          <EntitySet Name="Category" EntityType="SOKNAModel.Category" />
+          <EntitySet Name="Messages" EntityType="SOKNAModel.Messages" />
+          <EntitySet Name="Permissons" EntityType="SOKNAModel.Permissons" />
+          <EntitySet Name="RelationRequest" EntityType="SOKNAModel.RelationRequest" />
+          <EntitySet Name="RolePermissions" EntityType="SOKNAModel.RolePermissions" />
+          <EntitySet Name="Roles" EntityType="SOKNAModel.Roles" />
           <AssociationSet Name="FK_Articles_Category" Association="SOKNAModel.FK_Articles_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Articles" EntitySet="Articles" />
           </AssociationSet>
-          <EntitySet Name="QuestionBank" EntityType="SOKNAModel.QuestionBank" />
-          <AssociationSet Name="FK_QuestionBank_Category" Association="SOKNAModel.FK_QuestionBank_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="QuestionBank" EntitySet="QuestionBank" />
+          <AssociationSet Name="FK_ChatRoomMessage_RelationRequest" Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest">
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+            <End Role="ChatRoomMessage" EntitySet="ChatRoomMessage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Person" Association="SOKNAModel.FK_Messages_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users" Association="SOKNAModel.FK_Messages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users1" Association="SOKNAModel.FK_Messages_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermissions_Permissons" Association="SOKNAModel.FK_RolePermissions_Permissons">
+            <End Role="Permissons" EntitySet="Permissons" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_RegisterRequests" Association="SOKNAModel.FK_RelationRequest_RegisterRequests">
+            <End Role="RegisterRequests" EntitySet="RegisterRequests" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users" Association="SOKNAModel.FK_RelationRequest_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users1" Association="SOKNAModel.FK_RelationRequest_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RelationRequest_Users2" Association="SOKNAModel.FK_RelationRequest_Users2">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RelationRequest" EntitySet="RelationRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolePermissions_Roles" Association="SOKNAModel.FK_RolePermissions_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolePermissions" EntitySet="RolePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="SOKNAModel.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Country">
@@ -261,6 +634,111 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameL1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Nationality" FromRole="Nationality" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <Property Name="CatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuestionBank" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="Category" ToRole="QuestionBank" />
+          <NavigationProperty Name="Articles" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
+        </EntityType>
+        <EntityType Name="QuestionBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category_Id" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="QuestionBank" ToRole="Category" />
+          <NavigationProperty Name="RequestQuestionSenario" Relationship="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" FromRole="QuestionBank" ToRole="RequestQuestionSenario" />
+        </EntityType>
+        <EntityType Name="RegisterRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="Person_Id" Type="Int32" />
+          <Property Name="RequestStatus" Type="Int32" />
+          <Property Name="ResponseMessage" Type="Int32" />
+          <Property Name="Links" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RequestMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestQuestionSenario" Relationship="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" FromRole="RegisterRequests" ToRole="RequestQuestionSenario" />
+          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_RegisterRequests_Person" FromRole="RegisterRequests" ToRole="Person" />
+          <NavigationProperty Name="RelationRequest" Relationship="SOKNAModel.FK_RelationRequest_RegisterRequests" FromRole="RegisterRequests" ToRole="RelationRequest" />
+        </EntityType>
+        <EntityType Name="RequestQuestionSenario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_id" Type="Int32" />
+          <Property Name="Answers" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RegisterRequests_Id" Type="Int32" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <NavigationProperty Name="QuestionBank" Relationship="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" FromRole="RequestQuestionSenario" ToRole="QuestionBank" />
+          <NavigationProperty Name="RegisterRequests" Relationship="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" FromRole="RequestQuestionSenario" ToRole="RegisterRequests" />
+        </EntityType>
+        <Association Name="FK_QuestionBank_Category">
+          <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="SOKNAModel.QuestionBank" Role="QuestionBank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionBank">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestQuestionSenario_QuestionBank">
+          <End Type="SOKNAModel.QuestionBank" Role="QuestionBank" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RequestQuestionSenario" Role="RequestQuestionSenario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionBank">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestQuestionSenario">
+              <PropertyRef Name="Question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestQuestionSenario_RegisterRequests">
+          <End Type="SOKNAModel.RegisterRequests" Role="RegisterRequests" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RequestQuestionSenario" Role="RequestQuestionSenario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RequestQuestionSenario">
+              <PropertyRef Name="RegisterRequests_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role_Id" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Users" FromRole="Users" ToRole="Person" />
+          <NavigationProperty Name="ChatRoomMessage" Relationship="SOKNAModel.FK_ChatRoomMessage_Users" FromRole="Users" ToRole="ChatRoomMessage" />
+          <NavigationProperty Name="Messages" Relationship="SOKNAModel.FK_Messages_Users" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="Messages1" Relationship="SOKNAModel.FK_Messages_Users1" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="RelationRequest" Relationship="SOKNAModel.FK_RelationRequest_Users" FromRole="Users" ToRole="RelationRequest" />
+          <NavigationProperty Name="RelationRequest1" Relationship="SOKNAModel.FK_RelationRequest_Users1" FromRole="Users" ToRole="RelationRequest" />
+          <NavigationProperty Name="RelationRequest2" Relationship="SOKNAModel.FK_RelationRequest_Users2" FromRole="Users" ToRole="RelationRequest" />
+          <NavigationProperty Name="Roles" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -281,8 +759,8 @@
           <Property Name="SocialStatus" Type="Int32" />
           <Property Name="Color" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="User_Id" Type="Int32" />
           <Property Name="NationalityNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PassportNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -293,6 +771,8 @@
           <NavigationProperty Name="Country" Relationship="SOKNAModel.FK_Person_Country" FromRole="Person" ToRole="Country" />
           <NavigationProperty Name="Nationality" Relationship="SOKNAModel.FK_Person_Nationality" FromRole="Person" ToRole="Nationality" />
           <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Person_Users" FromRole="Person" ToRole="Users" />
+          <NavigationProperty Name="RegisterRequests" Relationship="SOKNAModel.FK_RegisterRequests_Person" FromRole="Person" ToRole="RegisterRequests" />
+          <NavigationProperty Name="Messages" Relationship="SOKNAModel.FK_Messages_Person" FromRole="Person" ToRole="Messages" />
         </EntityType>
         <Association Name="FK_Person_Country">
           <End Type="SOKNAModel.Country" Role="Country" Multiplicity="0..1" />
@@ -318,29 +798,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="RoleStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Role_Id" Type="Int32" />
-          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Users" FromRole="Users" ToRole="Person" />
-          <NavigationProperty Name="Roles" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-        </EntityType>
         <Association Name="FK_Person_Users">
           <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
           <End Type="SOKNAModel.Person" Role="Person" Multiplicity="*" />
@@ -353,15 +810,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_Roles">
-          <End Type="SOKNAModel.Roles" Role="Roles" Multiplicity="0..1" />
-          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="*" />
+        <Association Name="FK_RegisterRequests_Person">
+          <End Type="SOKNAModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RegisterRequests" Role="RegisterRequests" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Roles">
+            <Principal Role="Person">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="Role_Id" />
+            <Dependent Role="RegisterRequests">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ChatRoomMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RelationRequest_Id" Type="Int32" />
+          <Property Name="SenderUser_Id" Type="Int32" />
+          <Property Name="MsgDate" Type="DateTime" Precision="3" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_ChatRoomMessage_Users" FromRole="ChatRoomMessage" ToRole="Users" />
+          <NavigationProperty Name="RelationRequest" Relationship="SOKNAModel.FK_ChatRoomMessage_RelationRequest" FromRole="ChatRoomMessage" ToRole="RelationRequest" />
+        </EntityType>
+        <Association Name="FK_ChatRoomMessage_Users">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.ChatRoomMessage" Role="ChatRoomMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatRoomMessage">
+              <PropertyRef Name="SenderUser_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -381,16 +863,73 @@
           <Property Name="ArticalDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Articles" ToRole="Category" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="Messages">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Entity_Order" Type="Int32" />
-          <Property Name="CatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Articles" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
-          <NavigationProperty Name="QuestionBank" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="Category" ToRole="QuestionBank" />
+          <Property Name="MsgHeader" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="Int32" />
+          <Property Name="MsgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Messages1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MsgDate" Type="DateTime" Precision="3" />
+          <Property Name="MsgStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ReciverUser_Id" Type="Int32" />
+          <Property Name="Person_Id" Type="Int32" />
+          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Messages_Person" FromRole="Messages" ToRole="Person" />
+          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Messages_Users" FromRole="Messages" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="SOKNAModel.FK_Messages_Users1" FromRole="Messages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Permissons">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameL1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RolePermissions" Relationship="SOKNAModel.FK_RolePermissions_Permissons" FromRole="Permissons" ToRole="RolePermissions" />
+        </EntityType>
+        <EntityType Name="RelationRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestUser_Id" Type="Int32" />
+          <Property Name="RegisterRequests_Id" Type="Int32" />
+          <Property Name="TargetUser_Id" Type="Int32" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="RequestMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AllowChatRoom" Type="Boolean" />
+          <Property Name="ResponsibleManager_Id" Type="Int32" />
+          <NavigationProperty Name="ChatRoomMessage" Relationship="SOKNAModel.FK_ChatRoomMessage_RelationRequest" FromRole="RelationRequest" ToRole="ChatRoomMessage" />
+          <NavigationProperty Name="RegisterRequests" Relationship="SOKNAModel.FK_RelationRequest_RegisterRequests" FromRole="RelationRequest" ToRole="RegisterRequests" />
+          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_RelationRequest_Users" FromRole="RelationRequest" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="SOKNAModel.FK_RelationRequest_Users1" FromRole="RelationRequest" ToRole="Users" />
+          <NavigationProperty Name="Users2" Relationship="SOKNAModel.FK_RelationRequest_Users2" FromRole="RelationRequest" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="RolePermissions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Permission_Id" Type="Int32" />
+          <Property Name="Roles_Id" Type="Int32" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Permissons" Relationship="SOKNAModel.FK_RolePermissions_Permissons" FromRole="RolePermissions" ToRole="Permissons" />
+          <NavigationProperty Name="Roles" Relationship="SOKNAModel.FK_RolePermissions_Roles" FromRole="RolePermissions" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RoleStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RolePermissions" Relationship="SOKNAModel.FK_RolePermissions_Roles" FromRole="Roles" ToRole="RolePermissions" />
+          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <Association Name="FK_Articles_Category">
           <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
@@ -404,26 +943,135 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="QuestionBank">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Category_Id" Type="Int32" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Entity_Order" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="QuestionBank" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_QuestionBank_Category">
-          <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="SOKNAModel.QuestionBank" Role="QuestionBank" Multiplicity="*" />
+        <Association Name="FK_ChatRoomMessage_RelationRequest">
+          <End Type="SOKNAModel.RelationRequest" Role="RelationRequest" Multiplicity="0..1" />
+          <End Type="SOKNAModel.ChatRoomMessage" Role="ChatRoomMessage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="RelationRequest">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="QuestionBank">
-              <PropertyRef Name="Category_Id" />
+            <Dependent Role="ChatRoomMessage">
+              <PropertyRef Name="RelationRequest_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Person">
+          <End Type="SOKNAModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="SOKNAModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Person_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users1">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="ReciverUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermissions_Permissons">
+          <End Type="SOKNAModel.Permissons" Role="Permissons" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RolePermissions" Role="RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permissons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="Permission_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_RegisterRequests">
+          <End Type="SOKNAModel.RegisterRequests" Role="RegisterRequests" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RelationRequest" Role="RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegisterRequests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="RegisterRequests_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RelationRequest" Role="RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="RequestUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users1">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RelationRequest" Role="RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="TargetUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RelationRequest_Users2">
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RelationRequest" Role="RelationRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RelationRequest">
+              <PropertyRef Name="ResponsibleManager_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolePermissions_Roles">
+          <End Type="SOKNAModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="SOKNAModel.RolePermissions" Role="RolePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolePermissions">
+              <PropertyRef Name="Roles_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Type="SOKNAModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -445,6 +1093,63 @@
             <EntityTypeMapping TypeName="SOKNAModel.Nationality">
               <MappingFragment StoreEntitySet="Nationality">
                 <ScalarProperty Name="NameL1" ColumnName="NameL1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SOKNAModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CatType" ColumnName="CatType" />
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionBank">
+            <EntityTypeMapping TypeName="SOKNAModel.QuestionBank">
+              <MappingFragment StoreEntitySet="QuestionBank">
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisterRequests">
+            <EntityTypeMapping TypeName="SOKNAModel.RegisterRequests">
+              <MappingFragment StoreEntitySet="RegisterRequests">
+                <ScalarProperty Name="RequestMessage" ColumnName="RequestMessage" />
+                <ScalarProperty Name="Links" ColumnName="Links" />
+                <ScalarProperty Name="ResponseMessage" ColumnName="ResponseMessage" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestQuestionSenario">
+            <EntityTypeMapping TypeName="SOKNAModel.RequestQuestionSenario">
+              <MappingFragment StoreEntitySet="RequestQuestionSenario">
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="RegisterRequests_Id" ColumnName="RegisterRequests_Id" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="Question_id" ColumnName="Question_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SOKNAModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -479,24 +1184,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="SOKNAModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SOKNAModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <EntitySetMapping Name="ChatRoomMessage">
+            <EntityTypeMapping TypeName="SOKNAModel.ChatRoomMessage">
+              <MappingFragment StoreEntitySet="ChatRoomMessage">
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="SenderUser_Id" ColumnName="SenderUser_Id" />
+                <ScalarProperty Name="RelationRequest_Id" ColumnName="RelationRequest_Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -517,23 +1212,62 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="SOKNAModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CatType" ColumnName="CatType" />
-                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
-                <ScalarProperty Name="Category1" ColumnName="Category" />
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="SOKNAModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="ReciverUser_Id" ColumnName="ReciverUser_Id" />
+                <ScalarProperty Name="MsgStatus" ColumnName="MsgStatus" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="Messages1" ColumnName="Messages" />
+                <ScalarProperty Name="MsgType" ColumnName="MsgType" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="MsgHeader" ColumnName="MsgHeader" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuestionBank">
-            <EntityTypeMapping TypeName="SOKNAModel.QuestionBank">
-              <MappingFragment StoreEntitySet="QuestionBank">
-                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
-                <ScalarProperty Name="Question" ColumnName="Question" />
+          <EntitySetMapping Name="Permissons">
+            <EntityTypeMapping TypeName="SOKNAModel.Permissons">
+              <MappingFragment StoreEntitySet="Permissons">
+                <ScalarProperty Name="NameL1" ColumnName="NameL1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelationRequest">
+            <EntityTypeMapping TypeName="SOKNAModel.RelationRequest">
+              <MappingFragment StoreEntitySet="RelationRequest">
+                <ScalarProperty Name="ResponsibleManager_Id" ColumnName="ResponsibleManager_Id" />
+                <ScalarProperty Name="AllowChatRoom" ColumnName="AllowChatRoom" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="ResponseMessage" ColumnName="ResponseMessage" />
+                <ScalarProperty Name="RequestMessage" ColumnName="RequestMessage" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="TargetUser_Id" ColumnName="TargetUser_Id" />
+                <ScalarProperty Name="RegisterRequests_Id" ColumnName="RegisterRequests_Id" />
+                <ScalarProperty Name="RequestUser_Id" ColumnName="RequestUser_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolePermissions">
+            <EntityTypeMapping TypeName="SOKNAModel.RolePermissions">
+              <MappingFragment StoreEntitySet="RolePermissions">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="Roles_Id" ColumnName="Roles_Id" />
+                <ScalarProperty Name="Permission_Id" ColumnName="Permission_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SOKNAModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -234,30 +234,48 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
-    <Compile Include="Controllers\User\UserController.cs" />
-    <Compile Include="DAL\ArticleDAL.cs" />
-    <Compile Include="DAL\CategoryDAL.cs" />
+    <Compile Include="Controllers\RegisterRequestController.cs" />
     <Compile Include="DAL\CountryDAL.cs" />
+    <Compile Include="DAL\RegisterRequestsDAL.cs" />
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
-    <Compile Include="DAL\QuestionBankDAL.cs" />
-    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Entities\Articles.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Category.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ChatRoomMessage.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Country.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Messages.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Nationality.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Permissons.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Person.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\QuestionBank.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RegisterRequests.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RelationRequest.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RequestQuestionSenario.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RolePermissions.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Roles.cs">
@@ -285,14 +303,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CategoryMV\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
-    <Compile Include="Models\QuestionMV\QuestionViewModel.cs" />
-    <Compile Include="Models\UserMV\UserViewModel.cs" />
+    <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\Globalization.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1213,6 +1230,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Migrations\01-GenerateScript.sql" />
+    <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1279,6 +1298,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Upload\Images\img1.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1322,8 +1342,10 @@
     <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\Shared\Layout-theme-01\_Slider-theme-01.cshtml" />
     <Content Include="Views\SearchPerson\Index.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\_UserGVP.cshtml" />
+    <Content Include="Views\SearchPerson\_PersonGVP.cshtml" />
+    <Content Include="Views\SearchPerson\_PersonPVG.cshtml" />
+    <Content Include="Views\RegisterRequest\Index.cshtml" />
+    <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
