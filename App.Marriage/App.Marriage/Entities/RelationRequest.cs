@@ -12,27 +12,30 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class RegisterRequests
+    public partial class RelationRequest
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RegisterRequests()
+        public RelationRequest()
         {
-            this.RequestQuestionSenario = new HashSet<RequestQuestionSenario>();
-            this.RelationRequest = new HashSet<RelationRequest>();
+            this.ChatRoomMessage = new HashSet<ChatRoomMessage>();
         }
     
         public int Id { get; set; }
+        public Nullable<int> RequestUser_Id { get; set; }
+        public Nullable<int> RegisterRequests_Id { get; set; }
+        public Nullable<int> TargetUser_Id { get; set; }
         public Nullable<System.DateTime> RequestDate { get; set; }
-        public Nullable<int> Person_Id { get; set; }
-        public Nullable<int> RequestStatus { get; set; }
-        public Nullable<int> ResponseMessage { get; set; }
-        public string Links { get; set; }
         public string RequestMessage { get; set; }
+        public string ResponseMessage { get; set; }
+        public string RequestStatus { get; set; }
+        public Nullable<bool> AllowChatRoom { get; set; }
+        public Nullable<int> ResponsibleManager_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequestQuestionSenario> RequestQuestionSenario { get; set; }
-        public virtual Person Person { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RelationRequest> RelationRequest { get; set; }
+        public virtual ICollection<ChatRoomMessage> ChatRoomMessage { get; set; }
+        public virtual RegisterRequests RegisterRequests { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
+        public virtual Users Users2 { get; set; }
     }
 }

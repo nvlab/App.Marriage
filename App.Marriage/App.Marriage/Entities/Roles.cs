@@ -12,23 +12,23 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public Roles()
         {
-            this.QuestionBank = new HashSet<QuestionBank>();
-            this.Articles = new HashSet<Articles>();
+            this.RolePermissions = new HashSet<RolePermissions>();
+            this.Users = new HashSet<Users>();
         }
     
         public int Id { get; set; }
-        public string Category1 { get; set; }
-        public Nullable<int> Entity_Order { get; set; }
-        public string CatType { get; set; }
+        public string RoleName { get; set; }
+        public string Description { get; set; }
+        public string RoleStatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuestionBank> QuestionBank { get; set; }
+        public virtual ICollection<RolePermissions> RolePermissions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Articles> Articles { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

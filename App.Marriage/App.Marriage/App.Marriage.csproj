@@ -239,6 +239,9 @@
     <Compile Include="DAL\RegisterRequestsDAL.cs" />
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="Entities\Articles.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Category.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
@@ -248,7 +251,13 @@
     <Compile Include="Entities\Country.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Messages.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Nationality.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Permissons.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Person.cs">
@@ -260,7 +269,16 @@
     <Compile Include="Entities\RegisterRequests.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\RelationRequest.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\RequestQuestionSenario.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RolePermissions.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Roles.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sokna.Context.cs">

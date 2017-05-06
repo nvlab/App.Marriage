@@ -12,16 +12,15 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ChatRoomMessage
+    public partial class RolePermissions
     {
         public int Id { get; set; }
-        public string Message { get; set; }
-        public Nullable<int> RelationRequest_Id { get; set; }
-        public Nullable<int> SenderUser_Id { get; set; }
-        public Nullable<System.DateTime> MsgDate { get; set; }
-        public Nullable<int> Entity_Order { get; set; }
+        public Nullable<int> Permission_Id { get; set; }
+        public Nullable<int> Roles_Id { get; set; }
+        public Nullable<System.DateTime> InsertDate { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
-        public virtual Users Users { get; set; }
-        public virtual RelationRequest RelationRequest { get; set; }
+        public virtual Permissons Permissons { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }
