@@ -4,12 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="155b6a6013b14220a0f515e6af8a0aa2" Name="Diagram1" ZoomLevel="69">
-        <EntityTypeShape EntityType="SOKNAModel.Country" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SOKNAModel.Nationality" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="SOKNAModel.Person" Width="1.5" PointX="3" PointY="1.5" />
+      <Diagram DiagramId="155b6a6013b14220a0f515e6af8a0aa2" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="SOKNAModel.Country" Width="1.5" PointX="5.75" PointY="1.5" />
+        <EntityTypeShape EntityType="SOKNAModel.Nationality" Width="1.5" PointX="2.625" PointY="3.875" />
+        <EntityTypeShape EntityType="SOKNAModel.Category" Width="1.5" PointX="3.125" PointY="7" />
+        <EntityTypeShape EntityType="SOKNAModel.QuestionBank" Width="1.5" PointX="5.75" PointY="8.25" />
+        <EntityTypeShape EntityType="SOKNAModel.RegisterRequests" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="SOKNAModel.RequestQuestionSenario" Width="1.5" PointX="7.5" PointY="4.375" />
+        <AssociationConnector Association="SOKNAModel.FK_QuestionBank_Category" />
+        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" />
+        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" />
+        <EntityTypeShape EntityType="SOKNAModel.Users" Width="1.5" PointX="9.625" PointY="13.5" />
+        <EntityTypeShape EntityType="SOKNAModel.Person" Width="1.5" PointX="9.875" PointY="4.875" />
         <AssociationConnector Association="SOKNAModel.FK_Person_Country" />
         <AssociationConnector Association="SOKNAModel.FK_Person_Nationality" />
+        <AssociationConnector Association="SOKNAModel.FK_Person_Users" />
+        <AssociationConnector Association="SOKNAModel.FK_RegisterRequests_Person" />
+        <EntityTypeShape EntityType="SOKNAModel.ChatRoomMessage" Width="1.5" PointX="11.875" PointY="13.625" />
+        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
