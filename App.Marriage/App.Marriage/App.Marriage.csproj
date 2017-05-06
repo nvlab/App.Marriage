@@ -111,6 +111,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -231,14 +233,44 @@
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Person\SearchPersonController.cs" />
+    <Compile Include="DAL\CountryDAL.cs" />
+    <Compile Include="DAL\NationalityDAL.cs" />
+    <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="Entities\Country.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Nationality.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Person.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sokna.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Globalization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\theme-01\images\1.jpg" />
@@ -1144,6 +1176,16 @@
     <Content Include="Content\admin\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Entities\Sokna.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+      <LastGenOutput>Sokna.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Sokna.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Sokna.edmx</DependentUpon>
+      <LastGenOutput>Sokna.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1195,6 +1237,13 @@
     <Content Include="Content\admin\bootstrap-rtl\css\bootstrap-rtl.css.map" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.css.map" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-rtl.css.map" />
+    <EntityDeploy Include="Entities\Sokna.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Sokna.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\Sokna.edmx.diagram">
+      <DependentUpon>Sokna.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1249,6 +1298,7 @@
     <Content Include="Views\Shared\Layout-admin\_header-admin.cshtml" />
     <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\Shared\Layout-theme-01\_Slider-theme-01.cshtml" />
+    <Content Include="Views\SearchPerson\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1264,6 +1314,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
