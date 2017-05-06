@@ -10,6 +10,7 @@ namespace App.Marriage.Controllers
     {
         public ActionResult Index()
         {
+            ViewData["ShowSlider"] = true;
             return View();
         }
 
