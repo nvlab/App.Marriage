@@ -229,10 +229,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
-    <Compile Include="Controllers\FindPersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Entity\Person.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1258,7 +1256,6 @@
     <Folder Include="Content\theme-01\fonts\" />
     <Folder Include="Content\theme-01\img\" />
     <Folder Include="Content\theme-01\js\" />
-    <Folder Include="Views\FindPerson\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
