@@ -38,6 +38,12 @@ namespace App.Marriage.Controllers.Person
             return PartialView("~/Views/SearchPerson/_PersonPVG.cshtml", model);
         }
 
+        public ActionResult GetPerson(string Country, int Ages, string Education, string Nationality, string Gender)
+        {
+            var model = PersonViewModel.GetPersonList();
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     
     }
 }
