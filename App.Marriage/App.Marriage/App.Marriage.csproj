@@ -270,6 +270,7 @@
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\Globalization.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1190,6 +1191,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Migrations\01-GenerateScript.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
