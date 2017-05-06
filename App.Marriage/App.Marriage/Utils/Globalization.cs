@@ -99,64 +99,64 @@ namespace App.Marriage.Utils
                 return (string)"مكان الولادة";
             }
         }
-            //public static string Nationality
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-
-            //}
-            //}
-
-            //}
+        public static string Search
+        {
+            get
+            {
+                return (string)"البحث عن شريك";
+            }
         }
+        public static string StartSearch
+        {
+            get
+            {
+                return (string)"البدء بالبحث";
+            }
+        }
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //}
+
+        //}
+    }
 }

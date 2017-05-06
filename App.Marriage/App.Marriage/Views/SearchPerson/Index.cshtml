@@ -1,28 +1,63 @@
 ﻿
 @using App.Marriage.Utils
+<script src="~/Scripts/JSCallAjax.js"></script>
+<script>
+    function SearchPerson() {
 
-<div class="container-fluid" dir="rtl">
-    <form class="form-horizontal col-sm-10">
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-1 control-label">@Globalization.App_living :</label>
-            <div class="col-sm-2">
+        var url = "@Url.Action("GetPerson", "SearchPerson")";
+        var Parameter = [
+            ["Country", Country.GetValue()],
+            ["Ages", Ages.val],
+            ["Education", Education.GetValue()],
+            ["Nationality", Nationality.GetValue()],
+            ["Gender", Gendr.GetValue()]
+        ];
+        CallContoller(url, Parameter, "Search");
+    };
+
+
+    function RefeshMethod(data) { };
+    function WriteSearchResult(data) {
+        $("#search-result").clear();
+    };
+   
+</script>
+<style>
+    input {
+        height: 40px;
+    }
+</style>
+<section id="events" class="section-events">
+    <h2>@Globalization.Search</h2>
+    <div class="section-intro">
+        <p>الرجاء ادخال البيانات التي تريد ان تبحث خلالها</p>
+    </div>
+
+
+    <form class="form-inline">
+        <div class="form-group col-sm-2">
+            <label for="exampleInputName2" class="col-sm-1">@Globalization.App_living</label>
+            
                 @Html.DevExpress().ComboBox(settings =>
-                              {
-                                  settings.Name = "Country";
-                                  settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-                                  settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                                  settings.Properties.ValueType = typeof(int);
-                                  settings.Properties.ValueField = "Id";
-                                  settings.Properties.TextField = "Name";
-                                  settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-                              }).BindList(ViewData["Country"]).GetHtml()
-            </div>
-            <label for="inputPassword3" class="col-sm-offset-0 col-sm-1 control-label">@Globalization.App_Age :</label>
-            <div class="col-sm-2">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-            <label for="inputPassword3" class="col-sm-offset-0 col-sm-1 control-label">@Globalization.App_Education :</label>
-            <div class="col-sm-2">
+           {
+               settings.Name = "Country";
+               settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+               settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+               settings.Properties.ValueType = typeof(int);
+               settings.Properties.ValueField = "Id";
+               settings.Properties.TextField = "Name";
+               settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+               settings.Style.Value = "form-control col-sm-2";
+
+           }).BindList(ViewData["Country"]).GetHtml()
+       
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="exampleInputEmail2" class="col-sm-2">@Globalization.App_Age</label>
+            <input type="number" class="form-control col-sm-2" id="Ages" placeholder="20" value="0">
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="exampleInputEmail2" class="col-sm-2">@Globalization.App_Education</label>
                 @Html.DevExpress().ComboBox(settings =>
            {
                settings.Name = "Education";
@@ -32,57 +67,52 @@
                settings.Properties.Items.Add(@Globalization.HighSchool, "HighSchool");
                settings.Properties.Items.Add(@Globalization.None, "None");
                settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+               settings.Style.Value = "form-control col-sm-2";
            }).GetHtml()
-            </div>
-            <label for="inputPassword3" class="col-sm-offset-0 col-sm-1 control-label">@Globalization.App_Nationality :</label>
-            <div class="col-sm-2">
-                @Html.DevExpress().ComboBox(settings =>
-                              {
-                                  settings.Name = "Nationality";
-                                  settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-                                  settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                                  settings.Properties.ValueType = typeof(int);
-                                  settings.Properties.ValueField = "Id";
-                                  settings.Properties.TextField = "Name";
-                                  settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-                              }).BindList(ViewData["Nationality"]).GetHtml()
-            </div>
-            <label for="inputPassword3" class="col-sm-offset-0 col-sm-1 control-label">@Globalization.App_SocialStatus :</label>
-            <div class="col-sm-2">
-                @Html.DevExpress().ComboBox(settings =>
-{
-    settings.Name = "Gender";
-    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-    settings.Properties.Items.Add(@Globalization.Male, "Male");
-    settings.Properties.Items.Add(@Globalization.Femal, "Femal");
-    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-}).GetHtml()
-
-
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-            <label for="inputPassword3" class="col-sm-offset-0 col-sm-1 control-label">@Globalization.App_Work :</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" id="Works" placeholder="@Globalization.App_Work">
-            </div>
-
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
+
+        <div class="form-group col-sm-2">
+            <label for="exampleInputEmail2" class="col-sm-2">@Globalization.App_Nationality</label>
+            @Html.DevExpress().ComboBox(settings =>
+       {
+           settings.Name = "Nationality";
+           settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+           settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+           settings.Properties.ValueType = typeof(int);
+           settings.Properties.ValueField = "Id";
+           settings.Properties.TextField = "Name";
+           settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+           settings.Style.Value = "form-control col-sm-2";
+       }).BindList(ViewData["Nationality"]).GetHtml()
+        </div>
+
+        <div class="form-group col-sm-2">
+            <label for="exampleInputEmail2" class="col-sm-3">@Globalization.App_SocialStatus</label>
+            @Html.DevExpress().ComboBox(settings =>
+       {
+           settings.Name = "Gendr";
+           settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+           settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+           settings.Properties.Items.Add(@Globalization.Male, "Male");
+           settings.Properties.Items.Add(@Globalization.Femal, "Femal");
+           settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+           settings.Style.Value = "form-control col-sm-2";
+       }).GetHtml()
+        </div>
+        <div class="form-group col-sm-2">
+            <label for="exampleInputEmail2" class="col-sm-2">@Globalization.App_Work</label>
+            <input type="number" class="form-control col-sm-2" id="SPWork" placeholder="@Globalization.App_Work">
+        </div>
+        <div class="col-sm-12">
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn btn-primary" onclick="SearchPerson()">@Globalization.StartSearch</button>
         </div>
     </form>
-    <div class="content">
 
-      @*      @Html.Action("PersonGVP", "SearchPerson")*@
-
-        @Html.Action("PersonPVG", "SearchPerson")
-
-
-
-
+    <div>
+        @Html.Partial("_PersonSearchResult")
     </div>
-</div>
 
+</section>

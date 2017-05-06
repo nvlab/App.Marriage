@@ -1254,6 +1254,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JSCallAjax.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1304,6 +1305,7 @@
     <Content Include="Views\SearchPerson\Index.cshtml" />
     <Content Include="Views\SearchPerson\_PersonGVP.cshtml" />
     <Content Include="Views\SearchPerson\_PersonPVG.cshtml" />
+    <Content Include="Views\SearchPerson\_PersonSearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
