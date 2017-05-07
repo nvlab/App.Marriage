@@ -1248,8 +1248,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Migrations\001-CategoryModify.sql" />
-    <Content Include="Migrations\002-ArticleColModify.sql" />
+    <Content Include="Migrations\05-CategoryModify.sql" />
+    <Content Include="Migrations\06-ArticleColModify.sql" />
     <Content Include="Migrations\01-GenerateScript.sql" />
     <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
@@ -1372,6 +1372,7 @@
     <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_UserGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\Detail.cshtml" />
     <Content Include="Views\ChatRoom\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
