@@ -22,7 +22,7 @@ namespace App.Marriage.Controllers
         [ValidateInput(false)]
         public ActionResult UserGVP()
         {
-            ViewData["Role"] = CategoryDAL.GetCategoriesComboList();
+            ViewData["Role"] = RolesDAL.GetRolesComboList();
             var model = UserViewModel.GetUserList();
             return PartialView(UserPartial, model);
         }

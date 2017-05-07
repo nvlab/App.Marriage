@@ -113,6 +113,54 @@ namespace App.Marriage.Utils
                 return (string)"البدء بالبحث";
             }
         }
+
+        public static string Role
+        {
+            get
+            {
+                return (string)"الصلاحية";
+            }
+        }
+
+        public static string New
+        {
+            get
+            {
+                return (string)"جديد";
+            }
+        }
+
+        public static string Edit
+        {
+            get
+            {
+                return (string)"تعديل";
+            }
+        }
+
+        public static string UserName
+        {
+            get
+            {
+                return (string)"اسم المستخدم";
+            }
+        }
+
+        public static string Pass
+        {
+            get
+            {
+                return (string)"كلمة المرور";
+            }
+        }
+
+        public static string IsActive
+        {
+            get
+            {
+                return (string)"نشط";
+            }
+        }
         //public static string App_Age
         //{
         //    get

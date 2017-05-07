@@ -74,6 +74,10 @@ namespace App.Marriage.Models.UserMV
         {
             _Id = id;
         }
+        public UserViewModel()
+        {
+            
+        }
         #endregion
 
         #region Operations

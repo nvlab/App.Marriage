@@ -1243,6 +1243,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Migrations\01-GenerateScript.sql" />
     <Content Include="Migrations\02-Person-Updates.sql" />
+    <Content Include="Migrations\03-CategoryModify.sql" />
+    <Content Include="Migrations\04-ArticleColModify.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
