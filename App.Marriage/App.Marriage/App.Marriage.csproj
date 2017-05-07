@@ -1348,6 +1348,7 @@
     <Content Include="Views\SearchPerson\_PersonSearchResult.cshtml" />
     <Content Include="Views\RegisterRequest\Index.cshtml" />
     <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
