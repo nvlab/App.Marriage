@@ -279,7 +279,7 @@ namespace App.Marriage.Models.PersonMV
         {
             Type type = item.GetType();
             _Id = (int)type.GetProperty("Id").GetValue(item, null);
-            _Nationality_Id = (int)type.GetProperty("Nationality_Id ").GetValue(item, null);
+            _Nationality_Id = (int)type.GetProperty("Nationality_Id").GetValue(item, null);
             _FullName = (string)type.GetProperty("FullName").GetValue(item, null);
             _Mother = (string)type.GetProperty("Mother").GetValue(item, null);
             _Father = (string)type.GetProperty("Father").GetValue(item, null);
@@ -294,7 +294,7 @@ namespace App.Marriage.Models.PersonMV
             _Color = (string)type.GetProperty("Color").GetValue(item, null);
             _SocialStatus = (int)type.GetProperty("SocialStatus").GetValue(item, null);
             _Residence_Country_Id = (int)type.GetProperty("Residence_Country_Id").GetValue(item, null);
-            _Adress = (string)type.GetProperty("Adress ").GetValue(item, null);
+            _Adress = (string)type.GetProperty("Adress").GetValue(item, null);
             _PlaceBirth = (string)type.GetProperty("PlaceBirth").GetValue(item, null);
             _height = (int)type.GetProperty("height").GetValue(item, null);
             _Phone1 = (string)type.GetProperty("Phone1").GetValue(item, null);

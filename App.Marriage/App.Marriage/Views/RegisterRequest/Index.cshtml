@@ -5,8 +5,65 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<script type="text/javascript">
+    function CustomButtonClick(s, e, url) {
+        var key = s.GetRowKey(e.visibleIndex);
+        if (e.buttonID === "detailsButton") {
+            var destUrl = url + "/" + key;
+            window.location.href = destUrl;
+        } 
+        if (e.buttonID === "acceptButton") {
+            popup.Show();   
+        }
+        if (e.buttonID === "rejectButton") {
+            popup.Show();
+        }
+    }
+
+    function OnClickYes(s, e) {
+        //GridView.DeleteRow(visibleIndex);
+        popup.Hide();
+    }
+    function OnClickNo(s, e) {
+        popup.Hide();
+    }
+
+</script>
 <h1>
     طلبات التسيجل
 </h1>
 
 @Html.Action("RegisterRequestGVP")
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "popup";
+    settings.ShowHeader = true;
+    settings.AllowDragging = true;
+    settings.AllowResize = true;
+    settings.PopupAction = PopupAction.None;
+    settings.PopupElementID = "GridView";
+    //settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+
+    settings.HeaderText = "هل تود الاستمرار";
+
+    settings.SetContent(() =>
+    {
+
+        @Html.DevExpress().Button(buttonSettings =>
+        {
+            buttonSettings.Name = "ButtonYes";
+            buttonSettings.Text = "نعم";
+            buttonSettings.UseSubmitBehavior = false;
+            buttonSettings.ClientSideEvents.Click = "OnClickYes";
+        }).Render();
+        @Html.DevExpress().Button(buttonSettings =>
+        {
+            buttonSettings.Name = "ButtonNo";
+            buttonSettings.Text = "لا";
+            buttonSettings.UseSubmitBehavior = false;
+            buttonSettings.ClientSideEvents.Click = "OnClickNo";
+        }).Render();
+
+    });
+}).GetHtml()

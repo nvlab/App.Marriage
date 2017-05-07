@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using App.Marriage.Models.RegisterRequesMV;
+using App.Marriage.Models.PersonMV;
+using App.Marriage.DAL;
 
 namespace App.Marriage.Controllers
 {
@@ -15,7 +17,7 @@ namespace App.Marriage.Controllers
         {
             return View();
         }
-
+        #region RR
         [ValidateInput(false)]
         public ActionResult RegisterRequestGVP()
         {
@@ -78,5 +80,19 @@ namespace App.Marriage.Controllers
             }
             return PartialView("_RegisterRequestGVP", model);
         }
+        #endregion
+        #region RR detail
+        // GET: RegisterRequest
+        public ActionResult Detail(int Id)
+        {
+            RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
+            RegisterRequestViewModels RR = new RegisterRequestViewModels(rrDAL.RegisterRequests);
+            PersonViewModel P = new PersonViewModel(rrDAL.RegisterRequests.Person);
+            ViewBag.Id = Id;
+            ViewBag.RR = RR;
+            ViewBag.P = P;
+            return View();
+        }
+        #endregion
     }
 }

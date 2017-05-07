@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "ControlPanel";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var Id = ViewBag.Id;
+    var RR = ViewBag.RR;
+    var P = ViewBag.P;
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            طلب تسجيل
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Examples</a></li>
+            <li class="active">User profile</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <img class="profile-user-img img-responsive img-circle" src="~/Content/admin/dist/img/avatar5.png" alt="User profile picture">
+                        <h3 class="profile-username text-center">@P.FullName</h3>
+                        <p class="text-muted text-center"></p>
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b> الاب: </b> <strong>@P.Father</strong>
+</li>
+                            <li class="list-group-item">
+                                <b>الام : </b> <strong>@P.Mother</strong>
+                            </li>
+                            <li class="list-group-item">
+                                <b>الجنس : </b> <strong>@P.Gender</strong>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-block"><b>القبول</b></a>
+                        <a href="#" class="btn btn-danger btn-block"><b>الرفض</b></a>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#activity" data-toggle="tab">الاسئلة و الاجوبة</a></li>
+                        <li><a href="#timeline" data-toggle="tab">###</a></li>
+                        <li><a href="#settings" data-toggle="tab">###</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="activity">
+                            <!-- Content -->
+                            
+                            
+                            <!-- /.Content -->
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="timeline">
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="settings">
+
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!-- /.nav-tabs-custom -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
