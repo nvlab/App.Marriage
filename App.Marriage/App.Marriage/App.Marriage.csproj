@@ -239,6 +239,7 @@
     <Compile Include="DAL\ArticleDAL.cs" />
     <Compile Include="DAL\CategoryDAL.cs" />
     <Compile Include="DAL\CountryDAL.cs" />
+    <Compile Include="DAL\EnumDAL.cs" />
     <Compile Include="DAL\RegisterRequestsDAL.cs" />
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
@@ -255,6 +256,9 @@
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Country.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Enums.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Messages.cs">
@@ -1241,10 +1245,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Migrations\001-CategoryModify.sql" />
+    <Content Include="Migrations\002-ArticleColModify.sql" />
     <Content Include="Migrations\01-GenerateScript.sql" />
     <Content Include="Migrations\02-Person-Updates.sql" />
-    <Content Include="Migrations\03-CategoryModify.sql" />
-    <Content Include="Migrations\04-ArticleColModify.sql" />
+    <Content Include="Migrations\03-Person-SearchUpdate.sql" />
+    <Content Include="Migrations\04-AddEnums.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

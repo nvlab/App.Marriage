@@ -20,12 +20,13 @@ function CallContoller(url, Parametrs,Command) {
         type: 'POST',
         url: url + param,
         async: true,
+        dataType: "json",
         success: function (data) {
-            RefeshMethod(Command);
-        },
-        done: function (data) {
-            WriteSearchResult(data);
+            RefeshMethod(data);
         }
+       
+    }).done( function (data) {
+        WriteSearchResult(data);
     });
 
 };

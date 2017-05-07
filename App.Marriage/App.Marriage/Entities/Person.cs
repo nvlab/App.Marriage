@@ -36,8 +36,6 @@ namespace App.Marriage.Entities
         public Nullable<int> SocialStatus { get; set; }
         public string Color { get; set; }
         public string Gender { get; set; }
-        public string Photo1 { get; set; }
-        public string Photo2 { get; set; }
         public Nullable<int> User_Id { get; set; }
         public string NationalityNumber { get; set; }
         public string PassportNumber { get; set; }
@@ -45,6 +43,9 @@ namespace App.Marriage.Entities
         public Nullable<bool> IsActive { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
+        public string GeneralInfo { get; set; }
+        public string Photo1 { get; set; }
+        public string Photo2 { get; set; }
     
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
