@@ -45,6 +45,7 @@ namespace App.Marriage.Entities
         public Nullable<bool> IsActive { get; set; }
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
+        public string GeneralInfo { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Nationality Nationality { get; set; }

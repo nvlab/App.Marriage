@@ -12,16 +12,12 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ChatRoomMessage
+    public partial class Enums
     {
         public int Id { get; set; }
-        public string Message { get; set; }
-        public Nullable<int> RelationRequest_Id { get; set; }
-        public Nullable<int> SenderUser_Id { get; set; }
-        public Nullable<System.DateTime> MsgDate { get; set; }
-        public Nullable<int> Entity_Order { get; set; }
-    
-        public virtual RelationRequest RelationRequest { get; set; }
-        public virtual Users Users { get; set; }
+        public string EnumKey { get; set; }
+        public string EnumValue { get; set; }
+        public string NameL1 { get; set; }
+        public string NameL2 { get; set; }
     }
 }

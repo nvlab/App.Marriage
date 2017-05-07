@@ -31,11 +31,11 @@ namespace App.Marriage.Entities
         public Nullable<bool> AllowChatRoom { get; set; }
         public Nullable<int> ResponsibleManager_Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChatRoomMessage> ChatRoomMessage { get; set; }
         public virtual RegisterRequests RegisterRequests { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
         public virtual Users Users2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatRoomMessage> ChatRoomMessage { get; set; }
     }
 }
