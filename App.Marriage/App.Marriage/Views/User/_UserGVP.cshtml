@@ -16,10 +16,15 @@
         settings.CommandColumn.ShowNewButtonInHeader = true;
         settings.CommandColumn.ShowDeleteButton = false;
         settings.CommandColumn.ShowEditButton = true;
-        
+
 
         settings.SettingsCommandButton.EditButton.Text = Globalization.Edit;
         settings.SettingsCommandButton.NewButton.Text = Globalization.New;
+        settings.SettingsText.CommandCancel = Globalization.Cancel;
+        settings.SettingsText.CommandUpdate = Globalization.Save;
+        settings.SettingsText.CommandNew = Globalization.New;
+        settings.SettingsText.CommandDelete = Globalization.Delete;
+
 
         settings.KeyFieldName = "Id";
 
@@ -36,7 +41,15 @@
 
         //settings.Columns.Add("Id");
 
-        settings.Columns.Add("UserName",Globalization.UserName);
+        settings.Columns.Add(column =>
+        {
+            column.Name = "UserName";
+            column.FieldName = "UserName";
+            column.Caption = Globalization.UserName;
+            
+            column.VisibleIndex = 1;
+        });
+
 
         settings.Columns.Add(column =>
         {
@@ -46,6 +59,13 @@
             column.Caption = Globalization.Pass;
             var tmp = column.PropertiesEdit as TextBoxProperties;
             tmp.Password = true;
+            column.Visible = false;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+          
+            column.VisibleIndex = 2;
+
+
+
         });
 
         //settings.Columns.Add("IsActive");
@@ -56,22 +76,43 @@
             column.ColumnType = MVCxGridViewColumnType.CheckBox;
             column.ReadOnly = false;
             column.FieldName = "IsActive";
+            column.Width = 20;
 
         });
 
-        settings.Columns.Add("UserType");
+
+
+
+
+        //settings.Columns.Add("UserType");
+
+        settings.Columns.Add(column =>
+        {
+            column.Name = "UserType";
+            column.FieldName = "UserType";
+            column.Caption = Globalization.Usertype;
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = ViewData["UType"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(string);
+
+            });
+        });
 
         settings.Columns.Add(column =>
         {
             column.Name = "RoleID";
             column.FieldName = "RoleID";
             column.Caption = Globalization.Role;
-            column.EditorProperties().ComboBox(p =>
+            column.EditorProperties().ComboBox(c =>
             {
-                p.ValueField = "Id";
-                p.TextField = "Name";
-                p.ValueType = typeof(int);
-                p.DataSource = ViewData["Role"];
+                c.DataSource = ViewData["Role"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(int);
+
             });
         });
 

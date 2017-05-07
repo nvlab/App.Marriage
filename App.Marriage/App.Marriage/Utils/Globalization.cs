@@ -161,6 +161,36 @@ namespace App.Marriage.Utils
                 return (string)"نشط";
             }
         }
+
+        public static string Usertype
+        {
+            get
+            {
+                return (string)"نوع المستخدم";
+            }
+        }
+        public static string Cancel
+        {
+            get
+            {
+                return (string)"الغاء";
+            }
+        }
+        public static string Save
+        {
+            get
+            {
+                return (string)"حفظ";
+            }
+        }
+
+        public static string Delete
+        {
+            get
+            {
+                return (string)"حذف";
+            }
+        }
         //public static string App_Age
         //{
         //    get

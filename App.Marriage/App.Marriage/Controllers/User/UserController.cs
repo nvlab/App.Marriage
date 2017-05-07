@@ -23,6 +23,7 @@ namespace App.Marriage.Controllers
         public ActionResult UserGVP()
         {
             ViewData["Role"] = RolesDAL.GetRolesComboList();
+            ViewData["UType"] = EnumDAL.GetEnumsComboList("UserType");
             var model = UserViewModel.GetUserList();
             return PartialView(UserPartial, model);
         }
@@ -46,6 +47,8 @@ namespace App.Marriage.Controllers
             else
                 ViewData["EditError"] = "Please, correct all errors.";
 
+            ViewData["Role"] = RolesDAL.GetRolesComboList();
+            ViewData["UType"] = EnumDAL.GetEnumsComboList("UserType");
             var model = UserViewModel.GetUserList();
             return PartialView(UserPartial, model);
         }
@@ -66,6 +69,9 @@ namespace App.Marriage.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
+
+            ViewData["Role"] = RolesDAL.GetRolesComboList();
+            ViewData["UType"] = EnumDAL.GetEnumsComboList("UserType");
             var model = UserViewModel.GetUserList();
             return PartialView(UserPartial, model);
         }
