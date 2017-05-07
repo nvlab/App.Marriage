@@ -42,7 +42,7 @@ namespace App.Marriage.Controllers.Person
         {
             var model = PersonViewModel.GetPersonList();
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(model);
         }
     
     }

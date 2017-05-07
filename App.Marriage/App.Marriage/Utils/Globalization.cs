@@ -113,20 +113,20 @@ namespace App.Marriage.Utils
                 return (string)"البدء بالبحث";
             }
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
+        public static string RequestRelation
+        {
+            get
+            {
+                return (string)"طلب ارتباط";
+            }
+        }
+        public static string Weight
+        {
+            get
+            {
+                return (string)"الوزن";
+            }
+        }
         //public static string App_Age
         //{
         //    get

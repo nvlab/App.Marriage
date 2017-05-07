@@ -20,8 +20,8 @@ namespace App.Marriage.Models.PersonMV
         private int? _Weight;
         private string _NationalityNumber;
         private int? _User_Id;
-        private string _Photo2;
-        private string _Photo1;
+        string _Photo2;
+        string _Photo1;
         private string _Gender;
         private string _Color;
         private int? _SocialStatus;
@@ -31,6 +31,7 @@ namespace App.Marriage.Models.PersonMV
         private int? _height;
         private string _Phone1;
         private string _Phone2;
+        private string _GeneralInfo;
 
         public int Id
         {
@@ -185,6 +186,12 @@ namespace App.Marriage.Models.PersonMV
             set { _Phone2 = value; }
         }
 
+        public string GeneralInfo
+        {
+            get { return _GeneralInfo; }
+            set { _GeneralInfo = value; }
+        }
+
         #endregion
         #region Construction Functions
 
@@ -215,7 +222,7 @@ namespace App.Marriage.Models.PersonMV
             _height = Pa.Persons.height;
             _Phone1 = Pa.Persons.Phone1;
             _Phone2 = Pa.Persons.Phone2;
-
+            _GeneralInfo = Pa.Persons.GeneralInfo;
 
         }
         public PersonViewModel(int Id
@@ -238,7 +245,8 @@ namespace App.Marriage.Models.PersonMV
         , string PlaceBirth
         , int height
         , string Phone1
-        , string Phone2)
+        , string Phone2
+        , string GeneralInfo)
         {
             _Id = Id;
             _Nationality_Id = Nationality_Id;
@@ -261,7 +269,7 @@ namespace App.Marriage.Models.PersonMV
             _height = height;
             _Phone1 = Phone1;
             _Phone2 = Phone2;
-
+            _GeneralInfo = GeneralInfo;
         }
         public PersonViewModel(int Id)
         {
@@ -291,7 +299,7 @@ namespace App.Marriage.Models.PersonMV
             _height = (int)type.GetProperty("height").GetValue(item, null);
             _Phone1 = (string)type.GetProperty("Phone1").GetValue(item, null);
             _Phone2 = (string)type.GetProperty("Phone2").GetValue(item, null);
-
+            _GeneralInfo = (string)type.GetProperty("GeneralInfo").GetValue(item, null);
         }
 
         #endregion
@@ -321,7 +329,7 @@ namespace App.Marriage.Models.PersonMV
             Pa.Persons.height = _height;
             Pa.Persons.Phone1 = _Phone1;
             Pa.Persons.Phone2 = _Phone2;
-
+            Pa.Persons.GeneralInfo = _GeneralInfo;
             Pa.Create();
 
             _Id = Pa.Persons.Id;
@@ -345,19 +353,15 @@ namespace App.Marriage.Models.PersonMV
             if (!string.IsNullOrEmpty(_Color)) { Pa.Persons.Color = _Color; }
             if (!string.IsNullOrEmpty(_Adress)) { Pa.Persons.Adress = _Adress; }
             if (!string.IsNullOrEmpty(_PlaceBirth)) { Pa.Persons.PlaceBirth = _PlaceBirth; }
-
+            if (!string.IsNullOrEmpty(_GeneralInfo)) { Pa.Persons.GeneralInfo = _GeneralInfo; }
 
             if (_Age != null) { Pa.Persons.Age = _Age; }
             if (_SocialStatus != null) { Pa.Persons.SocialStatus = _SocialStatus; }
             if (_Weight != null) { Pa.Persons.Weight = _Weight; }
             if (_height != null) { Pa.Persons.height = _height; }
 
-
-
-
-
             if (Validate != _BirthDate) { Pa.Persons.BirthDate = _BirthDate; }
-
+       
             Pa.Update();
         }
 
@@ -383,5 +387,27 @@ namespace App.Marriage.Models.PersonMV
         }
 
         #endregion
+
+        #region Search Parameters
+        private int _Education;
+
+        public int Education
+        {
+            get { return _Education; }
+            set { _Education = value; }
+        }
+
+        private string _Residence_Country;
+
+        public string Residence_Country
+        {
+            get { return _Residence_Country; }
+            set { _Residence_Country = value; }
+        }
+
+
+        #endregion
+
+
     }
 }

@@ -21,7 +21,7 @@ namespace App.Marriage.Entities
         public Nullable<System.DateTime> MsgDate { get; set; }
         public Nullable<int> Entity_Order { get; set; }
     
-        public virtual Users Users { get; set; }
         public virtual RelationRequest RelationRequest { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

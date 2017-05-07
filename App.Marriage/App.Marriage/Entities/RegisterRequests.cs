@@ -17,8 +17,8 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RegisterRequests()
         {
-            this.RequestQuestionSenario = new HashSet<RequestQuestionSenario>();
             this.RelationRequest = new HashSet<RelationRequest>();
+            this.RequestQuestionSenario = new HashSet<RequestQuestionSenario>();
         }
     
         public int Id { get; set; }
@@ -29,10 +29,10 @@ namespace App.Marriage.Entities
         public string Links { get; set; }
         public string RequestMessage { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RequestQuestionSenario> RequestQuestionSenario { get; set; }
         public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RelationRequest> RelationRequest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestQuestionSenario> RequestQuestionSenario { get; set; }
     }
 }
