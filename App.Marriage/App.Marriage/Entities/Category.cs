@@ -17,18 +17,18 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.QuestionBank = new HashSet<QuestionBank>();
             this.Articles = new HashSet<Articles>();
+            this.QuestionBank = new HashSet<QuestionBank>();
         }
     
         public int Id { get; set; }
+        public string CategoryName { get; set; }
         public Nullable<int> Entity_Order { get; set; }
         public string CatType { get; set; }
-        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<QuestionBank> QuestionBank { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Articles> Articles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<QuestionBank> QuestionBank { get; set; }
     }
 }
