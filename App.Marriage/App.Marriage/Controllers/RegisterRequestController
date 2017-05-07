@@ -4,39 +4,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using App.Marriage.Models.UserMV;
-using App.Marriage.DAL;
+using App.Marriage.Models.RegisterRequesMV;
 
 namespace App.Marriage.Controllers
 {
-    public class UserController : Controller
+    public class RegisterRequestController : Controller
     {
-        private string UserPartial = "~/Views/User/_UserGVP.cshtml";
-        // GET: User
+        // GET: RegisterRequest
         public ActionResult Index()
         {
-            List<UserViewModel> model = UserViewModel.GetUserList();
-            return View(model);
+            return View();
         }
 
         [ValidateInput(false)]
-        public ActionResult UserGVP()
+        public ActionResult RegisterRequestGVP()
         {
-            ViewData["Role"] = CategoryDAL.GetCategoriesComboList();
-            var model = UserViewModel.GetUserList();
-            return PartialView(UserPartial, model);
+            var model = RegisterRequestViewModels.Get_RegisterRequestsList();
+            return PartialView("_RegisterRequestGVP", model);
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult UserGVPAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.UserMV.UserViewModel User)
+        public ActionResult RegisterRequestGVPAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.RegisterRequesMV.RegisterRequestViewModels item)
         {
-           
+            var model = new object[0];
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Insert here a code to insert the new item in your model
-                    User.Create();
                 }
                 catch (Exception e)
                 {
@@ -45,19 +40,17 @@ namespace App.Marriage.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-
-            var model = UserViewModel.GetUserList();
-            return PartialView(UserPartial, model);
+            return PartialView("_RegisterRequestGVP", model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult UserGVPUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.UserMV.UserViewModel User)
+        public ActionResult RegisterRequestGVPUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.RegisterRequesMV.RegisterRequestViewModels item)
         {
+            var model = new object[0];
             if (ModelState.IsValid)
             {
                 try
                 {
                     // Insert here a code to update the item in your model
-                    User.Update();
                 }
                 catch (Exception e)
                 {
@@ -66,27 +59,24 @@ namespace App.Marriage.Controllers
             }
             else
                 ViewData["EditError"] = "Please, correct all errors.";
-            var model = UserViewModel.GetUserList();
-            return PartialView(UserPartial, model);
+            return PartialView("_RegisterRequestGVP", model);
         }
         [HttpPost, ValidateInput(false)]
-        public ActionResult UserGVPDelete([ModelBinder(typeof(DevExpressEditorsBinder))]System.Int32 Id)
+        public ActionResult RegisterRequestGVPDelete(System.Int32 Id)
         {
+            var model = new object[0];
             if (Id >= 0)
             {
                 try
                 {
                     // Insert here a code to delete the item from your model
-                    var User = new UserViewModel(Id);
-                    User.Delete();
                 }
                 catch (Exception e)
                 {
                     ViewData["EditError"] = e.Message;
                 }
             }
-            var model = UserViewModel.GetUserList();
-            return PartialView(UserPartial, model);
+            return PartialView("_RegisterRequestGVP", model);
         }
     }
 }
