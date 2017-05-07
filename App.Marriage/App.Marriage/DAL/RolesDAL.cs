@@ -7,43 +7,47 @@ using System.Collections;
 
 namespace App.Marriage.DAL
 {
-    public class UserDAL
+    public class RolesDAL
     {
         #region Properties
-        private SOKNAEntities Db;
-        private Users _users;
-        public Users Users
+        SOKNAEntities Db;
+        private Roles _Roles;
+        public Roles Roles
         {
-            get { return _users; }
-            set { _users = value; }
+            get { return _Roles; }
+            set { _Roles = value; }
         }
         #endregion
 
-        #region Constractors
-        public UserDAL()
-        {
-            _users = new Users();
+        #region Construction Functions
 
+        public RolesDAL()
+        {
+            _Roles = new Roles();
         }
 
-        public UserDAL(int Id)
+        public RolesDAL(int Id)
         {
             Db = new SOKNAEntities();
-            _users = Db.Users.Single(u => u.Id == Id);
+            _Roles = Db.Roles.Single(r => r.Id == Id);
         }
-        public UserDAL(Users Ua)
+
+        public RolesDAL(Roles Ra)
         {
-            _users = Ua;
+            _Roles = Ra;
         }
+
+
 
         #endregion
 
         #region Operation Main Functions
+
         public void Create()
         {
             using (var db = new SOKNAEntities())
             {
-                db.Users.Add(this._users);
+                db.Roles.Add(_Roles);
                 db.SaveChanges();
             }
         }
@@ -52,38 +56,36 @@ namespace App.Marriage.DAL
         {
             Db.SaveChanges();
         }
+
         public void Delete()
         {
-            Db.Users.Remove(this._users);
+            Db.Roles.Remove(_Roles);
             Db.SaveChanges();
         }
-
         #endregion
 
         #region Business Function
-        public static List<UserDAL> GetUsersList()
+        public static List<RolesDAL> GetRolesList()
         {
-            List<UserDAL> List = new List<UserDAL>();
+            List<RolesDAL> List = new List<RolesDAL>();
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Users.ToList();
-                Res.ForEach(r => List.Add(new UserDAL(r)));
+                var Res = db.Roles.ToList();
+                Res.ForEach(r => List.Add(new RolesDAL(r)));
 
             }
             return List;
         }
-        public static IEnumerable GetUsersComboList()
+        public static IEnumerable GetRolesComboList()
         {
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Users.Select(r => new { Name = r.UserName, Id = r.Id }).ToList();
+                var Res = db.Roles.Select(r => new { Name = r.RoleName, Id = r.Id }).ToList();
                 return Res;
             }
 
         }
         #endregion
-
-
 
     }
 }

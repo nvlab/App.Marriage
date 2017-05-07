@@ -44,7 +44,7 @@ namespace App.Marriage.Models.CategoryMV
         public CategoryViewModel(CategoryDAL Cat)
         {
             _Id = Cat.Categories.Id;
-            _CatName = Cat.Categories.Category1;
+            _CatName = Cat.Categories.CategoryName;
             _EntityOrder = Cat.Categories.Entity_Order;
             _CatType = Cat.Categories.CatType;
             
@@ -68,7 +68,7 @@ namespace App.Marriage.Models.CategoryMV
         {
             CategoryDAL Cat = new CategoryDAL();
             Cat.Categories.Id = _Id;
-            Cat.Categories.Category1 = _CatName;
+            Cat.Categories.CategoryName = _CatName;
             Cat.Categories.Entity_Order = _EntityOrder;
             Cat.Categories.CatType = _CatType;
 
@@ -82,7 +82,7 @@ namespace App.Marriage.Models.CategoryMV
             CategoryDAL Cat = new CategoryDAL(_Id);
 
             if (!string.IsNullOrEmpty(_CatName))
-                Cat.Categories.Category1 = _CatName;
+                Cat.Categories.CategoryName = _CatName;
 
             if (!string.IsNullOrEmpty(_CatType))
                 Cat.Categories.CatType = _CatType;

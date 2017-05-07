@@ -11,7 +11,7 @@ namespace App.Marriage.DAL
     {
         #region Properties
 
-        SOKNAEntities db = new SOKNAEntities();
+        SOKNAEntities Db = new SOKNAEntities();
         private Category _Categories;
         public Category Categories
         {
@@ -31,8 +31,8 @@ namespace App.Marriage.DAL
 
         public CategoryDAL(int Id)
         {
-            db = new SOKNAEntities();
-            _Categories = db.Category.Single(r => r.Id == Id);
+            Db = new SOKNAEntities();
+            _Categories = Db.Category.Single(r => r.Id == Id);
         }
 
         public CategoryDAL(Category Ca)
@@ -57,13 +57,13 @@ namespace App.Marriage.DAL
 
         public void Update()
         {
-            db.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void Delete()
         {
-            db.Category.Remove(_Categories);
-            db.SaveChanges();
+            Db.Category.Remove(_Categories);
+            Db.SaveChanges();
         }
         #endregion
 
@@ -83,7 +83,7 @@ namespace App.Marriage.DAL
         {
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Category.Select(r => new { Name = r.Category1, Id = r.Id }).ToList();
+                var Res = db.Category.Select(r => new { Name = r.CategoryName, Id = r.Id }).ToList();
                 return Res;
             }
 

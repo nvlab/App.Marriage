@@ -12,19 +12,15 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Articles
+    public partial class RolePermissions
     {
         public int Id { get; set; }
-        public string Titles { get; set; }
-        public string Description { get; set; }
-        public string Contents { get; set; }
-        public string Status { get; set; }
-        public Nullable<int> Category_Id { get; set; }
-        public Nullable<int> Entity_Order { get; set; }
-        public Nullable<bool> IsPublish { get; set; }
-        public Nullable<System.DateTime> ArticalDate { get; set; }
-        public string Artical_Image { get; set; }
+        public Nullable<int> Permission_Id { get; set; }
+        public Nullable<int> Roles_Id { get; set; }
+        public Nullable<System.DateTime> InsertDate { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
-        public virtual Category Category { get; set; }
+        public virtual Permissons Permissons { get; set; }
+        public virtual Roles Roles { get; set; }
     }
 }

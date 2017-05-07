@@ -12,19 +12,18 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Articles
+    public partial class Permissons
     {
-        public int Id { get; set; }
-        public string Titles { get; set; }
-        public string Description { get; set; }
-        public string Contents { get; set; }
-        public string Status { get; set; }
-        public Nullable<int> Category_Id { get; set; }
-        public Nullable<int> Entity_Order { get; set; }
-        public Nullable<bool> IsPublish { get; set; }
-        public Nullable<System.DateTime> ArticalDate { get; set; }
-        public string Artical_Image { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Permissons()
+        {
+            this.RolePermissions = new HashSet<RolePermissions>();
+        }
     
-        public virtual Category Category { get; set; }
+        public int Id { get; set; }
+        public string NameL1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RolePermissions> RolePermissions { get; set; }
     }
 }

@@ -10,9 +10,9 @@ namespace App.Marriage.DAL
     public class QuestionBankDAL
     {
         #region Properties
-        SOKNAEntities db;
-        QuestionBank _QuestionBanks;
-        QuestionBank QuestionBanks
+        SOKNAEntities  Db;
+        private QuestionBank _QuestionBanks;
+        public QuestionBank QuestionBanks
         {
             get { return _QuestionBanks; }
             set { _QuestionBanks = value; }
@@ -29,8 +29,8 @@ namespace App.Marriage.DAL
 
         public QuestionBankDAL(int Id)
         {
-            db = new SOKNAEntities();
-            _QuestionBanks = db.QuestionBank.Single(r => r.Id == Id);
+            Db = new SOKNAEntities();
+            _QuestionBanks = Db.QuestionBank.Single(r => r.Id == Id);
         }
 
         public QuestionBankDAL(QuestionBank Qa)
@@ -55,13 +55,13 @@ namespace App.Marriage.DAL
 
         public void Update()
         {
-            db.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void Delete()
         {
-            db.QuestionBank.Remove(_QuestionBanks);
-            db.SaveChanges();
+            Db.QuestionBank.Remove(_QuestionBanks);
+            Db.SaveChanges();
         }
         #endregion
 

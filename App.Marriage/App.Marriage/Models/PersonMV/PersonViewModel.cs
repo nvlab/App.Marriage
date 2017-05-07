@@ -20,8 +20,8 @@ namespace App.Marriage.Models.PersonMV
         private int? _Weight;
         private string _NationalityNumber;
         private int? _User_Id;
-        private byte[] _Photo2;
-        private byte[] _Photo1;
+        string _Photo2;
+        string _Photo1;
         private string _Gender;
         private string _Color;
         private int? _SocialStatus;
@@ -127,13 +127,13 @@ namespace App.Marriage.Models.PersonMV
             set { _Gender = value; }
         }
 
-        public byte[] Photo1
+        public string Photo1
         {
             get { return _Photo1; }
             set { _Photo1 = value; }
         }
 
-        public byte[] Photo2
+        public string Photo2
         {
             get { return _Photo2; }
             set { _Photo2 = value; }
@@ -228,8 +228,8 @@ namespace App.Marriage.Models.PersonMV
         , int Weight
         , string NationalityNumber
         , int UserId
-        , byte[] Photo2
-        , byte[] Photo1
+        , string Photo2
+        , string Photo1
         , string Gender
         , string Color
         , int SocialStatus
@@ -280,8 +280,8 @@ namespace App.Marriage.Models.PersonMV
             _Weight = (int)type.GetProperty("Weight").GetValue(item, null);
             _NationalityNumber = (string)type.GetProperty("NationalityNumber").GetValue(item, null);
             _User_Id = (int)type.GetProperty("User_Id").GetValue(item, null);
-            _Photo2 = (byte[])type.GetProperty("Photo2").GetValue(item, null);
-            _Photo1 = (byte[])type.GetProperty("Photo1").GetValue(item, null);
+            _Photo2 = (string)type.GetProperty("Photo2").GetValue(item, null);
+            _Photo1 = (string)type.GetProperty("Photo1").GetValue(item, null);
             _Gender = (string)type.GetProperty("Gender").GetValue(item, null);
             _Color = (string)type.GetProperty("Color").GetValue(item, null);
             _SocialStatus = (int)type.GetProperty("SocialStatus").GetValue(item, null);

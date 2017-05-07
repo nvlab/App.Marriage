@@ -27,8 +27,8 @@ namespace App.Marriage.Entities
         public string UserType { get; set; }
         public Nullable<int> Role_Id { get; set; }
     
+        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> Person { get; set; }
-        public virtual Roles Roles { get; set; }
     }
 }

@@ -12,20 +12,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titles" Type="nvarchar" MaxLength="250" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Artical_Image" Type="image" />
           <Property Name="Contents" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Category_Id" Type="int" />
           <Property Name="Entity_Order" Type="int" />
           <Property Name="IsPublish" Type="bit" />
           <Property Name="ArticalDate" Type="date" />
+          <Property Name="Artical_Image" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="250" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="250" />
           <Property Name="Entity_Order" Type="int" />
           <Property Name="CatType" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -62,8 +62,8 @@
           <Property Name="SocialStatus" Type="int" />
           <Property Name="Color" Type="nvarchar" MaxLength="250" />
           <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="Photo1" Type="image" />
-          <Property Name="Photo2" Type="image" />
+          <Property Name="Photo1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Photo2" Type="nvarchar" MaxLength="250" />
           <Property Name="User_Id" Type="int" />
           <Property Name="NationalityNumber" Type="nvarchar" MaxLength="250" />
           <Property Name="PassportNumber" Type="nvarchar" MaxLength="250" />
@@ -215,6 +215,18 @@
         <EntityContainer Name="SOKNAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Country" EntityType="SOKNAModel.Country" />
           <EntitySet Name="Nationality" EntityType="SOKNAModel.Nationality" />
+          <EntitySet Name="Roles" EntityType="SOKNAModel.Roles" />
+          <EntitySet Name="Users" EntityType="SOKNAModel.Users" />
+          <AssociationSet Name="FK_Users_Roles" Association="SOKNAModel.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Category" EntityType="SOKNAModel.Category" />
+          <EntitySet Name="QuestionBank" EntityType="SOKNAModel.QuestionBank" />
+          <AssociationSet Name="FK_QuestionBank_Category" Association="SOKNAModel.FK_QuestionBank_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="QuestionBank" EntitySet="QuestionBank" />
+          </AssociationSet>
           <EntitySet Name="Person" EntityType="SOKNAModel.Person" />
           <AssociationSet Name="FK_Person_Country" Association="SOKNAModel.FK_Person_Country">
             <End Role="Country" EntitySet="Country" />
@@ -224,26 +236,14 @@
             <End Role="Nationality" EntitySet="Nationality" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <EntitySet Name="Roles" EntityType="SOKNAModel.Roles" />
-          <EntitySet Name="Users" EntityType="SOKNAModel.Users" />
           <AssociationSet Name="FK_Person_Users" Association="SOKNAModel.FK_Person_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Person" EntitySet="Person" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_Roles" Association="SOKNAModel.FK_Users_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <EntitySet Name="Articles" EntityType="SOKNAModel.Articles" />
-          <EntitySet Name="Category" EntityType="SOKNAModel.Category" />
           <AssociationSet Name="FK_Articles_Category" Association="SOKNAModel.FK_Articles_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Articles" EntitySet="Articles" />
-          </AssociationSet>
-          <EntitySet Name="QuestionBank" EntityType="SOKNAModel.QuestionBank" />
-          <AssociationSet Name="FK_QuestionBank_Category" Association="SOKNAModel.FK_QuestionBank_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="QuestionBank" EntitySet="QuestionBank" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Country">
@@ -262,6 +262,75 @@
           <Property Name="NameL1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Nationality" FromRole="Nationality" ToRole="Person" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RoleStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role_Id" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Users" FromRole="Users" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Users_Roles">
+          <End Type="SOKNAModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <Property Name="CatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuestionBank" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="Category" ToRole="QuestionBank" />
+          <Property Name="CategoryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Articles" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
+        </EntityType>
+        <EntityType Name="QuestionBank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category_Id" Type="Int32" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Entity_Order" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="QuestionBank" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_QuestionBank_Category">
+          <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="SOKNAModel.QuestionBank" Role="QuestionBank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionBank">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="Id" />
@@ -281,8 +350,8 @@
           <Property Name="SocialStatus" Type="Int32" />
           <Property Name="Color" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Photo2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Photo1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Photo2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="User_Id" Type="Int32" />
           <Property Name="NationalityNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PassportNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -318,29 +387,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="RoleStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Role_Id" Type="Int32" />
-          <NavigationProperty Name="Person" Relationship="SOKNAModel.FK_Person_Users" FromRole="Users" ToRole="Person" />
-          <NavigationProperty Name="Roles" Relationship="SOKNAModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
-        </EntityType>
         <Association Name="FK_Person_Users">
           <End Type="SOKNAModel.Users" Role="Users" Multiplicity="0..1" />
           <End Type="SOKNAModel.Person" Role="Person" Multiplicity="*" />
@@ -353,18 +399,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_Roles">
-          <End Type="SOKNAModel.Roles" Role="Roles" Multiplicity="0..1" />
-          <End Type="SOKNAModel.Users" Role="Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="Role_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Id" />
@@ -372,25 +406,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titles" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Artical_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Category_Id" Type="Int32" />
           <Property Name="Entity_Order" Type="Int32" />
           <Property Name="IsPublish" Type="Boolean" />
           <Property Name="ArticalDate" Type="DateTime" Precision="0" />
+          <Property Name="Artical_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Articles" ToRole="Category" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Category1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Entity_Order" Type="Int32" />
-          <Property Name="CatType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Articles" Relationship="SOKNAModel.FK_Articles_Category" FromRole="Category" ToRole="Articles" />
-          <NavigationProperty Name="QuestionBank" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="Category" ToRole="QuestionBank" />
         </EntityType>
         <Association Name="FK_Articles_Category">
           <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
@@ -400,29 +423,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Articles">
-              <PropertyRef Name="Category_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="QuestionBank">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Category_Id" Type="Int32" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Entity_Order" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="SOKNAModel.FK_QuestionBank_Category" FromRole="QuestionBank" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_QuestionBank_Category">
-          <End Type="SOKNAModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="SOKNAModel.QuestionBank" Role="QuestionBank" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="QuestionBank">
               <PropertyRef Name="Category_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -445,6 +445,49 @@
             <EntityTypeMapping TypeName="SOKNAModel.Nationality">
               <MappingFragment StoreEntitySet="Nationality">
                 <ScalarProperty Name="NameL1" ColumnName="NameL1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SOKNAModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SOKNAModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SOKNAModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CatType" ColumnName="CatType" />
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionBank">
+            <EntityTypeMapping TypeName="SOKNAModel.QuestionBank">
+              <MappingFragment StoreEntitySet="QuestionBank">
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -479,61 +522,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="SOKNAModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SOKNAModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="SOKNAModel.Articles">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Artical_Image" ColumnName="Artical_Image" />
                 <ScalarProperty Name="ArticalDate" ColumnName="ArticalDate" />
                 <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
                 <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
                 <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Contents" ColumnName="Contents" />
-                <ScalarProperty Name="Artical_Image" ColumnName="Artical_Image" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Titles" ColumnName="Titles" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="SOKNAModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CatType" ColumnName="CatType" />
-                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
-                <ScalarProperty Name="Category1" ColumnName="Category" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuestionBank">
-            <EntityTypeMapping TypeName="SOKNAModel.QuestionBank">
-              <MappingFragment StoreEntitySet="QuestionBank">
-                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
-                <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
