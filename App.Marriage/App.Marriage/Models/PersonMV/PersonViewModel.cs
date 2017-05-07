@@ -377,7 +377,13 @@ namespace App.Marriage.Models.PersonMV
         public static List<PersonViewModel> GetPersonList()
         {
             List<PersonViewModel> List = new List<PersonViewModel>();
-            PersonDAL.GetPersonsssList().ForEach(r => List.Add(new PersonViewModel(r)));
+            PersonDAL.GetPersonsList().ForEach(r => List.Add(new PersonViewModel(r)));
+            return List;
+        }
+        public static List<PersonViewModel> GetPersonList(int Country, int Ages, string Education, int Nationality, string Gender)
+        {
+            List<PersonViewModel> List = new List<PersonViewModel>();
+            PersonDAL.GetPersonsList(Country, Ages, Education, Nationality, Gender).ForEach(r => List.Add(new PersonViewModel(r)));
             return List;
         }
 

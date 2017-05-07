@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using App.Marriage.Utils;
 
 namespace App.Marriage.Controllers.Person
 {
@@ -22,25 +23,15 @@ namespace App.Marriage.Controllers.Person
         {
             ViewData["Nationality"] = NationalityDAL.GetNationalitysComboList();
             ViewData["Country"] = CountryDAL.GetCountrysComboList();
+            ViewData["Education"] = EnumDAL.GetEnumsComboList(EnumType.Education.ToString());
+            ViewData["Gender"] = EnumDAL.GetEnumsComboList(EnumType.Geneder.ToString());
         }
 
-        [ValidateInput(false)]
-        public ActionResult PersonGVP()
-        {
-            var model = PersonViewModel.GetPersonList();
-            return PartialView("~/Views/SearchPerson/_PersonGVP.cshtml", model);
-        }
+       
 
-        [ValidateInput(false)]
-        public ActionResult PersonPVG()
+        public ActionResult GetPerson(int? Country, int? Ages, string Education, int? Nationality, string Gender)
         {
-            var model = PersonViewModel.GetPersonList();
-            return PartialView("~/Views/SearchPerson/_PersonPVG.cshtml", model);
-        }
-
-        public ActionResult GetPerson(string Country, int Ages, string Education, string Nationality, string Gender)
-        {
-            var model = PersonViewModel.GetPersonList();
+            var model = PersonViewModel.GetPersonList(Country.GetValueOrDefault(),Ages.GetValueOrDefault(), (Education=="null"?null: Education), Nationality.GetValueOrDefault(), (Gender=="null"?null:Gender));
 
             return Json(model);
         }

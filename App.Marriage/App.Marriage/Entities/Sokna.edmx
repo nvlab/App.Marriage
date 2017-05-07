@@ -115,6 +115,7 @@
           <Property Name="GeneralInfo" Type="nvarchar(max)" />
           <Property Name="Photo1" Type="nvarchar" MaxLength="250" />
           <Property Name="Photo2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Education" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="QuestionBank">
           <Key>
@@ -759,6 +760,7 @@
           <NavigationProperty Name="Nationality" Relationship="SOKNAModel.FK_Person_Nationality" FromRole="Person" ToRole="Nationality" />
           <NavigationProperty Name="Users" Relationship="SOKNAModel.FK_Person_Users" FromRole="Person" ToRole="Users" />
           <NavigationProperty Name="RegisterRequests" Relationship="SOKNAModel.FK_RegisterRequests_Person" FromRole="Person" ToRole="RegisterRequests" />
+          <Property Name="Education" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuestionBank">
           <Key>
@@ -1199,6 +1201,7 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="SOKNAModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Photo2" ColumnName="Photo2" />
                 <ScalarProperty Name="Photo1" ColumnName="Photo1" />
                 <ScalarProperty Name="GeneralInfo" ColumnName="GeneralInfo" />

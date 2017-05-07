@@ -230,6 +230,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatRoom\ChatRoomController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -328,6 +329,8 @@
     <Compile Include="Utils\Globalization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\theme-01\css\chat-font-awesome.css" />
+    <Content Include="Content\theme-01\css\chat-style.css" />
     <Content Include="Content\theme-01\images\1.jpg" />
     <Content Include="Content\theme-01\images\2.jpg" />
     <Content Include="Content\theme-01\images\image-1.jpg" />
@@ -1319,6 +1322,8 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Upload\Images\img1.jpg" />
+    <Content Include="Upload\Images\user.gif" />
+    <Content Include="Upload\Images\user.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1362,17 +1367,15 @@
     <Content Include="Views\ControlPanel\Index.cshtml" />
     <Content Include="Views\Shared\Layout-theme-01\_Slider-theme-01.cshtml" />
     <Content Include="Views\SearchPerson\Index.cshtml" />
-    <Content Include="Views\SearchPerson\_PersonGVP.cshtml" />
-    <Content Include="Views\SearchPerson\_PersonPVG.cshtml" />
     <Content Include="Views\SearchPerson\_PersonSearchResult.cshtml" />
     <Content Include="Views\RegisterRequest\Index.cshtml" />
     <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_UserGVP.cshtml" />
+    <Content Include="Views\ChatRoom\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\theme-01\css\" />
     <Folder Include="Content\theme-01\fonts\" />
     <Folder Include="Content\theme-01\img\" />
     <Folder Include="Content\theme-01\js\" />
