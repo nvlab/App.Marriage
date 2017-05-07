@@ -17,8 +17,8 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.RegisterRequests = new HashSet<RegisterRequests>();
             this.Messages = new HashSet<Messages>();
+            this.RegisterRequests = new HashSet<RegisterRequests>();
         }
     
         public int Id { get; set; }
@@ -48,11 +48,11 @@ namespace App.Marriage.Entities
         public string GeneralInfo { get; set; }
     
         public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Messages> Messages { get; set; }
         public virtual Nationality Nationality { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterRequests> RegisterRequests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Messages> Messages { get; set; }
     }
 }

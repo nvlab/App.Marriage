@@ -1,0 +1,24 @@
+﻿@using App.Marriage.Models.UserMV
+@model  IEnumerable<App.Marriage.Models.UserMV.UserViewModel>
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+
+<div>
+
+    @Html.Action("UserGVP", "User")
+
+
+
+
+    @*@{ 
+        foreach (var item in Model)
+        {
+            <h4>@item.UserName</h4> 
+        }
+    }*@
+</div>
+

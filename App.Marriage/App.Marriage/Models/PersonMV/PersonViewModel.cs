@@ -20,8 +20,8 @@ namespace App.Marriage.Models.PersonMV
         private int? _Weight;
         private string _NationalityNumber;
         private int? _User_Id;
-        private string _Photo2;
-        private string _Photo1;
+        string _Photo2;
+        string _Photo1;
         private string _Gender;
         private string _Color;
         private int? _SocialStatus;
@@ -407,5 +407,7 @@ namespace App.Marriage.Models.PersonMV
 
 
         #endregion
+
+
     }
 }

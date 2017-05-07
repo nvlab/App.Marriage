@@ -235,11 +235,17 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
+    <Compile Include="DAL\ArticleDAL.cs" />
+    <Compile Include="DAL\CategoryDAL.cs" />
     <Compile Include="DAL\CountryDAL.cs" />
     <Compile Include="DAL\EnumDAL.cs" />
     <Compile Include="DAL\RegisterRequestsDAL.cs" />
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="DAL\QuestionBankDAL.cs" />
+    <Compile Include="DAL\RolesDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Entities\Articles.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
@@ -307,10 +313,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ArticleMV\ArticleViewModel.cs" />
+    <Compile Include="Models\CategoryMV\CategoryViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
+    <Compile Include="Models\QuestionMV\QuestionBankViewModel.cs" />
+    <Compile Include="Models\RoleMV\RoleViewModel.cs" />
     <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
+    <Compile Include="Models\UserMV\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Enums.cs" />
@@ -1354,6 +1365,8 @@
     <Content Include="Views\SearchPerson\_PersonSearchResult.cshtml" />
     <Content Include="Views\RegisterRequest\Index.cshtml" />
     <Content Include="Views\RegisterRequest\_RegisterRequestGVP.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_UserGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

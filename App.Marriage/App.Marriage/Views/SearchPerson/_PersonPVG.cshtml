@@ -5,7 +5,11 @@
         settings.Name = "PersonCard";
         settings.CallbackRouteValues = new { Controller = "SearchPerson", Action = "PersonPVG" };
 
-
+       
+        settings.SettingsEditing.Mode = CardViewEditingMode.EditForm;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsPager.SettingsTableLayout.ColumnCount = 3;
+        settings.SettingsPager.SettingsTableLayout.RowsPerPage = 5;
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
@@ -15,56 +19,52 @@
         int index = 0;
 
 
+        settings.CardLayoutProperties.Items.AddEditModeCommandItem();
         settings.Columns.Add(c =>
         {
             c.FieldName = "Photo1";
             c.VisibleIndex = index;
             // c.ColumnType = MVCxCardViewColumnType.BinaryImage;
             c.EditorProperties().Image(img => {
-                img.LoadingImageUrl= "https://demos.devexpress.com/ASP/Content/CardView.png";
-                img.ImageWidth = img.ImageHeight = System.Web.UI.WebControls.Unit.Pixel(1500);
+                img.ImageUrlFormatString = "https://demos.devexpress.com/ASP/Content/CardView.png";
+                img.ImageWidth = img.ImageHeight = System.Web.UI.WebControls.Unit.Pixel(150);
             });
 
         });
 
-        settings.Columns.Add("FullName");
-
-        //settings.Columns.Add(column => {
-        //    column.Name = "FullName";
-        //    column.Caption = Globalization.FullName;
-        //    column.ColumnType = MVCxCardViewColumnType.TextBox;
-        //    column.VisibleIndex = index;
-        //});
-
-        settings.Columns.Add("PlaceBirth");
-        //settings.Columns.Add(column =>
-        //{
-        //    column.Name = "PlaceBirth";
-        //    column.Caption = Globalization.PlaceBirth;
-        //    column.ColumnType = MVCxCardViewColumnType.TextBox;
-        //    column.VisibleIndex = index;
-
-        //});
-
-        settings.Columns.Add("Nationality_Id");
-        //settings.Columns.Add(column =>
-        //{
-        //    column.Name = "Nationality_Id";
-        //    column.Caption = Globalization.App_Nationality;
-        //    column.EditorProperties().ComboBox(p =>
-        //    {
-        //        p.TextField = "Name";
-        //        p.ValueField = "Id";
-        //        p.ValueType = typeof(int);
-        //        p.DataSource = NationalityDAL.GetNationalitysComboList();
-        //    });
-        //});
-        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Columns.Add(column => {
+            column.Name = "FullName";
+            column.Caption = Globalization.FullName;
+            column.ColumnType = MVCxCardViewColumnType.TextBox;
+            column.VisibleIndex = index;
+        });
 
 
-        settings.SettingsPager.SettingsTableLayout.ColumnCount = 2;
-        settings.SettingsPager.SettingsTableLayout.RowsPerPage = 2;
-      //  settings.CardLayoutProperties.Items.Add("Photo1").ShowCaption = DefaultBoolean.False;
+        settings.Columns.Add(column =>
+        {
+            column.Name = "PlaceBirth";
+            column.Caption = Globalization.PlaceBirth;
+            column.ColumnType = MVCxCardViewColumnType.TextBox;
+            column.VisibleIndex = index;
+
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Nationality_Id";
+            column.Caption = Globalization.App_Nationality;
+            column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = NationalityDAL.GetNationalitysComboList();
+            });
+        });
+
+
+        settings.CardLayoutProperties.ColCount = 2;
+       // settings.CardLayoutProperties.Items.Add("Photo1").ShowCaption = DefaultBoolean.False;
         settings.CardLayoutProperties.Items.AddGroupItem(g =>
         {
             g.ShowCaption = DefaultBoolean.True;
@@ -72,9 +72,14 @@
             g.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
             g.GroupBoxDecoration = GroupBoxDecoration.None;
 
-            g.Items.Add(i => { i.ColumnName = "FullName"; i.Caption= Globalization.FullName; } );
-            g.Items.Add(i => { i.ColumnName = "PlaceBirth"; i.Caption = Globalization.PlaceBirth; });
-            g.Items.Add(i => { i.ColumnName = "Nationality_Id"; i.Caption = Globalization.App_Nationality; });
+            g.Items.AddCommandItem(i =>
+            {
+                i.ShowSelectCheckbox = true;
+                i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+            });
+            g.Items.Add("FullName");
+            g.Items.Add("PlaceBirth");
+            g.Items.Add("Nationality_Id");
         });
         settings.CardLayoutProperties.Styles.LayoutItem.Caption.Font.Bold = true;
 
