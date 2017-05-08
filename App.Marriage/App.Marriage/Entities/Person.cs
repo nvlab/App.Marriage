@@ -46,6 +46,7 @@ namespace App.Marriage.Entities
         public string GeneralInfo { get; set; }
         public string Photo1 { get; set; }
         public string Photo2 { get; set; }
+        public string Education { get; set; }
     
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -7,6 +7,14 @@ using System.Web;
 namespace App.Marriage.Utils
 {
     /// <summary>
+    /// تحديد نوع النمط على الداتابيز
+    /// </summary>
+    public enum EnumType
+    {
+        Geneder , Education
+    }
+
+    /// <summary>
     /// جنس الشخص
     /// </summary>
     public enum Gender
