@@ -11,17 +11,22 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse pull-left flip" id="navbar-collapse">
                 <ul class="nav navbar-nav">
+                    @if (UserHelpar.CanDo(Permissons.AcceptUser))
+                    {
                     <li><a href="/RegisterRequest"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات التسجيل</a></li>
+                    }
+                    
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ادارة المستخدمين <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            @if (UserHelpar.CanDo(Permissons.Users))
+                            {
+                                <li><a href="/User"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;المستخدمين</a></li>
+                            }
+                            @if (UserHelpar.CanDo(Permissons.Role))
+                            {
+                                <li><a href="/Role"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;الصلاحيات</a></li>
+                            }
                         </ul>
                     </li>
                 </ul>

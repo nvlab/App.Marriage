@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using App.Marriage.Models.UserMV;
 using App.Marriage.DAL;
+using App.Marriage.Helpars;
 
 namespace App.Marriage.Controllers
 {
@@ -15,6 +16,9 @@ namespace App.Marriage.Controllers
         // GET: User
         public ActionResult Index()
         {
+            if (!UserHelpar.CanDo(Permissons.Users))
+                return RedirectToAction("Unauthorized", "Home", null);
+
             List<UserViewModel> model = UserViewModel.GetUserList();
             return View(model);
         }

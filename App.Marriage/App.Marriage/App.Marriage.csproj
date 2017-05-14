@@ -325,6 +325,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Models\QuestionMV\QuestionBankViewModel.cs" />
+    <Compile Include="Models\RolePermissionsMV\RolePermissionsViewModel.cs" />
     <Compile Include="Models\RoleMV\RoleViewModel.cs" />
     <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
     <Compile Include="Models\UserMV\UserViewModel.cs" />

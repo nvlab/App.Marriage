@@ -134,6 +134,7 @@ namespace App.Marriage.Helpars
         Messages = 3,
         ChatRom = 4,
         QuationBank = 5,
-        AcceptUser = 6
+        AcceptUser = 6,
+        Role = 6,
     }
 }
