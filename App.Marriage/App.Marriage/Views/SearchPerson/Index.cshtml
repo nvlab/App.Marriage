@@ -36,7 +36,7 @@
               '<ul class="event-info">' +
                   '<li><span class="lnr lnr-map-marker"></span>@Globalization.PlaceBirth ' + obj['PlaceBirth'] + '</li>' +
                   '<li><span class="lnr lnr-clock"></span> @Globalization.Weight ' + obj['Weight'] + '</li>' +
-                  '<li><span class="lnr lnr-clock"></span> @Globalization.App_Age ' + obj['BirthDate'] + '</li>' +
+                  '<li><span class="lnr lnr-clock"></span> @Globalization.App_Age ' + obj['Age'] + '</li>' +
               '</ul>' +
               '<div class="desc">' +
                   '<p>' + obj['GeneralInfo'] + '</p>' +
@@ -58,7 +58,7 @@
         height: 40px;
     }
 </style>
-<section id="events" class="section-events">
+<section id="Search" class="section-events">
     <h2>@Globalization.Search</h2>
     <div class="section-intro">
         <p>الرجاء ادخال البيانات التي تريد ان تبحث خلالها</p>
@@ -97,17 +97,16 @@
                 <label class="col-sm-4 control-label">@Globalization.App_Education</label>
                 <div class="col-md-6">
                     @Html.DevExpress().ComboBox(settings =>
-           {
-               settings.Name = "Education";
-               settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
-               settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-               settings.Properties.Items.Add(@Globalization.Colleage, "Colleage");
-               settings.Properties.Items.Add(@Globalization.HighSchool, "HighSchool");
-               settings.Properties.Items.Add(@Globalization.None, "None");
-               settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-
-               settings.Style.Value = "form-control";
-           }).GetHtml()
+               {
+                   settings.Name = "Education";
+                   settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
+                   settings.Properties.DropDownStyle = DropDownStyle.DropDown;
+                   settings.Properties.ValueType = typeof(int);
+                   settings.Properties.ValueField = "Id";
+                   settings.Properties.TextField = "Name";
+                   settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                   settings.Style.Value = "form-control";
+               }).BindList(ViewData["Education"]).GetHtml()
                 </div>
                 </div>
 
@@ -135,12 +134,13 @@
                    settings.Name = "Gendr";
                    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
                    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                   settings.Properties.Items.Add(@Globalization.Male, "Male");
-                   settings.Properties.Items.Add(@Globalization.Femal, "Femal");
+                   settings.Properties.ValueType = typeof(int);
+                   settings.Properties.ValueField = "Id";
+                   settings.Properties.TextField = "Name";
                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
-
                    settings.Style.Value = "form-control";
-               }).GetHtml()
+               }).BindList(ViewData["Gender"]).GetHtml()
+
                 </div>
             </div>
             <div class="form-group">

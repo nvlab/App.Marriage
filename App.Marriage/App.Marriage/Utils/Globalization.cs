@@ -191,12 +191,42 @@ namespace App.Marriage.Utils
                 return (string)"حذف";
             }
         }
+        public static string App_Manager
+        {
+            get
+            {
+                return (string)"المشرف";
+            }
+        }
+        public static string ManagerPhone
+        {
+            get
+            {
+                return (string)"رقم هاتف المشرف";
+            }
+        }
+        public static string ChatRoom
+        {
+            get
+            {
+                return (string)"غرفة المحادثة ";
+            }
+        }
+        public static string ChatRoomInfo
+        {
+            get
+            {
+                return (string)"وجدت غرفة التحادث للتعارف على مخطوبتك الرجاء الالتزام بالأداب وحسن الكلام وسؤال الخطيبة ماتريد معرفته نسأل الله العظيم لكم التوفيق والتسديد ولاتنسى ان الله ناظر إليك";
+            }
+
+        }
         //public static string App_Age
         //{
         //    get
         //    {
         //        return (string)"العمر";
         //    }
+
         //}
         //public static string App_Age
         //{
@@ -204,6 +234,14 @@ namespace App.Marriage.Utils
         //    {
         //        return (string)"العمر";
         //    }
+
+        //} //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
         //}
         //public static string App_Age
         //{
@@ -233,8 +271,141 @@ namespace App.Marriage.Utils
         //    }
 
         //}
-        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
 
         //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //} //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
+
+        //}
+
     }
 }

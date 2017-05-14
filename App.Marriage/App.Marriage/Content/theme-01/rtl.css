@@ -107,3 +107,7 @@ body>nav .menu-wrapper ul.menu{
 body>nav .menu-wrapper ul.menu>li.current-menu-item:before{
     top: calc(.828em - 12px);
 }
+section {
+    margin: 0 0 1rem 0;
+    padding: 1rem 8rem;
+}
