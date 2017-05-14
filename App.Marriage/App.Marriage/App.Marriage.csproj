@@ -234,6 +234,7 @@
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Person\PersonController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
@@ -1382,6 +1383,8 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_UserGVP.cshtml" />
     <Content Include="Views\RegisterRequest\Detail.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\ChatRoom\Index.cshtml" />
     <Content Include="Views\Home\Unauthorized.cshtml" />
   </ItemGroup>
