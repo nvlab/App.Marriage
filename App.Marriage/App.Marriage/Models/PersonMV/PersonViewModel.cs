@@ -1,4 +1,5 @@
 ﻿using App.Marriage.DAL;
+using App.Marriage.Entities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +33,33 @@ namespace App.Marriage.Models.PersonMV
         private string _Phone1;
         private string _Phone2;
         private string _GeneralInfo;
+
+
+
+        private bool _IsActive;
+        private string _Email;
+        private string _PassportNumber;
+
+
+        private string _NickName;
+        private string _SurName;
+        private string _CountryState;
+        private byte? _ChildCount;
+        private byte? _MaxChildAge;
+        private byte? _MinChildAge;
+
+        private string _Education;
+        private string _EducationBranch;
+        private string _WorkType;
+        private string _Languages;
+        private string _LivingLevel;
+        private string _Theams;
+        private string _Hobbies;
+        private string _Culture;
+        private string _CultureLevel;
+
+
+
 
         public int Id
         {
@@ -79,7 +107,7 @@ namespace App.Marriage.Models.PersonMV
         }
 
 
-        public int? height
+        public int? Height
         {
             get { return _height; }
             set { _height = value; }
@@ -151,21 +179,21 @@ namespace App.Marriage.Models.PersonMV
             get { return _NationalityNumber; }
             set { _NationalityNumber = value; }
         }
-        private string _PassportNumber;
+
 
         public string PassportNumber
         {
             get { return _PassportNumber; }
             set { _PassportNumber = value; }
         }
-        private string _Email;
+
 
         public string Email
         {
             get { return _Email; }
             set { _Email = value; }
         }
-        private bool _IsActive;
+
 
         public bool IsActive
         {
@@ -190,6 +218,93 @@ namespace App.Marriage.Models.PersonMV
         {
             get { return _GeneralInfo; }
             set { _GeneralInfo = value; }
+        }
+
+        public string NickName
+        {
+            get { return _NickName; }
+            set { _NickName = value; }
+        }
+        public string SurName
+        {
+            get { return _SurName; }
+            set { _SurName = value; }
+        }
+        public string CountryState
+        {
+            get { return _CountryState; }
+            set { _CountryState = value; }
+        }
+        public byte? ChildCount
+        {
+            get { return _ChildCount; }
+            set { _ChildCount = value; }
+        }
+        public byte? MaxChildAge
+        {
+            get { return _MaxChildAge; }
+            set { _MaxChildAge = value; }
+        }
+
+        public byte? MinChildAge
+        {
+            get { return _MinChildAge; }
+            set { _MinChildAge = value; }
+        }
+
+
+        public string Education
+        {
+            get { return _Education; }
+            set { _Education = value; }
+        }
+
+        public string EducationBranch
+        {
+            get { return _EducationBranch; }
+            set { _EducationBranch = value; }
+        }
+
+        public string WorkType
+        {
+            get { return _WorkType; }
+            set { _WorkType = value; }
+        }
+
+        public string Languages
+        {
+            get { return _Languages; }
+            set { _Languages = value; }
+        }
+
+        public string LivingLevel
+        {
+            get { return _LivingLevel; }
+            set { _LivingLevel = value; }
+        }
+
+        public string Theams
+        {
+            get { return _Theams; }
+            set { _Theams = value; }
+        }
+
+        public string Hobbies
+        {
+            get { return _Hobbies; }
+            set { _Hobbies = value; }
+        }
+
+        public string Culture
+        {
+            get { return _Culture; }
+            set { _Culture = value; }
+        }
+
+        public string CultureLevel
+        {
+            get { return _CultureLevel; }
+            set { _CultureLevel = value; }
         }
 
         #endregion
@@ -223,6 +338,21 @@ namespace App.Marriage.Models.PersonMV
             _Phone1 = Pa.Persons.Phone1;
             _Phone2 = Pa.Persons.Phone2;
             _GeneralInfo = Pa.Persons.GeneralInfo;
+            _NickName = Pa.Persons.NickName;
+            _SurName = Pa.Persons.SurName;
+            _CountryState = Pa.Persons.CountryState;
+            _ChildCount = Pa.Persons.ChildCount;
+            _MaxChildAge = Pa.Persons.MaxChildAge;
+            _MinChildAge = Pa.Persons.MinChildAge;
+            _Education = Pa.Persons.Education;
+            _EducationBranch = Pa.Persons.EducationBranch;
+            _WorkType = Pa.Persons.WorkType;
+            _Languages = Pa.Persons.Languages;
+            _LivingLevel = Pa.Persons.LivingLevel;
+            _Theams = Pa.Persons.Theams;
+            _Hobbies = Pa.Persons.Hobbies;
+            _Culture = Pa.Persons.Culture;
+            _CultureLevel = Pa.Persons.CultureLevel;
 
         }
         public PersonViewModel(int Id
@@ -246,7 +376,22 @@ namespace App.Marriage.Models.PersonMV
         , int height
         , string Phone1
         , string Phone2
-        , string GeneralInfo)
+        , string GeneralInfo
+        , string NickName,
+        string SurName,
+        string CountryState,
+        byte? ChildCount,
+        byte? MaxChildAge,
+        byte? MinChildAge,
+        string Education,
+        string EducationBranch,
+        string WorkType,
+        string Languages,
+        string LivingLevel,
+        string Theams,
+        string Hobbies,
+        string Culture,
+        string CultureLevel)
         {
             _Id = Id;
             _Nationality_Id = Nationality_Id;
@@ -270,6 +415,22 @@ namespace App.Marriage.Models.PersonMV
             _Phone1 = Phone1;
             _Phone2 = Phone2;
             _GeneralInfo = GeneralInfo;
+            _NickName = NickName;
+            _SurName = SurName;
+            _CountryState = CountryState;
+            _ChildCount = ChildCount;
+            _MaxChildAge = MaxChildAge;
+            _MinChildAge = MinChildAge;
+            _Education = Education;
+            _EducationBranch = EducationBranch;
+            _WorkType = WorkType;
+            _Languages = Languages;
+            _LivingLevel = LivingLevel;
+            _Theams = Theams;
+            _Hobbies = Hobbies;
+            _Culture = Culture;
+            _CultureLevel = CultureLevel;
+
         }
         public PersonViewModel(int Id)
         {
@@ -330,6 +491,22 @@ namespace App.Marriage.Models.PersonMV
             Pa.Persons.Phone1 = _Phone1;
             Pa.Persons.Phone2 = _Phone2;
             Pa.Persons.GeneralInfo = _GeneralInfo;
+            Pa.Persons.NickName = _NickName;
+            Pa.Persons.SurName = _SurName;
+            Pa.Persons.CountryState = _CountryState;
+            Pa.Persons.ChildCount = _ChildCount;
+            Pa.Persons.MaxChildAge = _MaxChildAge;
+            Pa.Persons.MinChildAge = _MinChildAge;
+            Pa.Persons.Education = _Education;
+            Pa.Persons.EducationBranch = _EducationBranch;
+            Pa.Persons.WorkType = _WorkType;
+            Pa.Persons.Languages = _Languages;
+            Pa.Persons.LivingLevel = _LivingLevel;
+            Pa.Persons.Theams = _Theams;
+            Pa.Persons.Hobbies = _Hobbies;
+            Pa.Persons.Culture = _Culture;
+            Pa.Persons.CultureLevel = _CultureLevel;
+
             Pa.Create();
 
             _Id = Pa.Persons.Id;
@@ -355,13 +532,34 @@ namespace App.Marriage.Models.PersonMV
             if (!string.IsNullOrEmpty(_PlaceBirth)) { Pa.Persons.PlaceBirth = _PlaceBirth; }
             if (!string.IsNullOrEmpty(_GeneralInfo)) { Pa.Persons.GeneralInfo = _GeneralInfo; }
 
+            if (!string.IsNullOrEmpty(_NickName)) { Pa.Persons.NickName = _NickName; }
+            if (!string.IsNullOrEmpty(_SurName)) { Pa.Persons.SurName = _SurName; }
+            if (!string.IsNullOrEmpty(_CountryState)) { Pa.Persons.CountryState = _CountryState; }
+
+            if (_ChildCount != null) { Pa.Persons.ChildCount = _ChildCount; }
+            if (_MinChildAge != null) { Pa.Persons.MinChildAge = _MinChildAge; }
+            if (_MaxChildAge != null) { Pa.Persons.MaxChildAge = _MaxChildAge; }
+
+            if (!string.IsNullOrEmpty(_Education)) { Pa.Persons.Education = _Education; }
+            if (!string.IsNullOrEmpty(_EducationBranch)) { Pa.Persons.EducationBranch = _EducationBranch; }
+            if (!string.IsNullOrEmpty(_WorkType)) { Pa.Persons.WorkType = _WorkType; }
+            if (!string.IsNullOrEmpty(_Languages)) { Pa.Persons.Languages = _Languages; }
+            if (!string.IsNullOrEmpty(_LivingLevel)) { Pa.Persons.LivingLevel = _LivingLevel; }
+            if (!string.IsNullOrEmpty(_Theams)) { Pa.Persons.Theams = _Theams; }
+            if (!string.IsNullOrEmpty(_Hobbies)) { Pa.Persons.Hobbies = _Hobbies; }
+            if (!string.IsNullOrEmpty(_Culture)) { Pa.Persons.Culture = _Culture; }
+            if (!string.IsNullOrEmpty(_CultureLevel)) { Pa.Persons.CultureLevel = _CultureLevel; }
+
+
             if (_Age != null) { Pa.Persons.Age = _Age; }
             if (_SocialStatus != null) { Pa.Persons.SocialStatus = _SocialStatus; }
             if (_Weight != null) { Pa.Persons.Weight = _Weight; }
             if (_height != null) { Pa.Persons.height = _height; }
 
             if (Validate != _BirthDate) { Pa.Persons.BirthDate = _BirthDate; }
-       
+
+
+
             Pa.Update();
         }
 
@@ -389,13 +587,6 @@ namespace App.Marriage.Models.PersonMV
         #endregion
 
         #region Search Parameters
-        private int _Education;
-
-        public int Education
-        {
-            get { return _Education; }
-            set { _Education = value; }
-        }
 
         private string _Residence_Country;
 
@@ -408,6 +599,153 @@ namespace App.Marriage.Models.PersonMV
 
         #endregion
 
+        #region Customize Visible Fields
+        private bool _FullName_IsHidden;
+        private bool _NickName_IsHidden;
+        private bool _SurName_IsHidden;
+        private bool _Phone1_IsHidden;
+        private bool _Phone2_IsHidden;
+        private bool _Email_IsHidden;
+        private bool _Adress_IsHidden;
+        private bool _Theams_IsHidden;
+        private bool _Photo1_IsHidden;
+        private bool _Photo2_IsHidden;
+        private bool _Color_IsHidden;
+        private bool _Weight_IsHidden;
+        private bool _height_IsHidden;
+       
+        
+        public bool FullName_IsHidden
+        {
+            get { return _FullName_IsHidden; }
+            set { _FullName_IsHidden = value; }
+        }
+        public bool NickName_IsHidden
+        {
+            get { return _NickName_IsHidden; }
+            set { _NickName_IsHidden = value; }
+        }
+
+        public bool SurName_IsHidden
+        {
+            get { return _SurName_IsHidden; }
+            set { _SurName_IsHidden = value; }
+        }
+
+        public bool Phone1_IsHidden
+        {
+            get { return _Phone1_IsHidden; }
+            set { _Phone1_IsHidden = value; }
+        }
+
+        public bool Phone2_IsHidden
+        {
+            get { return _Phone2_IsHidden; }
+            set { _Phone2_IsHidden = value; }
+        }
+        public bool Email_IsHidden
+        {
+            get { return _Email_IsHidden; }
+            set { _Email_IsHidden = value; }
+        }
+
+        public bool Adress_IsHidden
+        {
+            get { return _Adress_IsHidden; }
+            set { _Adress_IsHidden = value; }
+        }
+
+        public bool Theams_IsHidden
+        {
+            get { return _Theams_IsHidden; }
+            set { _Theams_IsHidden = value; }
+        }
+
+     
+        public bool Photo1_IsHidden
+        {
+            get { return _Photo1_IsHidden; }
+            set { _Photo1_IsHidden = value; }
+        }
+        public bool Photo2_IsHidden
+        {
+            get { return _Photo2_IsHidden; }
+            set { _Photo2_IsHidden = value; }
+        }
+
+        public bool Color_IsHidden
+        {
+            get { return _Color_IsHidden; }
+            set { _Color_IsHidden = value; }
+        }
+
+        public bool Weight_IsHidden
+        {
+            get { return _Weight_IsHidden; }
+            set { _Weight_IsHidden = value; }
+        }
+
+        public bool Height_IsHidden
+        {
+            get { return _height_IsHidden; }
+            set { _height_IsHidden = value; }
+        }
+        
+        
+        public void SaveCustomizeFlds()
+        {
+
+            SaveCustomizeFld(this._FullName_IsHidden, "FullName");
+            SaveCustomizeFld(this._NickName_IsHidden, "NickName");
+            SaveCustomizeFld(this._SurName_IsHidden, "SurName");
+            SaveCustomizeFld(this._Phone1_IsHidden, "Phone1");
+            SaveCustomizeFld(this._Phone2_IsHidden, "Phone2");
+            SaveCustomizeFld(this._Email_IsHidden, "Email");
+            SaveCustomizeFld(this._Adress_IsHidden, "Adress");
+            SaveCustomizeFld(this._Theams_IsHidden, "Theams");
+            SaveCustomizeFld(this._Photo1_IsHidden, "Photo1");
+            SaveCustomizeFld(this._Photo2_IsHidden, "Photo2");
+            SaveCustomizeFld(this._Color_IsHidden,"Color");
+            SaveCustomizeFld(this._Weight_IsHidden, "Weight");
+            SaveCustomizeFld(this._height_IsHidden, "Height");
+
+        }
+        private void SaveCustomizeFld(bool FldHideValue, string FldName)
+        {
+            using (var db = new SOKNAEntities())
+            {
+                //Hide the field
+                if (FldHideValue)
+                {
+                    if (!db.PersonHiddenFlds.Any(h => h.FieldName == FldName && h.Person_Id == this.Id))
+                    {
+                        PersonHiddenFlds p = new PersonHiddenFlds();
+                        p.Person_Id = this.Id;
+                        p.FieldName = FldName;
+                        db.PersonHiddenFlds.Add(p);
+                    }
+                }
+                //Show the field
+                else
+                {
+                    if (db.PersonHiddenFlds.Any(h => h.FieldName == FldName && h.Person_Id == this.Id))
+                    {
+                        var fldHiddenItem = (from h in db.PersonHiddenFlds
+                                             where (h.FieldName == FldName && h.Person_Id == this.Id)
+                                             select h).First();
+                        if (fldHiddenItem != null)
+                        {
+                            db.PersonHiddenFlds.Remove(fldHiddenItem);
+                        }
+                    }
+                }
+                db.SaveChanges();
+            }
+
+        }
+
 
     }
+
+    #endregion
 }

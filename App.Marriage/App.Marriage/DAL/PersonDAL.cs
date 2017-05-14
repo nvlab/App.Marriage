@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 
@@ -48,8 +49,22 @@ namespace App.Marriage.DAL
         {
             using (var db = new SOKNAEntities())
             {
-                db.Person.Add(_Persons);
-                db.SaveChanges();
+                try
+                {
+                    db.Person.Add(_Persons);
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            
+                        }
+                    }
+                }
+
             }
         }
 

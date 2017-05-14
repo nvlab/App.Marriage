@@ -84,7 +84,7 @@ namespace App.Marriage.DAL
         {
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Nationality.Select(r => new { Name = r.NameL1, Id = r.Id }).ToList();
+                var Res = db.Nationality.Select(r => new { Name = r.NameL1, Id = r.Id }).ToList().OrderBy(r => r.Name);
                 return Res;
             }
 
