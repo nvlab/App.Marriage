@@ -220,21 +220,21 @@ namespace App.Marriage.Utils
             }
 
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string Weight
+        {
+            get
+            {
+                return (string)"الوزن";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-
+        }
+        public static string RequestRelation
+        {
+            get
+            {
+                return (string)"طلب ارتباط";
+            }
+        }
         //} //public static string App_Age
         //{
         //    get

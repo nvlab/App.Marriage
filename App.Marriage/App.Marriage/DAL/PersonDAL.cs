@@ -91,7 +91,7 @@ namespace App.Marriage.DAL
                (r.Residence_Country_Id == Country || Country == 0) &&
                (r.Nationality_Id == Country || Nationality == 0) &&
                (r.Age == Ages || Ages == 0) &&
-               (IsEductionEnable || r.Education == Education) &&
+               //(IsEductionEnable || r.Education == Education) &&
                (IsGenederEnable || r.Gender == Gender) 
                 ).ToList();
                 Res.ForEach(r => List.Add(new PersonDAL(r)));

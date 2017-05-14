@@ -274,6 +274,12 @@
     <Compile Include="Entities\Person.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\PersonHiddenFlds.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PersonVisibleFlds.cs">
+      <DependentUpon>Sokna.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\QuestionBank.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
@@ -1254,6 +1260,7 @@
     <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
     <Content Include="Migrations\04-AddEnums.sql" />
+    <Content Include="Migrations\07-Add Email To User.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1324,7 +1331,9 @@
     <Content Include="Upload\Images\img1.jpg" />
     <Content Include="Upload\Images\user.gif" />
     <Content Include="Upload\Images\user.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

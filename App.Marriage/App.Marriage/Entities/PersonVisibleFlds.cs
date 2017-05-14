@@ -12,20 +12,12 @@ namespace App.Marriage.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Messages
+    public partial class PersonVisibleFlds
     {
         public int Id { get; set; }
-        public string MsgHeader { get; set; }
-        public Nullable<int> User_Id { get; set; }
-        public string MsgType { get; set; }
-        public string Messages1 { get; set; }
-        public Nullable<System.DateTime> MsgDate { get; set; }
-        public string MsgStatus { get; set; }
-        public Nullable<int> ReciverUser_Id { get; set; }
         public Nullable<int> Person_Id { get; set; }
+        public string FieldName { get; set; }
     
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
         public virtual Person Person { get; set; }
     }
 }

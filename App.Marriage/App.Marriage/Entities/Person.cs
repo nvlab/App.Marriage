@@ -19,6 +19,8 @@ namespace App.Marriage.Entities
         {
             this.Messages = new HashSet<Messages>();
             this.RegisterRequests = new HashSet<RegisterRequests>();
+            this.PersonVisibleFlds = new HashSet<PersonVisibleFlds>();
+            this.PersonHiddenFlds = new HashSet<PersonHiddenFlds>();
         }
     
         public int Id { get; set; }
@@ -36,6 +38,8 @@ namespace App.Marriage.Entities
         public Nullable<int> SocialStatus { get; set; }
         public string Color { get; set; }
         public string Gender { get; set; }
+        public string Photo1 { get; set; }
+        public string Photo2 { get; set; }
         public Nullable<int> User_Id { get; set; }
         public string NationalityNumber { get; set; }
         public string PassportNumber { get; set; }
@@ -44,9 +48,22 @@ namespace App.Marriage.Entities
         public string Phone1 { get; set; }
         public string Phone2 { get; set; }
         public string GeneralInfo { get; set; }
-        public string Photo1 { get; set; }
-        public string Photo2 { get; set; }
+        public string NickName { get; set; }
+        public string SurName { get; set; }
+        public string CountryState { get; set; }
+        public Nullable<byte> ChildCount { get; set; }
+        public Nullable<byte> MaxChildAge { get; set; }
+        public Nullable<byte> MinChildAge { get; set; }
         public string Education { get; set; }
+        public string EducationBranch { get; set; }
+        public string Work { get; set; }
+        public string Languages { get; set; }
+        public string LivingLevel { get; set; }
+        public string Theams { get; set; }
+        public string Hobbies { get; set; }
+        public string Culture { get; set; }
+        public string CultureLevel { get; set; }
+        public string WorkType { get; set; }
     
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,5 +72,9 @@ namespace App.Marriage.Entities
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegisterRequests> RegisterRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonVisibleFlds> PersonVisibleFlds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonHiddenFlds> PersonHiddenFlds { get; set; }
     }
 }

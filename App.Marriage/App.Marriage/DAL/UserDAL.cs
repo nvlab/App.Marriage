@@ -17,6 +17,7 @@ namespace App.Marriage.DAL
             get { return _users; }
             set { _users = value; }
         }
+        
         #endregion
 
         #region Constractors
@@ -30,6 +31,15 @@ namespace App.Marriage.DAL
         {
             Db = new SOKNAEntities();
             _users = Db.Users.Single(u => u.Id == Id);
+        }
+        public UserDAL(string UserName,string Password)
+        {
+            Db = new SOKNAEntities();
+            var Res = Db.Users.Where(u => u.UserName == UserName && u.UserPassword == Password);
+            if (Res.Count() > 0)
+            {
+                _users = Res.First();
+            }
         }
         public UserDAL(Users Ua)
         {

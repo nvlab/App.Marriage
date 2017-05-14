@@ -87,7 +87,8 @@ namespace App.Marriage.Controllers
         {
             RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
             RegisterRequestViewModels RR = new RegisterRequestViewModels(rrDAL.RegisterRequests);
-            PersonViewModel P = new PersonViewModel(rrDAL.RegisterRequests.Person);
+            PersonDAL PDAL = new PersonDAL(rrDAL.RegisterRequests.Person_Id.Value);
+            PersonViewModel P = new PersonViewModel(PDAL);
             ViewBag.Id = Id;
             ViewBag.RR = RR;
             ViewBag.P = P;

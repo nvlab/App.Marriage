@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using App.Marriage.Models;
+using App.Marriage.DAL;
+using System.Web.Security;
 
 namespace App.Marriage.Controllers
 {
@@ -68,6 +70,7 @@ namespace App.Marriage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            /*
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -88,6 +91,30 @@ namespace App.Marriage.Controllers
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
+            }
+            */
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            UserDAL user = new UserDAL(model.UserName, model.Password);
+
+            if (user != null)
+            {
+                FormsAuthentication.SetAuthCookie(model.Email, false);
+
+                var authTicket = new FormsAuthenticationTicket(1, user.Users.Email, DateTime.Now, DateTime.Now.AddMinutes(2000), false, user.Users.UserType);
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                HttpContext.Response.Cookies.Add(authCookie);
+                return RedirectToAction("Index", "Home");
+            }
+
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
             }
         }
 

@@ -26,8 +26,8 @@ namespace App.Marriage.Entities
         public byte[] Image { get; set; }
         public Nullable<int> Entity_Order { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestQuestionSenario> RequestQuestionSenario { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
