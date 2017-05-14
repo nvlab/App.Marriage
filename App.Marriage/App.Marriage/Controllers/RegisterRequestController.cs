@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using App.Marriage.Models.RegisterRequesMV;
 using App.Marriage.Models.PersonMV;
 using App.Marriage.DAL;
+using App.Marriage.Helpars;
 
 namespace App.Marriage.Controllers
 {
@@ -15,6 +16,8 @@ namespace App.Marriage.Controllers
         // GET: RegisterRequest
         public ActionResult Index()
         {
+            if (!UserHelpar.CanDo(Permissons.AcceptUser))
+                return RedirectToAction("Unauthorized", "Home", null);
             return View();
         }
         #region RR

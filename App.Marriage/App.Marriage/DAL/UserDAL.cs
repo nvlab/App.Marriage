@@ -32,6 +32,15 @@ namespace App.Marriage.DAL
             Db = new SOKNAEntities();
             _users = Db.Users.Single(u => u.Id == Id);
         }
+        /// <summary>
+        /// Get User By Email
+        /// </summary>
+        /// <param name="Email"></param>
+        public UserDAL(string Email)
+        {
+            Db = new SOKNAEntities();
+            _users = Db.Users.Single(u => u.Email == Email);
+        }
         public UserDAL(string UserName,string Password)
         {
             Db = new SOKNAEntities();

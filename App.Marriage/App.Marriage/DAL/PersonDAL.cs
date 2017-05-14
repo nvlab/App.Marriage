@@ -79,7 +79,20 @@ namespace App.Marriage.DAL
             }
             return List;
         }
-
+        public static PersonDAL GetPersonByUser(int UserId)
+        {
+            PersonDAL Person = new PersonDAL();
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Person.FirstOrDefault(u => u.User_Id == UserId);
+                if(Res != null)
+                { 
+                    Person = new PersonDAL(Res.Id);
+                }
+            }
+            return Person;
+        }
+        
         public static List<PersonDAL> GetPersonsList(int Country, int Ages, string Education, int Nationality, string Gender)
         {
             List<PersonDAL> List = new List<PersonDAL>();

@@ -13,7 +13,11 @@ namespace App.Marriage.Controllers
             ViewData["ShowSlider"] = true;
             return View();
         }
-
+        public ActionResult Unauthorized()
+        {
+            ViewData["ShowSlider"] = false;
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -100,7 +100,7 @@ namespace App.Marriage.Controllers
 
             UserDAL user = new UserDAL(model.UserName, model.Password);
 
-            if (user != null)
+            if (user.Users != null)
             {
                 FormsAuthentication.SetAuthCookie(model.Email, false);
 
@@ -418,7 +418,8 @@ namespace App.Marriage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

@@ -245,6 +245,7 @@
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\QuestionBankDAL.cs" />
+    <Compile Include="DAL\RolePermissionsDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Entities\Articles.cs">
@@ -275,9 +276,6 @@
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PersonHiddenFlds.cs">
-      <DependentUpon>Sokna.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PersonVisibleFlds.cs">
       <DependentUpon>Sokna.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\QuestionBank.cs">
@@ -319,6 +317,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpars\UserHelpar.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleMV\ArticleViewModel.cs" />
     <Compile Include="Models\CategoryMV\CategoryViewModel.cs" />
@@ -1383,6 +1382,7 @@
     <Content Include="Views\User\_UserGVP.cshtml" />
     <Content Include="Views\RegisterRequest\Detail.cshtml" />
     <Content Include="Views\ChatRoom\Index.cshtml" />
+    <Content Include="Views\Home\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

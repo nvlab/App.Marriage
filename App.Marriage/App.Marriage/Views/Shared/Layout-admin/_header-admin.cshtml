@@ -1,4 +1,4 @@
-﻿
+﻿@using App.Marriage.Helpars
 <header class="main-header">
     <nav class="navbar navbar-static-top">
         <div class="container">
@@ -145,7 +145,7 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">باسم</span>
+                            <span class="hidden-xs">@UserHelpar.GetUser().UserName</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Menu Footer-->

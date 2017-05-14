@@ -18,9 +18,8 @@ namespace App.Marriage.Entities
         public Person()
         {
             this.Messages = new HashSet<Messages>();
-            this.RegisterRequests = new HashSet<RegisterRequests>();
-            this.PersonVisibleFlds = new HashSet<PersonVisibleFlds>();
             this.PersonHiddenFlds = new HashSet<PersonHiddenFlds>();
+            this.RegisterRequests = new HashSet<RegisterRequests>();
         }
     
         public int Id { get; set; }
@@ -56,14 +55,13 @@ namespace App.Marriage.Entities
         public Nullable<byte> MinChildAge { get; set; }
         public string Education { get; set; }
         public string EducationBranch { get; set; }
-        public string Work { get; set; }
+        public string WorkType { get; set; }
         public string Languages { get; set; }
         public string LivingLevel { get; set; }
         public string Theams { get; set; }
         public string Hobbies { get; set; }
         public string Culture { get; set; }
         public string CultureLevel { get; set; }
-        public string WorkType { get; set; }
     
         public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -71,10 +69,8 @@ namespace App.Marriage.Entities
         public virtual Nationality Nationality { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RegisterRequests> RegisterRequests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonVisibleFlds> PersonVisibleFlds { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonHiddenFlds> PersonHiddenFlds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RegisterRequests> RegisterRequests { get; set; }
     }
 }
