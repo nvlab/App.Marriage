@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="SOKNAModel.Messages" Width="1.5" PointX="10.5" PointY="11.875" />
         <EntityTypeShape EntityType="SOKNAModel.Nationality" Width="1.5" PointX="3" PointY="16.625" />
         <EntityTypeShape EntityType="SOKNAModel.Permissons" Width="1.5" PointX="0.75" PointY="6.625" />
-        <EntityTypeShape EntityType="SOKNAModel.Person" Width="1.5" PointX="5.25" PointY="10.125" />
         <EntityTypeShape EntityType="SOKNAModel.QuestionBank" Width="1.5" PointX="7.5" PointY="20.375" />
         <EntityTypeShape EntityType="SOKNAModel.RegisterRequests" Width="1.5" PointX="7.5" PointY="16.125" />
         <EntityTypeShape EntityType="SOKNAModel.RelationRequest" Width="2.625" PointX="12.75" PointY="13.375" />
@@ -24,12 +23,11 @@
         <AssociationConnector Association="SOKNAModel.FK_QuestionBank_Category" />
         <AssociationConnector Association="SOKNAModel.FK_Person_Country" />
         <AssociationConnector Association="SOKNAModel.FK_Messages_Person" />
+        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest" />
+        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" />
         <AssociationConnector Association="SOKNAModel.FK_Messages_Users" />
         <AssociationConnector Association="SOKNAModel.FK_Messages_Users1" />
-        <AssociationConnector Association="SOKNAModel.FK_Person_Nationality" />
         <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Permissons" />
-        <AssociationConnector Association="SOKNAModel.FK_Person_Users" />
-        <AssociationConnector Association="SOKNAModel.FK_RegisterRequests_Person" />
         <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" />
         <AssociationConnector Association="SOKNAModel.FK_RelationRequest_RegisterRequests" />
         <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" />
@@ -38,9 +36,6 @@
         <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users2" />
         <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Roles" />
         <AssociationConnector Association="SOKNAModel.FK_Users_Roles" />
-        <EntityTypeShape EntityType="SOKNAModel.ChatRoomMessage" Width="1.5" PointX="16.125" PointY="12" />
-        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest" />
-        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,9 @@
+﻿Generated model file: Sokna.edmx.
+Loading metadata from the database took 00:00:01.9200441.
+Generating the model took 00:00:02.5928147.
+Generated model file: Sokna.edmx.
+Loading metadata from the database took 00:00:00.9495477.
+Generating the model took 00:00:01.0117228.
+Generated model file: Sokna.edmx.
+Loading metadata from the database took 00:00:00.8567455.
+Generating the model took 00:00:00.6573427.

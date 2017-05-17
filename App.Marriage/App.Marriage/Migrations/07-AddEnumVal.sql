@@ -1,0 +1,2 @@
+--insert into SOKNA.dbo.Enums(EnumKey,EnumValue,NameL1) values ('Education', 'University','ÌÇãÚÉ')
+--insert into SOKNA.dbo.Enums(EnumKey,EnumValue,NameL1) values ('Education', '','áÇíåã')
