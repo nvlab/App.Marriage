@@ -15,6 +15,13 @@ namespace App.Marriage.Utils
                 return (string)"العمر";
             }
         }
+        public static string Weight
+        {
+            get
+            {
+                return (string)"الوزن";
+            }
+        }
         public static string App_living
         {
             get
@@ -220,14 +227,14 @@ namespace App.Marriage.Utils
             }
 
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string RequestRelation
+        {
+            get
+            {
+                return (string)"طلب صداقة";
+            }
 
-        //}
+        }
         //public static string App_Age
         //{
         //    get

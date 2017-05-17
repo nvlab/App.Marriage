@@ -4,38 +4,45 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4fa11b6038b74730942302beb92deb72" Name="Diagram1" ZoomLevel="82">
-        <EntityTypeShape EntityType="SOKNAModel.Articles" Width="1.5" PointX="7.5" PointY="24" />
-        <EntityTypeShape EntityType="SOKNAModel.Category" Width="1.5" PointX="5.25" PointY="20.375" />
-        <EntityTypeShape EntityType="SOKNAModel.Country" Width="1.5" PointX="3" PointY="19" />
-        <EntityTypeShape EntityType="SOKNAModel.Enums" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SOKNAModel.Messages" Width="1.5" PointX="10.5" PointY="11.875" />
-        <EntityTypeShape EntityType="SOKNAModel.Nationality" Width="1.5" PointX="3" PointY="16.625" />
-        <EntityTypeShape EntityType="SOKNAModel.Permissons" Width="1.5" PointX="0.75" PointY="6.625" />
-        <EntityTypeShape EntityType="SOKNAModel.QuestionBank" Width="1.5" PointX="7.5" PointY="20.375" />
-        <EntityTypeShape EntityType="SOKNAModel.RegisterRequests" Width="1.5" PointX="7.5" PointY="16.125" />
-        <EntityTypeShape EntityType="SOKNAModel.RelationRequest" Width="2.625" PointX="12.75" PointY="13.375" />
-        <EntityTypeShape EntityType="SOKNAModel.RequestQuestionSenario" Width="1.5" PointX="9.75" PointY="16.375" />
-        <EntityTypeShape EntityType="SOKNAModel.RolePermissions" Width="1.5" PointX="3" PointY="8.25" />
-        <EntityTypeShape EntityType="SOKNAModel.Roles" Width="1.5" PointX="0.75" PointY="9.375" />
-        <EntityTypeShape EntityType="SOKNAModel.Users" Width="2.5" PointX="12.375" PointY="9.375" />
-        <AssociationConnector Association="SOKNAModel.FK_Articles_Category" />
-        <AssociationConnector Association="SOKNAModel.FK_QuestionBank_Category" />
-        <AssociationConnector Association="SOKNAModel.FK_Person_Country" />
-        <AssociationConnector Association="SOKNAModel.FK_Messages_Person" />
-        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest" />
-        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" />
-        <AssociationConnector Association="SOKNAModel.FK_Messages_Users" />
-        <AssociationConnector Association="SOKNAModel.FK_Messages_Users1" />
-        <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Permissons" />
-        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" />
-        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_RegisterRequests" />
-        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" />
-        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users" />
-        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users1" />
-        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users2" />
-        <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Roles" />
-        <AssociationConnector Association="SOKNAModel.FK_Users_Roles" />
+      <Diagram DiagramId="a2d084d835e347b3942f09759b88aa6f" Name="Diagram1">
+        <EntityTypeShape EntityType="SOKNAModel.Articles" Width="1.5" PointX="13.5" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Category" Width="1.5" PointX="11.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.ChatRoomMessage" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Country" Width="1.5" PointX="9" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Enums" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Messages" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Nationality" Width="1.5" PointX="9" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Permissons" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Person" Width="1.5" PointX="11.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.PersonHiddenFlds" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.QuestionBank" Width="1.5" PointX="13.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.RegisterRequests" Width="1.5" PointX="13.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.RelationRequest" Width="1.5" PointX="17.625" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.RequestQuestionSenario" Width="1.5" PointX="15.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.RolePermissions" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Roles" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.Users" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="SOKNAModel.FK_Articles_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_QuestionBank_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Person_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Messages_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Messages_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Messages_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Person_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Permissons" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Person_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_PersonHiddenFlds_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RegisterRequests_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_QuestionBank" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_RegisterRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RequestQuestionSenario_RegisterRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users2" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="SOKNAModel.FK_Users_Roles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
