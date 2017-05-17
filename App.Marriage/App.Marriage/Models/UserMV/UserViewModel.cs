@@ -124,6 +124,11 @@ namespace App.Marriage.Models.UserMV
             U.Delete();
         }
 
+        public static UserViewModel Find(int Id)
+        {
+            return new UserViewModel(new UserDAL(Id));
+        }
+
         #endregion
 
         #region Busniss Func

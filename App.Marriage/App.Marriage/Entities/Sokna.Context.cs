@@ -27,7 +27,6 @@ namespace App.Marriage.Entities
     
         public virtual DbSet<Articles> Articles { get; set; }
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<ChatRoomMessage> ChatRoomMessage { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Enums> Enums { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }
@@ -41,5 +40,6 @@ namespace App.Marriage.Entities
         public virtual DbSet<RolePermissions> RolePermissions { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<ChatRoomMessage> ChatRoomMessage { get; set; }
     }
 }

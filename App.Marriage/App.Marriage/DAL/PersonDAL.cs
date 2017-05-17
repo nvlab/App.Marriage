@@ -99,6 +99,16 @@ namespace App.Marriage.DAL
             }
             return List;
         }
+
+        public static PersonDAL GetPersonPhotoByUserId(int? senderUser_Id)
+        {
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Person.First(r=>r.User_Id ==senderUser_Id);
+                return new PersonDAL(Res.Id);
+            }
+        }
+
         public static IEnumerable GetPersonsComboList()
         {
             using (var db = new SOKNAEntities())

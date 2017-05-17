@@ -58,6 +58,10 @@ namespace App.Marriage.DAL
             Db.SaveChanges();
         }
 
+        public static UserDAL Find(int Id)
+        {
+            return new UserDAL(Id);
+        }
         #endregion
 
         #region Business Function
