@@ -1,13 +1,16 @@
 ﻿using App.Marriage.DAL;
+using App.Marriage.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace App.Marriage.Models.RelationRequestMV
 {
-    public class RelationRequestViewModel
+    public class RelationRequestViewModel : IValidatableObject
     {
         #region Properties
         private int _Id;
@@ -193,7 +196,32 @@ namespace App.Marriage.Models.RelationRequestMV
 
         #endregion
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            //if (_NationalNumber.ToString().Length<=NationalLength.IntValue)
+            //{
+            //yield return new ValidationResult(GlobalLocalized.FieldLength + " " +NationalLength.IntValue, new[] { "NationalNumber" });
+            //}
 
+            if (_Id == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "Id" });
+            }
+            // return null;
+        }
+
+        public string GetModelStateError(ModelStateDictionary modelState)
+        {
+            string Msg = "";
+            foreach (var state in modelState.Values)
+            {
+                foreach (var modelerror in state.Errors)
+                {
+                    Msg += modelerror.ErrorMessage + Environment.NewLine;
+                }
+            }
+            return Msg;
+        }
 
         #region Busniss Func
         public static List<RelationRequestViewModel> GetRelationRequestList()

@@ -85,6 +85,16 @@ namespace App.Marriage.DAL
             }
 
         }
+
+        public static IEnumerable GetUsersNamesComboList()
+        {
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Users.Select(r => new { Name = r.Person.FirstOrDefault().FullName, Id = r.Id }).ToList();
+                return Res;
+            }
+
+        }
         #endregion
 
 

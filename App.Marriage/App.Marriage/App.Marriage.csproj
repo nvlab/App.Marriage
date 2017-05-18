@@ -237,6 +237,7 @@
     <Compile Include="Controllers\Person\PersonController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
+    <Compile Include="Controllers\RelationRequest\RelationRequestsController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DAL\ArticleDAL.cs" />
     <Compile Include="DAL\CategoryDAL.cs" />
@@ -1386,6 +1387,8 @@
     <Content Include="Views\Person\Create.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\ChatRoom\Index.cshtml" />
+    <Content Include="Views\RelationRequests\Index.cshtml" />
+    <Content Include="Views\RelationRequests\_RequestRelationGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
