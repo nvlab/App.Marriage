@@ -1,0 +1,172 @@
+@using App.Marriage.Utils
+@using App.Marriage.DAL
+@{
+
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "ArticalGV";
+        settings.CallbackRouteValues = new { Controller = "Articles", Action = "ArticalGVP" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Articles", Action = "ArticalGVPAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Articles", Action = "ArticalGVPUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Articles", Action = "ArticalGVPDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButtonInHeader = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("Id").Visible=false;
+        int i = 0;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Titles";
+            column.Caption = Globalization.Titles;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.EditorProperties().TextBox(p =>
+            {
+                p.ValidationSettings.RequiredField.IsRequired = true;
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Description";
+            column.Caption = Globalization.Description;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.EditorProperties().Memo(p =>
+            {
+                p.ValidationSettings.RequiredField.IsRequired = true;
+                p.Height = 50;
+
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Contents";
+            column.Caption = Globalization.Contents;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.EditorProperties().Memo(p =>
+            {
+                p.ValidationSettings.RequiredField.IsRequired = true;
+                p.Height = 50;
+
+            });
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Status";
+            column.Caption = Globalization.CatType;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.Visible = true;
+            column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(string);
+                p.DataSource = EnumDAL.GetEnumsComboList(EnumType.ArticalStatus.ToString());
+                p.ValidationSettings.RequiredField.IsRequired = true;
+            });
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Category_Id";
+            column.Caption = Globalization.CategoryName;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.Visible = true;
+            column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = CategoryDAL.GetCategoriesComboList(EnumType.Artical.ToString());
+                p.ValidationSettings.RequiredField.IsRequired = true;
+            });
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Entity_Order";
+            column.Caption = Globalization.Entity_Order;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+        });
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "IsPublish";
+            column.Caption = Globalization.IsPublish;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ArticalDate";
+            column.Caption = Globalization.ArticalDate;
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true;
+            column.EditorProperties().DateEdit(p =>
+            {
+                p.ValidationSettings.RequiredField.IsRequired = true;
+
+            });
+        });
+
+        //settings.Columns.Add(column =>
+        //{
+        //    column.FieldName = "Artical_Image";
+        //    column.Caption = Globalization.Artical_Image;
+        //    column.EditFormSettings.VisibleIndex = i + 1;
+        //    column.VisibleIndex = i;
+        //    column.EditFormSettings.Visible = DefaultBoolean.True;
+        //    column.Visible = true;
+        //    column.EditorProperties().Image(p =>
+        //    {
+        //        p.ImageHeight = 50;
+        //        p.ImageWidth = 30;
+        //    });
+        //});
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
