@@ -47,6 +47,10 @@ namespace App.Marriage.Models.RoleMV
         #endregion
 
         #region Constractors
+        public RolePermissionsViewModel()
+        {
+
+        }
         public RolePermissionsViewModel(RolePermissionsDAL R)
         {
             _Id = R.RolePermissions.Id;
@@ -99,6 +103,8 @@ namespace App.Marriage.Models.RoleMV
 
             if (_IsActive != null)
                 R.RolePermissions.IsActive = _IsActive;
+
+            R.Update();
         }
 
         public void Delete()
@@ -109,14 +115,19 @@ namespace App.Marriage.Models.RoleMV
         #endregion
 
         #region Nuseiess Functions
-        public static List<RolePermissionsViewModel> GetRoleList()
+        public static List<RolePermissionsViewModel> GetRolePermissionsList()
         {
             List<RolePermissionsViewModel> RList = new List<RolePermissionsViewModel>();
             RolePermissionsDAL.GetRolePermissionsList().ForEach(r => RList.Add(new RolePermissionsViewModel(r)));
             return RList;
         }
-
-        public IEnumerable GetRoleComboList()
+        public static List<RolePermissionsViewModel> GetRolePermissionsListByRoleId(int Id)
+        {
+            List<RolePermissionsViewModel> RList = new List<RolePermissionsViewModel>();
+            RolePermissionsDAL.GetRolePermissionsListByRolId(Id).ForEach(r => RList.Add(new RolePermissionsViewModel(r)));
+            return RList;
+        }
+        public IEnumerable GetRolePermissionsComboList()
         {
             return RolePermissionsDAL.GetRolePermissionsComboList();
 

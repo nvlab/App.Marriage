@@ -11,7 +11,10 @@
                 <ul class="menu">
                     <li><a class="scroll-link" href="#hero">الرئيسية</a></li>
                     <li><a class="scroll-link" href="#Search">ابحث عن شريك</a></li>
+                    @if (!Request.IsAuthenticated)
+                    {
                     <li><a class="scroll-link" href="#register">سجل بالموقع</a></li>
+                    }
                     <li><a class="scroll-link" href="#people">قصص نجاح</a></li>
                     <li><a class="scroll-link" href="#gallery">المعرض</a></li>
                     <li><a class="scroll-link" href="#contact">تواصل معنا</a></li>
@@ -34,7 +37,10 @@
                 <ul class="menu">
                     <li><a class="" href="/#hero">الرئيسية</a></li>
                     <li><a class="" href="/#Search">ابحث عن شريك</a></li>
-                    <li><a class="" href="/#register">سجل بالموقع</a></li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li><a class="scroll-link" href="#register">سجل بالموقع</a></li>
+                    }
                     <li><a class="" href="/#people">قصص نجاح</a></li>
                     <li><a class="" href="/#gallery">المعرض</a></li>
                     <li><a class="" href="/#contact">تواصل معنا</a></li>

@@ -1,0 +1,67 @@
+@using App.Marriage.Utils
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "RolePermissionsGV";
+        settings.CallbackRouteValues = new { Controller = "RolePermissions", Action = "RolePermissionsGVP" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "RolePermissions", Action = "RolePermissionsGVPAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "RolePermissions", Action = "RolePermissionsGVPUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "RolePermissions", Action = "RolePermissionsGVPDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Permission_Id";
+            column.FieldName = "Permission_Id";
+            column.Caption = "«·’·«ÕÌ…";
+            column.ReadOnly = true;
+        });
+
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Roles_Id";
+            column.FieldName = "Roles_Id";
+            column.Caption = Globalization.Role;
+            column.ReadOnly = true;
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = ViewData["Role"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(int);
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.Name = "IsActive";
+            column.FieldName = "IsActive";
+            column.Caption = " ’—ÌÕ";
+            column.ColumnType = MVCxGridViewColumnType.CheckBox;
+        });
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
