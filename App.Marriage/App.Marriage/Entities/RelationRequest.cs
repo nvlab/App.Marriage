@@ -34,8 +34,8 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatRoomMessage> ChatRoomMessage { get; set; }
         public virtual RegisterRequests RegisterRequests { get; set; }
-        public virtual Users Users { get; set; }
-        public virtual Users Users1 { get; set; }
-        public virtual Users Users2 { get; set; }
+        public virtual Users SourceUsers { get; set; }
+        public virtual Users TargetUsers { get; set; }
+        public virtual Users ResponseUsers { get; set; }
     }
 }

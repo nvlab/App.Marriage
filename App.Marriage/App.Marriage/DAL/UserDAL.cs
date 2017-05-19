@@ -77,6 +77,10 @@ namespace App.Marriage.DAL
             Db.SaveChanges();
         }
 
+        public static UserDAL Find(int Id)
+        {
+            return new UserDAL(Id);
+        }
         #endregion
 
         #region Business Function
@@ -96,6 +100,16 @@ namespace App.Marriage.DAL
             using (var db = new SOKNAEntities())
             {
                 var Res = db.Users.Select(r => new { Name = r.UserName, Id = r.Id }).ToList();
+                return Res;
+            }
+
+        }
+
+        public static IEnumerable GetUsersNamesComboList()
+        {
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Users.Select(r => new { Name = r.Person.FirstOrDefault().FullName, Id = r.Id }).ToList();
                 return Res;
             }
 
