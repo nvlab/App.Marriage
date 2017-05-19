@@ -311,85 +311,87 @@ namespace App.Marriage.Utils
             }
 
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string CategoryName
+        {
+            get
+            {
+                return (string)"اسم التصنيف";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string CatType
+        {
+            get
+            {
+                return (string)"نوع التصنيف";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string Entity_Order
+        {
+            get
+            {
+                return (string)"الترتيب";
+            }
 
-        //} //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string Titles
+        {
+            get
+            {
+                return (string)"عنوان";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string Description
+        {
+            get
+            {
+                return (string)"الشرح";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string Contents
+        {
+            get
+            {
+                return (string)"المحتوى";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string IsPublish
+        {
+            get
+            {
+                return (string)"النشر";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string ArticalDate
+        {
+            get
+            {
+                return (string)"تاريخ";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string Artical_Image
+        {
+            get
+            {
+                return (string)"الصورة";
+            }
 
-        //}
+        }
+        public static string Question
+        {
+            get
+            {
+                return (string)"السؤال";
+            }
+
+        }
         //public static string App_Age
         //{
         //    get

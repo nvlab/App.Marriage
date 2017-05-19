@@ -228,14 +228,17 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Article\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Category\CategoriesController.cs" />
     <Compile Include="Controllers\ChatRoom\ChatRoomController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Person\PersonController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
+    <Compile Include="Controllers\QuestionBanks\QuestionBankController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
     <Compile Include="Controllers\RelationRequest\RelationRequestsController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
@@ -1389,6 +1392,12 @@
     <Content Include="Views\ChatRoom\Index.cshtml" />
     <Content Include="Views\RelationRequests\Index.cshtml" />
     <Content Include="Views\RelationRequests\_RequestRelationGVP.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\_CategoryGVP.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Articles\_ArticalGVP.cshtml" />
+    <Content Include="Views\QuestionBank\Index.cshtml" />
+    <Content Include="Views\QuestionBank\_QuestionBankGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
