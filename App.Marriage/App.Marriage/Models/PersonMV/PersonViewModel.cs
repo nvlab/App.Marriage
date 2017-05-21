@@ -36,7 +36,7 @@ namespace App.Marriage.Models.PersonMV
 
 
 
-        private bool _IsActive;
+        private bool? _IsActive;
         private string _Email;
         private string _PassportNumber;
 
@@ -195,7 +195,7 @@ namespace App.Marriage.Models.PersonMV
         }
 
 
-        public bool IsActive
+        public bool? IsActive
         {
             get { return _IsActive; }
             set { _IsActive = value; }
@@ -338,6 +338,9 @@ namespace App.Marriage.Models.PersonMV
             _Phone1 = Pa.Persons.Phone1;
             _Phone2 = Pa.Persons.Phone2;
             _GeneralInfo = Pa.Persons.GeneralInfo;
+            _Email = Pa.Persons.Email;
+            _PassportNumber = Pa.Persons.PassportNumber;
+            _IsActive = Pa.Persons.IsActive;
             _NickName = Pa.Persons.NickName;
             _SurName = Pa.Persons.SurName;
             _CountryState = Pa.Persons.CountryState;
@@ -353,6 +356,8 @@ namespace App.Marriage.Models.PersonMV
             _Hobbies = Pa.Persons.Hobbies;
             _Culture = Pa.Persons.Culture;
             _CultureLevel = Pa.Persons.CultureLevel;
+
+            ReadCustomizeFld(_Id);
 
         }
         public PersonViewModel(int Id
@@ -518,7 +523,7 @@ namespace App.Marriage.Models.PersonMV
             DateTime Validate = new DateTime();
             if (_Nationality_Id != 0 && _Nationality_Id != null) { Pa.Persons.Nationality_Id = _Nationality_Id; }
             if (_Residence_Country_Id != 0 && _Residence_Country_Id != null) { Pa.Persons.Residence_Country_Id = _Residence_Country_Id; }
-            if (_User_Id != 0 && _User_Id != null) { Pa.Persons.User_Id = _User_Id; }
+           
 
             if (!string.IsNullOrEmpty(_FullName)) { Pa.Persons.FullName = _FullName; }
             if (!string.IsNullOrEmpty(_Mother)) { Pa.Persons.Mother = _Mother; }
@@ -526,11 +531,15 @@ namespace App.Marriage.Models.PersonMV
             if (!string.IsNullOrEmpty(_Phone1)) { Pa.Persons.Phone1 = _Phone1; }
             if (!string.IsNullOrEmpty(_Phone2)) { Pa.Persons.Phone2 = _Phone2; }
             if (!string.IsNullOrEmpty(_NationalityNumber)) { Pa.Persons.NationalityNumber = _NationalityNumber; }
+            if (!string.IsNullOrEmpty(_Photo1)) { Pa.Persons.Photo1 = _Photo1; }
+            if (!string.IsNullOrEmpty(_Photo2)) { Pa.Persons.Photo1 = _Photo2; }
             if (!string.IsNullOrEmpty(_Gender)) { Pa.Persons.Gender = _Gender; }
             if (!string.IsNullOrEmpty(_Color)) { Pa.Persons.Color = _Color; }
             if (!string.IsNullOrEmpty(_Adress)) { Pa.Persons.Adress = _Adress; }
             if (!string.IsNullOrEmpty(_PlaceBirth)) { Pa.Persons.PlaceBirth = _PlaceBirth; }
             if (!string.IsNullOrEmpty(_GeneralInfo)) { Pa.Persons.GeneralInfo = _GeneralInfo; }
+            if (!string.IsNullOrEmpty(_Email)) { Pa.Persons.Email = _Email; }
+            if (!string.IsNullOrEmpty(_PassportNumber)) { Pa.Persons.PassportNumber = _PassportNumber; }
 
             if (!string.IsNullOrEmpty(_NickName)) { Pa.Persons.NickName = _NickName; }
             if (!string.IsNullOrEmpty(_SurName)) { Pa.Persons.SurName = _SurName; }
@@ -748,6 +757,27 @@ namespace App.Marriage.Models.PersonMV
                 db.SaveChanges();
             }
 
+        }
+        private void ReadCustomizeFld(int personID)
+        {
+            using (var db = new SOKNAEntities())
+            {
+                _FullName_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "FullName"));
+                _NickName_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "NickName"));
+                _SurName_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "SurName"));
+                _Phone1_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Phone1"));
+                _Phone2_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Phone2"));
+                _Email_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Email"));
+                _Adress_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Adress"));
+                _Theams_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Theams"));
+                _Photo1_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Photo1"));
+                _Photo2_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Photo2"));
+                _Color_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Color"));
+                _Weight_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Weight"));
+                _height_IsHidden = (db.PersonHiddenFlds.Any(h => h.Person_Id == personID && h.FieldName == "Height"));
+                
+
+            }
         }
 
 

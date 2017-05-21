@@ -61,6 +61,10 @@ namespace App.Marriage.Models.CategoryMV
         {
             _Id = id;
         }
+        public CategoryViewModel()
+        {
+
+        }
         #endregion
 
         #region Operations
@@ -101,13 +105,13 @@ namespace App.Marriage.Models.CategoryMV
         #endregion
 
         #region Busniss Func
-        public static List<CategoryViewModel> GetUserList()
+        public static List<CategoryViewModel> GetCategoryList()
         {
             List<CategoryViewModel> CList = new List<CategoryViewModel>();
             CategoryDAL.GetCategoriesList().ForEach(c => CList.Add(new CategoryViewModel(c)));
             return CList;
         }
-        public static IEnumerable GetUserComboList()
+        public static IEnumerable GetCategoryComboList()
         {
             return CategoryDAL.GetCategoriesComboList();
         }
