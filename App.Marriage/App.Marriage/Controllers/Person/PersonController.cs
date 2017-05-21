@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using App.Marriage.Entities;
 using App.Marriage.Models.PersonMV;
+using App.Marriage.Models.RegisterRequesMV;
 using App.Marriage.DAL;
 
 namespace App.Marriage.Controllers.Person
@@ -62,9 +63,18 @@ namespace App.Marriage.Controllers.Person
                 personViewModel.Create();
                 personViewModel.SaveCustomizeFlds();
 
+                // Added BY N
+                RegisterRequestViewModels RR = new RegisterRequestViewModels();
+                RR.Person_Id = personViewModel.Id;
+                RR.RequestStatus = 0;
+                RR.RequestDate = DateTime.Now;
+                RR.ResponseMessage = 1;
+                RR.Create();
+
                 //return RedirectToAction("Index");
                 return Content("<script language='javascript' type='text/javascript'>alert('تم حفظ بياناتك');</script>");
             }
+
 
             return View(personViewModel);
         }

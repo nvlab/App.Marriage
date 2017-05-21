@@ -1,0 +1,126 @@
+@using App.Marriage.Models.QuestionMV
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "RequestQuestionGV";
+        settings.CallbackRouteValues = new { Controller = "RegisterRequest", Action = "RequestQuestionGVP",Id = ViewBag.Id };
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.KeyFieldName = "Id";
+        if (ViewBag.Status == 0)
+        {
+            settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+            settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "RegisterRequest", Action = "RequestQuestionGVPUpdate", Id = ViewBag.Id };
+
+            settings.Columns.Add(col =>
+            {
+                col.Caption = "#";
+                col.EditFormSettings.Visible = DefaultBoolean.False;
+                col.SetHeaderCaptionTemplateContent(t =>
+                {
+                    ViewContext.Writer.Write("<div class='container__command-buttons'>");
+
+                    Html.DevExpress().Button(buttonSettings =>
+                    {
+                        buttonSettings.Name = "NewItemButton";
+                        buttonSettings.Text = "New";
+                        buttonSettings.UseSubmitBehavior = false;
+                        buttonSettings.RenderMode = ButtonRenderMode.Link;
+                        buttonSettings.ClientSideEvents.Click = "function (s, e) { QuestionListHelper.AddNewItem(); }";
+                    }).Render();
+                    ViewContext.Writer.Write("</div>");
+                });
+                col.SetDataItemTemplateContent(t =>
+                {
+                    ViewContext.Writer.Write("<div class='container__command-buttons'>");
+                    ViewContext.Writer.Write("<a href='javascript:;' onclick='QuestionListHelper.DeleteItem(event)'>Delete</a>");
+                    //Html.DevExpress().Button(buttonSettings => {
+                    //    buttonSettings.Name = "DeleteItemButton";
+                    //    buttonSettings.Text = "Delete";
+                    //    buttonSettings.UseSubmitBehavior = false;
+                    //    buttonSettings.RenderMode = ButtonRenderMode.Link;
+                    //    buttonSettings.ClientSideEvents.Click = "function (s, e) { QuestionListHelper.DeleteItem(); }";
+                    //}).Render();
+                    ViewContext.Writer.Write("</div>");
+                });
+            });
+        }
+        int i = 0;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Question_id";
+            column.Caption = "Question_id";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true; column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = QuestionBankViewModel.GetQuestionComboList();
+            });
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Answers";
+            column.Caption = "Answers";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+        });
+
+        settings.SetStatusBarTemplateContent(c =>
+        {
+            ViewContext.Writer.Write("<div class='container__buttons'>");
+            Html.DevExpress().Button(buttonSettings =>
+            {
+                buttonSettings.Name = "PredefinedItemsButton";
+                buttonSettings.Text = "»‰ﬂ «·«”∆·…";
+                buttonSettings.UseSubmitBehavior = false;
+                buttonSettings.Styles.Native = true;
+                buttonSettings.RenderMode = ButtonRenderMode.Link;
+                buttonSettings.ControlStyle.CssClass = "btn btn-info pull-right btn-margin";
+                buttonSettings.ClientSideEvents.Click = "function (s, e) { QuestionBankPopup.Show(); }";
+            }).Render();
+            Html.DevExpress().Button(buttonSettings =>
+            {
+                buttonSettings.Name = "SaveChangesButton";
+                buttonSettings.Text = "Õ›Ÿ";
+                buttonSettings.UseSubmitBehavior = false;
+                buttonSettings.Styles.Native = true;
+                buttonSettings.RenderMode = ButtonRenderMode.Link;
+                buttonSettings.ControlStyle.CssClass = "btn btn-success pull-right btn-margin";
+                //buttonSettings.ClientSideEvents.Click = "function (s, e) { if (GridViewOrderList.batchEditApi.HasChanges()) { GridViewOrderList.UpdateEdit(); QuestionListHelper.LastAddedIndex = 0; } }";
+                buttonSettings.ClientSideEvents.Click = "function (s, e) { if (RequestQuestionGV.batchEditApi.HasChanges()) { RequestQuestionGV.UpdateEdit(); QuestionListHelper.NewRowIndices = []; } }";
+            }).Render();
+
+            Html.DevExpress().Button(buttonSettings =>
+            {
+                buttonSettings.Name = "SendQuestionsButton";
+                buttonSettings.Text = "√—”«· «·«”∆·… «·Ï «·„‘ —ﬂ";
+                buttonSettings.UseSubmitBehavior = false;
+                buttonSettings.Styles.Native = true;
+                buttonSettings.RenderMode = ButtonRenderMode.Link;
+                buttonSettings.ControlStyle.CssClass = "btn btn-success pull-right btn-margin";
+                //buttonSettings.ClientSideEvents.Click = "function (s, e) { if (GridViewOrderList.batchEditApi.HasChanges()) { GridViewOrderList.UpdateEdit(); QuestionListHelper.LastAddedIndex = 0; } }";
+                buttonSettings.ClientSideEvents.Click = "function (s, e) { SendQuestions(); }";
+            }).Render();
+
+            Html.DevExpress().Button(buttonSettings =>
+            {
+                buttonSettings.Name = "CancelChangesButton";
+                buttonSettings.Text = "«·€«¡ «· ⁄œÌ·« ";
+                buttonSettings.UseSubmitBehavior = false;
+                buttonSettings.Styles.Native = true;
+                buttonSettings.RenderMode = ButtonRenderMode.Link;
+                buttonSettings.ControlStyle.CssClass = "btn btn-danger pull-left btn-margin";
+                //buttonSettings.ClientSideEvents.Click = "function (s, e) { if (GridViewOrderList.batchEditApi.HasChanges()) { GridViewOrderList.CancelEdit(); QuestionListHelper.LastAddedIndex = 0; } }";
+                buttonSettings.ClientSideEvents.Click = "function (s, e) { if (RequestQuestionGV.batchEditApi.HasChanges()) { RequestQuestionGV.CancelEdit(); QuestionListHelper.NewRowIndices = []; } }";
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+
+        });
+    });
+}
+@grid.Bind(Model).GetHtml()

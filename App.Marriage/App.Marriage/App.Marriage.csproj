@@ -228,16 +228,19 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Article\ArticlesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\Category\CategoryController.cs" />
+    <Compile Include="Controllers\Category\CategoriesController.cs" />
     <Compile Include="Controllers\ChatRoom\ChatRoomController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Person\PersonController.cs" />
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
+    <Compile Include="Controllers\QuestionBanks\QuestionBankController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
+    <Compile Include="Controllers\User\RolePermissionsController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DAL\ArticleDAL.cs" />
     <Compile Include="DAL\CategoryDAL.cs" />
@@ -247,6 +250,8 @@
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\QuestionBankDAL.cs" />
+    <Compile Include="DAL\RequestQuestionSenarioDAL.cs" />
+    <Compile Include="DAL\RolePermissionsDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Entities\Articles.cs">
@@ -318,6 +323,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpars\UserHelpar.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleMV\ArticleViewModel.cs" />
     <Compile Include="Models\CategoryMV\CategoryViewModel.cs" />
@@ -325,6 +331,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Models\QuestionMV\QuestionBankViewModel.cs" />
+    <Compile Include="Models\RequestQuestionSenarioMV\RequestQuestionSenarioViewModel.cs" />
+    <Compile Include="Models\RolePermissionsMV\RolePermissionsViewModel.cs" />
     <Compile Include="Models\RoleMV\RoleViewModel.cs" />
     <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
     <Compile Include="Models\UserMV\UserViewModel.cs" />
@@ -1259,6 +1267,8 @@
     <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
     <Content Include="Migrations\04-AddEnums.sql" />
+    <Content Include="Migrations\08-Add Email To User.sql" />
+    <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Migrations\07-AddEnumVal.sql" />
     <Content Include="Migrations\08-Enum.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1331,7 +1341,9 @@
     <Content Include="Upload\Images\img1.jpg" />
     <Content Include="Upload\Images\user.gif" />
     <Content Include="Upload\Images\user.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -1385,9 +1397,21 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\_CategoryGVP.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
-    <Content Include="Views\Person\Profile.cshtml" />
-    <Content Include="Views\Person\ShowAll.cshtml" />
-    <Content Include="Views\Person\_PersonGVP.cshtml" />
+    <Content Include="Views\ChatRoom\Index.cshtml" />
+    <Content Include="Views\RelationRequests\Index.cshtml" />
+    <Content Include="Views\RelationRequests\_RequestRelationGVP.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\_CategoryGVP.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Articles\_ArticalGVP.cshtml" />
+    <Content Include="Views\QuestionBank\Index.cshtml" />
+    <Content Include="Views\QuestionBank\_QuestionBankGVP.cshtml" />
+    <Content Include="Views\Home\Unauthorized.cshtml" />
+    <Content Include="Views\RolePermissions\Index.cshtml" />
+    <Content Include="Views\RolePermissions\_RolePermissionsGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\_RequestQuestionGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\QuestionBank.cshtml" />
+    <Content Include="Views\RegisterRequest\_QuestionBankGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

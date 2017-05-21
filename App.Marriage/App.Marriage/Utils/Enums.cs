@@ -11,7 +11,7 @@ namespace App.Marriage.Utils
     /// </summary>
     public enum EnumType
     {
-        Geneder , Education
+        Geneder , Education , RequestStatus, CatType , ArticalStatus , Artical, Quation
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ namespace App.Marriage.Utils
     /// </summary>
     public enum RequestStatus
     {
-        waiting, processing, confirmed, rejected
+        waiting, processing, UnderDecision, confirmed, rejected
     }
     /// <summary>
     /// نوع التصنيفات

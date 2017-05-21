@@ -53,20 +53,22 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#activity" data-toggle="tab">الاسئلة و الاجوبة</a></li>
-                        <li><a href="#timeline" data-toggle="tab">###</a></li>
+                        <li class="active"><a href="#info" data-toggle="tab">البيانات الشخصية</a></liclass="active">
+                        <li><a href="#Question" data-toggle="tab">الاسئلة و الاجوبة</a></li>
                         <li><a href="#settings" data-toggle="tab">###</a></li>
                     </ul>
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="activity">
-                            <!-- Content -->
-                            
-                            
-                            <!-- /.Content -->
-                        </div>
+                    <div class="tab-content">                        
                         <!-- /.tab-pane -->
-                        <div class="tab-pane" id="timeline">
+                        <div class="active tab-pane" id="info">
 
+                        </div>
+                        <div class="tab-pane" id="Question">
+                            <!-- Content -->
+
+                            @Html.Action("RequestQuestionGVP")
+
+
+                            <!-- /.Content -->
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="settings">
@@ -85,3 +87,114 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<script>
+    Array.prototype.remove = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+            what = a[--L];
+            while ((ax = this.indexOf(what)) !== -1) {
+                this.splice(ax, 1);
+            }
+        }
+        return this;
+    };
+
+
+    var QuestionListHelper = {
+        NewRowIndices: [],
+        ConfirmPredefinedOrders: function () {
+            var handler = function (values) {
+                if (values === undefined && values === null) return;
+                var length = values.length;
+                for (var i = 0; i < length; i++) {
+                    var newIndex = QuestionListHelper.AddNewIndex();
+                    RequestQuestionGV.AddNewRow();
+                    RequestQuestionGV.batchEditApi.EndEdit();
+                    var Question_id = values[i];
+                    RequestQuestionGV.batchEditApi.SetCellValue(newIndex, "Question_id", Question_id);
+                    //RequestQuestionGV.batchEditApi.SetCellValue(newIndex, "RegisterRequests_Id", @ViewBag.Id);
+                }
+                QuestionBankPopup.Hide();
+                QuestionListHelper.ClearPredefinedItemsSelection();
+            };
+            QuestionBankGV.GetSelectedFieldValues("Id", handler);
+        },
+        CancelPredefinedOrders: function () {
+            QuestionBankPopup.Hide();
+            QuestionListHelper.ClearPredefinedItemsSelection();
+        },
+        ClearPredefinedItemsSelection: function () {
+            if (QuestionBankGV.GetSelectedRowCount() > 0)
+                QuestionBankGV.UnselectRows();
+        },
+        AddNewItem: function () {
+            RequestQuestionGV.AddNewRow();
+            QuestionListHelper.AddNewIndex();
+        },
+        DeleteItem: function (event) {
+            var tr = event.target.parentElement.parentElement.parentElement; // Get the row element
+            var id = tr.attributes['id'].value;
+            var index = id.split("DataRow")[1];
+            RequestQuestionGV.DeleteRow(index);
+            QuestionListHelper.NewRowIndices = QuestionListHelper.NewRowIndices.remove(parseInt(index));
+        },
+        AddNewIndex: function () {
+            var newIndex = -1;
+            if (QuestionListHelper.NewRowIndices.length > 0)
+                newIndex = QuestionListHelper.NewRowIndices[QuestionListHelper.NewRowIndices.length - 1] - 1;
+            QuestionListHelper.NewRowIndices.push(newIndex);
+            return newIndex;
+        }
+    };
+    function SendQuestions() {
+        new ss().ajax("/RegisterRequest/SendQuestions", {
+            Id: @ViewBag.Id,
+        }, function (e) {
+            if (!e.error) {
+                alert(e.data);
+            }
+            else {
+                alert(e.data)
+            }
+        });
+    }
+</script>
+@Html.DevExpress().PopupControl(settings =>
+{
+    settings.Name = "QuestionBankPopup";
+    settings.Height = System.Web.UI.WebControls.Unit.Pixel(500);
+    settings.Width = System.Web.UI.WebControls.Unit.Pixel(400);
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.Modal = true;
+
+    settings.ShowHeader = false;
+    settings.ShowFooter = true;
+
+    settings.SetContent(() => { Html.RenderPartial("QuestionBank"); });
+    settings.SetFooterContentTemplateContent(t =>
+    {
+        ViewContext.Writer.Write("<div class='container__buttons'>");
+        Html.DevExpress().Button(settingsConfirmButton =>
+        {
+            settingsConfirmButton.Name = "ConfirmButton";
+            settingsConfirmButton.Text = "أضافة";
+            settingsConfirmButton.Styles.Native = true;
+            settingsConfirmButton.UseSubmitBehavior = false;
+            settingsConfirmButton.RenderMode = ButtonRenderMode.Link;
+            settingsConfirmButton.ControlStyle.CssClass = "btn btn-primary pull-right btn-margin";
+            settingsConfirmButton.ClientSideEvents.Click = "QuestionListHelper.ConfirmPredefinedOrders";
+        }).Render();
+        Html.DevExpress().Button(settingsCancelButton =>
+        {
+            settingsCancelButton.Name = "CancelButton";
+            settingsCancelButton.Text = "الغاء";
+            settingsCancelButton.Styles.Native = true;
+            settingsCancelButton.UseSubmitBehavior = false;
+            settingsCancelButton.RenderMode = ButtonRenderMode.Link;
+            settingsCancelButton.ControlStyle.CssClass = "btn btn-danger pull-left btn-margin";
+            settingsCancelButton.ClientSideEvents.Click = "QuestionListHelper.CancelPredefinedOrders";
+        }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+}).GetHtml()

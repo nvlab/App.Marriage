@@ -15,6 +15,13 @@ namespace App.Marriage.Utils
                 return (string)"العمر";
             }
         }
+        public static string Weight
+        {
+            get
+            {
+                return (string)"الوزن";
+            }
+        }
         public static string App_living
         {
             get
@@ -146,6 +153,14 @@ namespace App.Marriage.Utils
             }
         }
 
+        public static string RequestUserName
+        {
+            get
+            {
+                return (string)"اسم صاحب الطلب";
+            }
+        }
+
         public static string Pass
         {
             get
@@ -220,152 +235,163 @@ namespace App.Marriage.Utils
             }
 
         }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string RequestRelation
+        {
+            get
+            {
+                return (string)"طلب صداقة";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string FieldIsRequired
+        {
+            get
+            {
+                return (string)"ادخل معطيات الحقل";
+            }
 
-        //} //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string RequestStatus
+        {
+            get
+            {
+                return (string)"حالة الطلب";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string AllowChatRoom
+        {
+            get
+            {
+                return (string)"السماح لغرفة المحادثة";
+            }
+        }
+        public static string ManagerUserName
+        {
+            get
+            {
+                return (string)"اسم المشرف";
+            }
+        }
+        public static string TargetUserName
+        {
+            get
+            {
+                return (string)"الشخص المقدم اليه الطلب";
+            }
+        }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
 
-        //} //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        public static string RequestDate
+        {
+            get
+            {
+                return (string)"تاريخ الطلب";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string RequestMessage
+        {
+            get
+            {
+                return (string)"رسالة الطلب";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string ResponseMessage
+        {
+            get
+            {
+                return (string)"جواب الطلب";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string CategoryName
+        {
+            get
+            {
+                return (string)"اسم التصنيف";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string CatType
+        {
+            get
+            {
+                return (string)"نوع التصنيف";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+        public static string Entity_Order
+        {
+            get
+            {
+                return (string)"الترتيب";
+            }
 
-        //}
+        }
+
+        public static string Titles
+        {
+            get
+            {
+                return (string)"عنوان";
+            }
+
+        }
+        public static string Description
+        {
+            get
+            {
+                return (string)"الشرح";
+            }
+
+        }
+        public static string Contents
+        {
+            get
+            {
+                return (string)"المحتوى";
+            }
+
+        }
+        public static string IsPublish
+        {
+            get
+            {
+                return (string)"النشر";
+            }
+
+        }
+        public static string ArticalDate
+        {
+            get
+            {
+                return (string)"تاريخ";
+            }
+
+        }
+        public static string Artical_Image
+        {
+            get
+            {
+                return (string)"الصورة";
+            }
+
+        }
+        public static string Question
+        {
+            get
+            {
+                return (string)"السؤال";
+            }
+
+        }
         //public static string App_Age
         //{
         //    get

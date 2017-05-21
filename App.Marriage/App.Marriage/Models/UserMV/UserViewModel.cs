@@ -13,6 +13,7 @@ namespace App.Marriage.Models.UserMV
         private int _Id;
         private string _UserName;
         private string _Password;
+        private string _Email;
         private bool? _IsActive;
         private string _Usertype;
         private int? _RoleID;
@@ -31,6 +32,11 @@ namespace App.Marriage.Models.UserMV
         {
             get { return _Password; }
             set { _Password = value; }
+        }
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; }
         }
         public bool? IsActive
         {
@@ -57,14 +63,16 @@ namespace App.Marriage.Models.UserMV
             _Password = U.Users.UserPassword;
             _IsActive = U.Users.IsActive;
             _Usertype = U.Users.UserType;
+            _Email = U.Users.Email;
             _RoleID = U.Users.Role_Id;
         }
 
-        public UserViewModel(int id, string userName, string password, bool? isActive, string userType, int roleID)
+        public UserViewModel(int id, string userName, string password, string email, bool? isActive, string userType, int roleID)
         {
             _Id = id;
             _UserName = userName;
             _Password = password;
+            _Email = email;
             _IsActive = IsActive;
             _Usertype = userType;
             _RoleID = roleID;
@@ -87,6 +95,7 @@ namespace App.Marriage.Models.UserMV
             U.Users.Id = _Id;
             U.Users.UserName = _UserName;
             U.Users.UserPassword = _Password;
+            U.Users.Email = _Email;
             U.Users.IsActive = (bool)_IsActive;
             U.Users.UserType = _Usertype;
             U.Users.Role_Id = _RoleID;
@@ -104,6 +113,9 @@ namespace App.Marriage.Models.UserMV
 
             if (!string.IsNullOrEmpty(_Password))
                 U.Users.UserPassword = _Password;
+
+            if (!string.IsNullOrEmpty(_Email))
+                U.Users.Email = _Email;
 
             if (!string.IsNullOrEmpty(_Usertype))
                 U.Users.UserType = _Usertype;

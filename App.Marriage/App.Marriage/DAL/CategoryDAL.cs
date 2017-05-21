@@ -79,11 +79,11 @@ namespace App.Marriage.DAL
             }
             return List;
         }
-        public static IEnumerable GetCategoriesComboList()
+        public static IEnumerable GetCategoriesComboList(string CatTyp)
         {
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Category.Select(r => new { Name = r.CategoryName, Id = r.Id }).ToList();
+                var Res = db.Category.Where(r => r.CatType == CatTyp).Select(r => new { Name = r.CategoryName, Id = r.Id }).ToList();
                 return Res;
             }
 

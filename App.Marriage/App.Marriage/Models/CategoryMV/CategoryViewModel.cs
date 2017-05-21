@@ -4,15 +4,18 @@ using System.Linq;
 using System.Web;
 using App.Marriage.DAL;
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using App.Marriage.Utils;
+using System.Web.Mvc;
 
 namespace App.Marriage.Models.CategoryMV
 {
-    public class CategoryViewModel
+    public class CategoryViewModel : IValidatableObject
     {
         #region Properties
         private int _Id;
-        private string _CatName;
-        private int? _EntityOrder;
+        private string _CategoryName;
+        private int? _Entity_Order;
         private string _CatType;
 
         public int Id
@@ -21,16 +24,16 @@ namespace App.Marriage.Models.CategoryMV
             set { _Id = value; }
         }
 
-        public string CatName
+        public string CategoryName
         {
-            get { return _CatName; }
-            set { _CatName = value; }
+            get { return _CategoryName; }
+            set { _CategoryName = value; }
         }
 
-        public int? EntityOrder
+        public int? Entity_Order
         {
-            get { return _EntityOrder; }
-            set { _EntityOrder = value; }
+            get { return _Entity_Order; }
+            set { _Entity_Order = value; }
         }
 
         public string CatType
@@ -44,8 +47,8 @@ namespace App.Marriage.Models.CategoryMV
         public CategoryViewModel(CategoryDAL Cat)
         {
             _Id = Cat.Categories.Id;
-            _CatName = Cat.Categories.CategoryName;
-            _EntityOrder = Cat.Categories.Entity_Order;
+            _CategoryName = Cat.Categories.CategoryName;
+            _Entity_Order = Cat.Categories.Entity_Order;
             _CatType = Cat.Categories.CatType;
             
         }
@@ -53,14 +56,15 @@ namespace App.Marriage.Models.CategoryMV
         public CategoryViewModel(int Id, string CatName, string CatType, int EntityOrder)
         {
             _Id = Id;
-            _CatName = CatName;
+            _CategoryName = CatName;
             _CatType = CatType;
-            _EntityOrder = EntityOrder;
+            _Entity_Order = EntityOrder;
         }
         public CategoryViewModel(int id)
         {
             _Id = id;
         }
+
         public CategoryViewModel()
         {
 
@@ -72,8 +76,8 @@ namespace App.Marriage.Models.CategoryMV
         {
             CategoryDAL Cat = new CategoryDAL();
             Cat.Categories.Id = _Id;
-            Cat.Categories.CategoryName = _CatName;
-            Cat.Categories.Entity_Order = _EntityOrder;
+            Cat.Categories.CategoryName = _CategoryName;
+            Cat.Categories.Entity_Order = _Entity_Order;
             Cat.Categories.CatType = _CatType;
 
             Cat.Create();
@@ -85,14 +89,14 @@ namespace App.Marriage.Models.CategoryMV
         {
             CategoryDAL Cat = new CategoryDAL(_Id);
 
-            if (!string.IsNullOrEmpty(_CatName))
-                Cat.Categories.CategoryName = _CatName;
+            if (!string.IsNullOrEmpty(_CategoryName))
+                Cat.Categories.CategoryName = _CategoryName;
 
             if (!string.IsNullOrEmpty(_CatType))
                 Cat.Categories.CatType = _CatType;
 
-            if (_EntityOrder != null)
-                Cat.Categories.Entity_Order = _EntityOrder;
+            if (_Entity_Order != null)
+                Cat.Categories.Entity_Order = _Entity_Order;
 
             Cat.Update();
 
@@ -102,18 +106,57 @@ namespace App.Marriage.Models.CategoryMV
             CategoryDAL Cat = new CategoryDAL(_Id);
             Cat.Delete();
         }
+
+        public static CategoryViewModel Find(int Id)
+        {
+            return new CategoryViewModel(new CategoryDAL(Id));
+        }
+
         #endregion
 
         #region Busniss Func
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            //if (_NationalNumber.ToString().Length<=NationalLength.IntValue)
+            //{
+            //yield return new ValidationResult(GlobalLocalized.FieldLength + " " +NationalLength.IntValue, new[] { "NationalNumber" });
+            //}
+
+            if (_CategoryName == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "CategoryName" });
+            }
+
+            if (_CatType == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "CatType" });
+            }
+            // return null;
+        }
+
+        public string GetModelStateError(ModelStateDictionary modelState)
+        {
+            string Msg = "";
+            foreach (var state in modelState.Values)
+            {
+                foreach (var modelerror in state.Errors)
+                {
+                    Msg += modelerror.ErrorMessage + Environment.NewLine;
+                }
+            }
+            return Msg;
+        }
+
         public static List<CategoryViewModel> GetCategoryList()
         {
             List<CategoryViewModel> CList = new List<CategoryViewModel>();
             CategoryDAL.GetCategoriesList().ForEach(c => CList.Add(new CategoryViewModel(c)));
             return CList;
         }
-        public static IEnumerable GetCategoryComboList()
+        public static IEnumerable GetCategoryComboList(string CatType)
         {
-            return CategoryDAL.GetCategoriesComboList();
+            return CategoryDAL.GetCategoriesComboList(CatType);
         }
         #endregion
     }

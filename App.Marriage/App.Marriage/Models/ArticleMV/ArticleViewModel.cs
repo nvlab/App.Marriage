@@ -4,22 +4,25 @@ using System.Linq;
 using System.Web;
 using App.Marriage.DAL;
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using App.Marriage.Utils;
+using System.Web.Mvc;
 
 namespace App.Marriage.Models.ArticleMV
 {
-    public class ArticleViewModel
+    public class ArticleViewModel : IValidatableObject
     {
         #region Properties
         private int _Id;
-        private string _Title;
+        private string _Titles;
         private string _Description;
-        private string _Content;
+        private string _Contents;
         private string _Status;
-        private int? _CatID;
-        private int? _EntityOrder;
+        private int? _Category_Id;
+        private int? _Entity_Order;
         private bool? _IsPublish;
-        private DateTime? _ArticleDate;
-        private string _ArticleImage;
+        private DateTime? _ArticalDate;
+        private string _Artical_Image;
 
         public int Id
         {
@@ -27,10 +30,10 @@ namespace App.Marriage.Models.ArticleMV
             set { _Id = value; }
         }
 
-        public string Title
+        public string Titles
         {
-            get { return _Title; }
-            set { _Title = value; }
+            get { return _Titles; }
+            set { _Titles = value; }
         }
 
         public string Description
@@ -39,10 +42,10 @@ namespace App.Marriage.Models.ArticleMV
             set { _Description = value; }
         }
 
-        public string Content
+        public string Contents
         {
-            get { return _Content; }
-            set { _Content = value; }
+            get { return _Contents; }
+            set { _Contents = value; }
         }
 
         public string Status
@@ -51,15 +54,15 @@ namespace App.Marriage.Models.ArticleMV
             set { _Status = value; }
         }
 
-        public int? CatID
+        public int? Category_Id
         {
-            get { return CatID; }
-            set { _CatID = value; }
+            get { return _Category_Id; }
+            set { _Category_Id = value; }
         }
-        public int? EntityOrder
+        public int? Entity_Order
         {
-            get { return _EntityOrder; }
-            set { _EntityOrder = value; }
+            get { return _Entity_Order; }
+            set { _Entity_Order = value; }
         }
 
         public bool? IsPublish
@@ -68,16 +71,16 @@ namespace App.Marriage.Models.ArticleMV
             set { _IsPublish = value; }
         }
 
-        public DateTime? ArticleDate
+        public DateTime? ArticalDate
         {
-            get { return _ArticleDate; }
-            set { _ArticleDate = value; }
+            get { return _ArticalDate; }
+            set { _ArticalDate = value; }
         }
 
-        public string ArticleImage
+        public string Artical_Image
         {
-            get { return _ArticleImage; }
-            set { _ArticleImage = value; }
+            get { return _Artical_Image; }
+            set { _Artical_Image = value; }
         }
         #endregion
 
@@ -85,30 +88,30 @@ namespace App.Marriage.Models.ArticleMV
         public ArticleViewModel(ArticleDAL A)
         {
             _Id = A.Articles.Id;
-            _Title = A.Articles.Titles;
+            _Titles = A.Articles.Titles;
             _Description = A.Articles.Description;
-            _Content = A.Articles.Contents;
+            _Contents = A.Articles.Contents;
             _Status = A.Articles.Status;
-            _CatID = A.Articles.Category_Id;
-            _EntityOrder = A.Articles.Entity_Order;
+            _Category_Id = A.Articles.Category_Id;
+            _Entity_Order = A.Articles.Entity_Order;
             _IsPublish = A.Articles.IsPublish;
-            _ArticleDate = A.Articles.ArticalDate;
-            _ArticleImage = A.Articles.Artical_Image;
+            _ArticalDate = A.Articles.ArticalDate;
+            _Artical_Image = A.Articles.Artical_Image;
 
         }
 
         public ArticleViewModel(int Id, string Title, string Description, string Content, string Status, int CatId, int EntityOrder, bool IsPublish, DateTime ArticleDate, string ArticleImage)
         {
             _Id = Id;
-            _Title = Title;
+            _Titles = Title;
             _Description = Description;
-            _Content = Content;
+            _Contents = Content;
             _Status = Status;
-            _CatID = CatId;
-            _EntityOrder = EntityOrder;
+            _Category_Id = CatId;
+            _Entity_Order = EntityOrder;
             _IsPublish = IsPublish;
-            _ArticleDate = ArticleDate;
-            _ArticleImage = ArticleImage;
+            _ArticalDate = ArticleDate;
+            _Artical_Image = ArticleImage;
 
         }
         public ArticleViewModel(int Id)
@@ -116,6 +119,11 @@ namespace App.Marriage.Models.ArticleMV
             _Id = Id;
         }
 
+
+        public ArticleViewModel()
+        {
+
+        }
         #endregion
 
         #region Operations
@@ -124,15 +132,15 @@ namespace App.Marriage.Models.ArticleMV
             ArticleDAL Ar = new ArticleDAL();
 
             Ar.Articles.Id = _Id;
-            Ar.Articles.Titles = _Title;
+            Ar.Articles.Titles = _Titles;
             Ar.Articles.Description = _Description;
-            Ar.Articles.Contents = _Content;
+            Ar.Articles.Contents = _Contents;
             Ar.Articles.Status = _Status;
-            Ar.Articles.Category_Id = _CatID;
-            Ar.Articles.Entity_Order = _EntityOrder;
+            Ar.Articles.Category_Id = _Category_Id;
+            Ar.Articles.Entity_Order = _Entity_Order;
             Ar.Articles.IsPublish = _IsPublish;
-            Ar.Articles.ArticalDate = _ArticleDate;
-            Ar.Articles.Artical_Image = _ArticleImage;
+            Ar.Articles.ArticalDate = _ArticalDate;
+            Ar.Articles.Artical_Image = _Artical_Image;
 
             Ar.Create();
 
@@ -143,32 +151,32 @@ namespace App.Marriage.Models.ArticleMV
         {
             ArticleDAL Ar = new ArticleDAL(_Id);
 
-            if (!string.IsNullOrEmpty(_Title))
-                Ar.Articles.Titles = _Title;
+            if (!string.IsNullOrEmpty(_Titles))
+                Ar.Articles.Titles = _Titles;
 
             if (!string.IsNullOrEmpty(_Description))
                 Ar.Articles.Description = _Description;
 
-            if (!string.IsNullOrEmpty(_Content))
-                Ar.Articles.Contents = _Content;
+            if (!string.IsNullOrEmpty(_Contents))
+                Ar.Articles.Contents = _Contents;
 
             if (!string.IsNullOrEmpty(_Status))
                 Ar.Articles.Status = _Status;
 
-            if (_CatID!=null)
-                Ar.Articles.Category_Id = _CatID;
+            if (_Category_Id!=null)
+                Ar.Articles.Category_Id = _Category_Id;
 
-            if (_EntityOrder != null)
-                Ar.Articles.Entity_Order = _EntityOrder;
+            if (_Entity_Order != null)
+                Ar.Articles.Entity_Order = _Entity_Order;
 
             if (_IsPublish!=null)
                 Ar.Articles.IsPublish = _IsPublish;
 
-            if (_ArticleDate!=null)
-                Ar.Articles.ArticalDate = _ArticleDate;
+            if (_ArticalDate!=null)
+                Ar.Articles.ArticalDate = _ArticalDate;
 
-            if (!string.IsNullOrEmpty(_ArticleImage))
-                Ar.Articles.Artical_Image = _ArticleImage;
+            if (!string.IsNullOrEmpty(_Artical_Image))
+                Ar.Articles.Artical_Image = _Artical_Image;
 
             Ar.Update();
         }
@@ -177,16 +185,64 @@ namespace App.Marriage.Models.ArticleMV
             ArticleDAL Ar = new ArticleDAL(_Id);
             Ar.Delete();
         }
+        public static ArticleViewModel Find(int Id)
+        {
+            return new ArticleViewModel(new ArticleDAL(Id));
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            //if (_NationalNumber.ToString().Length<=NationalLength.IntValue)
+            //{
+            //yield return new ValidationResult(GlobalLocalized.FieldLength + " " +NationalLength.IntValue, new[] { "NationalNumber" });
+            //}
+
+            if (_Titles == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "_Title" });
+            }
+
+            if (_Category_Id == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "_Category_Id" });
+            }
+
+            if (_Description == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "_Description" });
+            }
+
+            if (_ArticalDate == null)
+            {
+                yield return new ValidationResult(Globalization.FieldIsRequired, new[] { "_ArticleDate" });
+            }
+
+            // return null;
+        }
+
+        public string GetModelStateError(ModelStateDictionary modelState)
+        {
+            string Msg = "";
+            foreach (var state in modelState.Values)
+            {
+                foreach (var modelerror in state.Errors)
+                {
+                    Msg += modelerror.ErrorMessage + Environment.NewLine;
+                }
+            }
+            return Msg;
+        }
+
         #endregion
 
         #region Busniss Func
-        public static List<ArticleViewModel> GetUserList()
+        public static List<ArticleViewModel> GetArticalList()
         {
             List<ArticleViewModel> AList = new List<ArticleViewModel>();
             ArticleDAL.GetArticlesList().ForEach(a => AList.Add(new ArticleViewModel(a)));
             return AList;
         }
-        public static IEnumerable GetUserComboList()
+        public static IEnumerable GetArticalComboList()
         {
             return ArticleDAL.GetArticlesComboList();
         }

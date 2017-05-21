@@ -598,7 +598,19 @@ namespace App.Marriage.Models.PersonMV
         {
             return PersonDAL.GetPersonsComboList();
         }
+        /// <summary>
+        /// GetPerson By User Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public static PersonViewModel GetPersonByUser(int userId)
+        {
+            PersonDAL P = PersonDAL.GetPersonByUser(userId);
 
+            PersonViewModel Person = new PersonViewModel(P);
+
+            return Person;
+        }
         #endregion
 
         #region Search Parameters
