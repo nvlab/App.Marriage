@@ -111,3 +111,7 @@ section {
     margin: 0 0 1rem 0;
     padding: 1rem 8rem;
 }
+a:link, a:visited {
+    color: #fadddd;
+    outline: 0;
+}

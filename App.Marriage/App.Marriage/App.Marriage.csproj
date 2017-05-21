@@ -1268,7 +1268,7 @@
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
     <Content Include="Migrations\04-AddEnums.sql" />
     <Content Include="Migrations\08-Add Email To User.sql" />
-    <Content Include="Migrations\10-Enum-Data.js" />
+    <Content Include="Migrations\10-Enum-Data.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
