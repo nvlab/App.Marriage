@@ -250,6 +250,7 @@
     <Compile Include="DAL\NationalityDAL.cs" />
     <Compile Include="DAL\PersonDAL.cs" />
     <Compile Include="DAL\QuestionBankDAL.cs" />
+    <Compile Include="DAL\RequestQuestionSenarioDAL.cs" />
     <Compile Include="DAL\RolePermissionsDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
@@ -330,6 +331,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PersonMV\PersonViewModel.cs" />
     <Compile Include="Models\QuestionMV\QuestionBankViewModel.cs" />
+    <Compile Include="Models\RequestQuestionSenarioMV\RequestQuestionSenarioViewModel.cs" />
     <Compile Include="Models\RolePermissionsMV\RolePermissionsViewModel.cs" />
     <Compile Include="Models\RoleMV\RoleViewModel.cs" />
     <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
@@ -1265,7 +1267,8 @@
     <Content Include="Migrations\02-Person-Updates.sql" />
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
     <Content Include="Migrations\04-AddEnums.sql" />
-    <Content Include="Migrations\07-Add Email To User.sql" />
+    <Content Include="Migrations\08-Add Email To User.sql" />
+    <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1401,6 +1404,9 @@
     <Content Include="Views\Home\Unauthorized.cshtml" />
     <Content Include="Views\RolePermissions\Index.cshtml" />
     <Content Include="Views\RolePermissions\_RolePermissionsGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\_RequestQuestionGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\QuestionBank.cshtml" />
+    <Content Include="Views\RegisterRequest\_QuestionBankGVP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

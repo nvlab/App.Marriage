@@ -1,0 +1,57 @@
+@using App.Marriage.Models.CategoryMV;
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "QuestionBankGV";
+        settings.CallbackRouteValues = new { Controller = "RegisterRequest", Action = "QuestionBankGVP" };
+
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = false;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+
+        int i = 0;
+        
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Id";
+            column.Caption = "Id";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.Visible = false;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Question";
+            column.Caption = "Question";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Category_Id";
+            column.Caption = "Category_Id";
+            column.EditFormSettings.VisibleIndex = i + 1;
+            column.VisibleIndex = i;
+            column.EditFormSettings.Visible = DefaultBoolean.True;
+            column.Visible = true; column.EditorProperties().ComboBox(p =>
+            {
+                p.TextField = "Name";
+                p.ValueField = "Id";
+                p.ValueType = typeof(int);
+                p.DataSource = CategoryViewModel.GetCategoryComboList("Quation");
+            });
+        });
+
+    });
+}
+@grid.Bind(Model).GetHtml()
