@@ -122,30 +122,34 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         <span class="btn btn-default btn-file">
-                            الصورة الشخصية 1 <input type="file" accept="image/*" name="Pic1">
+                           الصورة الشخصية 1<input type="file" accept="image/*" name="Pic1">
                         </span>
-                       
-                        
+                        <p style="text-align:center">
+                            <img src="~/Upload/Images/img1.jpg" alt="..." style="width:170px;height:190px;position:center">
+                        </p>
                     </div>
                     <div class="col-md-3">
                         <span class="btn btn-default btn-file">
                             الصورة الشخصية 2 <input type="file" accept="image/*" name="Pic1">
                         </span>
+                        <p style="text-align:center">
+                            <img src="~/Upload/Images/user.png" alt="..." style="width:170px;height:190px">
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.Label("إخفاء الصورة الشخصية 1", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.Photo1_IsHidden)
-                            @Html.ValidationMessageFor(model => model.Photo1_IsHidden, "", new { @class = "text-danger" })
+      
                         </div>
                     </div>
                     @Html.Label("إخفاء الصورة الشخصية 2", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <div class="checkbox">
                             @Html.EditorFor(model => model.Photo2_IsHidden)
-                            @Html.ValidationMessageFor(model => model.Photo2_IsHidden, "", new { @class = "text-danger" })
+                          
                         </div>
                     </div>
                 </div>
@@ -386,7 +390,7 @@
                 <div class="form-group">
                     @Html.Label("الديانة", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
-                        @Html.DropDownListFor(model => model.Culture,new SelectList(ViewData["Culture"] as SelectList,"Value","Text"), new { htmlAttributes = new { @class = "form-control" }, style = "width: 170px;" })
+                        @Html.DropDownListFor(model => model.Culture,new SelectList(ViewData["Din"] as SelectList,"Value","Text"), new { htmlAttributes = new { @class = "form-control" }, style = "width: 170px;" })
                         @*@Html.EditorFor(model => model.Culture, new { htmlAttributes = new { @class = "form-control" } })*@
                         @Html.ValidationMessageFor(model => model.Culture, "", new { @class = "text-danger" })
                     </div>

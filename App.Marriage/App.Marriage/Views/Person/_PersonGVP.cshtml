@@ -1,0 +1,119 @@
+
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "PersonGV";
+        settings.CallbackRouteValues = new { Controller = "Person", Action = "PersonGVP" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Person", Action = "PersonGVPAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Person", Action = "PersonGVPUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Person", Action = "PersonGVPDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = false;
+        settings.CommandColumn.ShowDeleteButton = false;
+        settings.CommandColumn.ShowEditButton = false;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("Id","«·—ﬁ„ «· ”·”·Ì");
+        settings.Columns.Add("FullName","«·«”„");
+        settings.Columns.Add("SurName","«·ﬂ‰Ì…");
+        //settings.Columns.Add("Gender");
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Gender";
+            column.FieldName = "Gender";
+            column.Caption = "«·Ã‰”";
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = ViewData["Gender"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(string);
+            });
+        }
+        );
+        settings.Columns.Add(column =>
+        {
+            column.Name = "BirthDate";
+            column.FieldName = "BirthDate";
+            column.Caption = " «—ÌŒ «·„Ì·«œ";
+            column.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+        }
+
+        );
+        //settings.Columns.Add("Nationality_Id");
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Nationality_Id";
+            column.FieldName = "Nationality_Id";
+            column.Caption = "«·Ã‰”Ì…";
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = ViewData["Nationality"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(int);
+            });
+        }
+        );
+
+
+        //settings.Columns.Add("SocialStatus");
+        settings.Columns.Add(column =>
+        {
+            column.Name = "SocialStatus";
+            column.FieldName = "SocialStatus";
+            column.Caption = "«·Õ«·… «·«Ã „«⁄Ì…";
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = ViewData["Social"];
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(int);
+            });
+        }
+        );
+        settings.Columns.Add("WorkType","«·⁄„·");
+        settings.Columns.Add("Email","«·«Ì„Ì·");
+        settings.Columns.Add("Phone1","—ﬁ„ «·Â« ›");
+        settings.Columns.Add(column =>
+        {
+            column.Caption = " ›«’Ì·";
+            column.SetDataItemTemplateContent(c =>
+            {
+                ViewContext.Writer.Write(Html.ActionLink("«·„“Ìœ..", "Profile/13"));
+            });
+        });
+     
+
+       
+
+
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()
+<script>
+    function OnBeginCallback(s, e) {
+        e.customArgs["Value1"] = 1;
+        e.customArgs["Value2"] = 2;
+        s.get
+    }
+
+</script>

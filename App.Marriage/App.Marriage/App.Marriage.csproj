@@ -1268,7 +1268,9 @@
     <Content Include="Migrations\03-Person-SearchUpdate.sql" />
     <Content Include="Migrations\04-AddEnums.sql" />
     <Content Include="Migrations\08-Add Email To User.sql" />
-    <Content Include="Migrations\10-Enum-Data.sql" />
+    <Content Include="Migrations\10-Enum-Data.js" />
+    <Content Include="Migrations\07-AddEnumVal.sql" />
+    <Content Include="Migrations\08-Enum.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1391,6 +1393,9 @@
     <Content Include="Views\User\_UserGVP.cshtml" />
     <Content Include="Views\RegisterRequest\Detail.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\ChatRoom\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\_CategoryGVP.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\ChatRoom\Index.cshtml" />
     <Content Include="Views\RelationRequests\Index.cshtml" />
