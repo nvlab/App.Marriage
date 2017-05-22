@@ -18,17 +18,27 @@ namespace App.Marriage.Controllers.ChatRoom
         // GET: ChatRoom
         public ActionResult Index(int RelationRequest_Id, int User_Id)
         {
-            var Request = new RelationRequestDAL(RelationRequest_Id);
-            if (Request.RelationRequest.AllowChatRoom.GetValueOrDefault())
+            try
             {
-                return View(SetViewBag(Request, User_Id));
+                var Request = new RelationRequestDAL(RelationRequest_Id);
+                if (Request.RelationRequest.AllowChatRoom.GetValueOrDefault())
+                {
+                    return View(SetViewBag(Request, User_Id));
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception ex)
             {
+
                 return RedirectToAction("Index", "Home");
             }
+            
         }
 
+     
 
         public object SetViewBag(RelationRequestDAL Request, int User_Id)
         {

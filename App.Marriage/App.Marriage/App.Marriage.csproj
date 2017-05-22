@@ -240,6 +240,7 @@
     <Compile Include="Controllers\Person\SearchPersonController.cs" />
     <Compile Include="Controllers\QuestionBanks\QuestionBankController.cs" />
     <Compile Include="Controllers\RegisterRequestController.cs" />
+    <Compile Include="Controllers\RelationRequest\RelationRequestsController.cs" />
     <Compile Include="Controllers\User\RolePermissionsController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="DAL\ArticleDAL.cs" />
