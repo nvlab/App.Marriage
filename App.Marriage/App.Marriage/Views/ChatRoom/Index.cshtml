@@ -16,7 +16,12 @@
 
     var ChatLoaderEvent = setTimeout(LoaderNewMessage, LoaderTimer);
 
-    var LastMessageId = "@Model.Last().Id";
+
+    var LastMessageId = "@(Model.Count()>0?@Model.LastOrDefault().Id:0)";
+
+
+  
+
 
     function LoaderNewMessage() {
         var url = '@Url.Action("LoadChatRoomMessages","ChatRoom")';
@@ -29,7 +34,7 @@
                 if (data.length > 0) {
                     LoadMessagesIntoChatBox(data);
                 }
-                
+
             }
         });
 
@@ -42,7 +47,7 @@
             WriteUserMesageIntoChatBox(data[i].IMG, data[i].Message, data[i].IMG, data[i].SenderFullName);
             LastMessageId = data[i].Id;
         }
-        
+
     };
 
     function handle(e) {
@@ -98,8 +103,8 @@
         $("#chatpanels").scrollTop('1E10');
     };
 
-   
-    
+
+
 
 
 </script>
