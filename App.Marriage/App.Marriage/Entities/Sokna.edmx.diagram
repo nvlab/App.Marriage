@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="SOKNAModel.PersonHiddenFlds" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SOKNAModel.QuestionBank" Width="1.5" PointX="13.5" PointY="21.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SOKNAModel.RegisterRequests" Width="1.5" PointX="13.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="SOKNAModel.RelationRequest" Width="1.5" PointX="17.625" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SOKNAModel.RelationRequest" Width="1.875" PointX="17.25" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="SOKNAModel.RequestQuestionSenario" Width="1.5" PointX="15.75" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SOKNAModel.RolePermissions" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SOKNAModel.Roles" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
@@ -40,7 +40,7 @@
         <AssociationConnector Association="SOKNAModel.FK_RelationRequest_Users2" ManuallyRouted="false" />
         <AssociationConnector Association="SOKNAModel.FK_RolePermissions_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="SOKNAModel.FK_Users_Roles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SOKNAModel.ChatRoomMessage" Width="1.5" PointX="19.875" PointY="14.25" />
+        <EntityTypeShape EntityType="SOKNAModel.ChatRoomMessage" Width="2.25" PointX="19.875" PointY="14.25" />
         <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_RelationRequest" />
         <AssociationConnector Association="SOKNAModel.FK_ChatRoomMessage_Users" />
       </Diagram>
