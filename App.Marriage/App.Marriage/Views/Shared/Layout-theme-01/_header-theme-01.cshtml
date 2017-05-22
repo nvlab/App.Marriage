@@ -1,28 +1,61 @@
-﻿<div class="preloader"></div>
+﻿@using App.Marriage.Helpars
+<div class="preloader"></div>
 @{
     bool ShowSlider = (ViewData["ShowSlider"] != null ) ? true : false;
     if (ShowSlider) {
         <text>
         @Html.Partial("layout-theme-01/_Slider-theme-01");
+        <nav>
+            <div class="menu-wrapper">
+                <button class="open-menu">Menu</button>
+                <ul class="menu">
+                    <li><a class="scroll-link" href="#hero">الرئيسية</a></li>
+                    <li><a class="scroll-link" href="#Search">ابحث عن شريك</a></li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                    <li><a class="scroll-link" href="#register">سجل بالموقع</a></li>
+                    }
+                    <li><a class="scroll-link" href="#people">قصص نجاح</a></li>
+                    <li><a class="scroll-link" href="#gallery">المعرض</a></li>
+                    <li><a class="scroll-link" href="#contact">تواصل معنا</a></li>
+                    <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    @if (UserHelpar.GetUserType() == "Admin")
+                    {
+                        <li><a class="link" href="/ControlPanel">لوحة التحكم</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        </text>
+    }
+    else
+    {
+        <text>
+        <nav>
+            <div class="menu-wrapper">
+                <button class="open-menu">Menu</button>
+                <ul class="menu">
+                    <li><a class="" href="/#hero">الرئيسية</a></li>
+                    <li><a class="" href="/#Search">ابحث عن شريك</a></li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li><a class="scroll-link" href="#register">سجل بالموقع</a></li>
+                    }
+                    <li><a class="" href="/#people">قصص نجاح</a></li>
+                    <li><a class="" href="/#gallery">المعرض</a></li>
+                    <li><a class="" href="/#contact">تواصل معنا</a></li>
+                    <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    @if (UserHelpar.GetUserType() == "Admin")
+                    {
+                        <li><a class="link" href="/ControlPanel">لوحة التحكم</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
         </text>
     }
 }
-<nav>
-    <div class="menu-wrapper">
-        <button class="open-menu">Menu</button>
-        <ul class="menu">
-            <li><a class="scroll-link" href="#hero">الرئيسية</a></li>
-            <li><a class="scroll-link" href="#Search">ابحث عن شريك</a></li>
-            <li><a class="scroll-link" href="#register">سجل بالموقع</a></li>
-            <li><a class="scroll-link" href="#people">قصص نجاح</a></li>
-            <li><a  href="@Url.Action("Index", "SearchPerson")"class="scroll-link">البحث عن شريك</a></li>
-            <li><a  href="@Url.Action("Index", "RelationRequests")">طلبات الارتباط المقدمة</a></li>
-            <li><a  href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
-            <li><a class="scroll-link" href="#rsvp">تسجيل</a></li>
-            <li><a class="scroll-link" href="#people">المشتركين</a></li>
-            <li><a class="scroll-link" href="#gallery">المعرض</a></li>
-            <li><a class="scroll-link" href="#contact">تواصل معنا</a></li>
-            <li><a class="link" href="/ControlPanel">لوحة التحكم</a></li>
-        </ul>
-    </div>
-</nav>
+
+@Html.Partial("_LoginPartial")
+
+

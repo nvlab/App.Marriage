@@ -17,6 +17,7 @@ namespace App.Marriage.DAL
             get { return _users; }
             set { _users = value; }
         }
+        
         #endregion
 
         #region Constractors
@@ -30,6 +31,24 @@ namespace App.Marriage.DAL
         {
             Db = new SOKNAEntities();
             _users = Db.Users.Single(u => u.Id == Id);
+        }
+        /// <summary>
+        /// Get User By Email
+        /// </summary>
+        /// <param name="Email"></param>
+        public UserDAL(string Email)
+        {
+            Db = new SOKNAEntities();
+            _users = Db.Users.Single(u => u.Email == Email);
+        }
+        public UserDAL(string UserName,string Password)
+        {
+            Db = new SOKNAEntities();
+            var Res = Db.Users.Where(u => u.UserName == UserName && u.UserPassword == Password);
+            if (Res.Count() > 0)
+            {
+                _users = Res.First();
+            }
         }
         public UserDAL(Users Ua)
         {
@@ -58,10 +77,6 @@ namespace App.Marriage.DAL
             Db.SaveChanges();
         }
 
-        public static UserDAL Find(int Id)
-        {
-            return new UserDAL(Id);
-        }
         #endregion
 
         #region Business Function
@@ -81,16 +96,6 @@ namespace App.Marriage.DAL
             using (var db = new SOKNAEntities())
             {
                 var Res = db.Users.Select(r => new { Name = r.UserName, Id = r.Id }).ToList();
-                return Res;
-            }
-
-        }
-
-        public static IEnumerable GetUsersNamesComboList()
-        {
-            using (var db = new SOKNAEntities())
-            {
-                var Res = db.Users.Select(r => new { Name = r.Person.FirstOrDefault().FullName, Id = r.Id }).ToList();
                 return Res;
             }
 

@@ -94,7 +94,20 @@ namespace App.Marriage.DAL
             }
             return List;
         }
-
+        public static PersonDAL GetPersonByUser(int UserId)
+        {
+            PersonDAL Person = new PersonDAL();
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Person.FirstOrDefault(u => u.User_Id == UserId);
+                if(Res != null)
+                { 
+                    Person = new PersonDAL(Res.Id);
+                }
+            }
+            return Person;
+        }
+        
         public static List<PersonDAL> GetPersonsList(int Country, int Ages, string Education, int Nationality, string Gender)
         {
             List<PersonDAL> List = new List<PersonDAL>();
@@ -106,7 +119,7 @@ namespace App.Marriage.DAL
                (r.Residence_Country_Id == Country || Country == 0) &&
                (r.Nationality_Id == Country || Nationality == 0) &&
                (r.Age == Ages || Ages == 0) &&
-               (IsEductionEnable || r.Education == Education) &&
+               //(IsEductionEnable || r.Education == Education) &&
                (IsGenederEnable || r.Gender == Gender) 
                 ).ToList();
                 Res.ForEach(r => List.Add(new PersonDAL(r)));
@@ -114,16 +127,6 @@ namespace App.Marriage.DAL
             }
             return List;
         }
-
-        public static PersonDAL GetPersonPhotoByUserId(int? senderUser_Id)
-        {
-            using (var db = new SOKNAEntities())
-            {
-                var Res = db.Person.First(r=>r.User_Id ==senderUser_Id);
-                return new PersonDAL(Res.Id);
-            }
-        }
-
         public static IEnumerable GetPersonsComboList()
         {
             using (var db = new SOKNAEntities())

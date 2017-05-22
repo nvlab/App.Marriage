@@ -11,6 +11,8 @@
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
 
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
         settings.CommandColumn.Visible = true;
         settings.CommandColumn.ShowNewButton = false;
         settings.CommandColumn.ShowNewButtonInHeader = true;
@@ -29,7 +31,7 @@
         settings.KeyFieldName = "Id";
 
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
@@ -41,30 +43,50 @@
 
         //settings.Columns.Add("Id");
 
+        int i = 0;
         settings.Columns.Add(column =>
         {
             column.Name = "UserName";
             column.FieldName = "UserName";
             column.Caption = Globalization.UserName;
-            
-            column.VisibleIndex = 1;
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+            column.EditorProperties().TextBox(x => {
+                x.ValidationSettings.RequiredField.IsRequired = true;
+            });
+            i = i + 1;
+            column.VisibleIndex = i;
         });
 
+        settings.Columns.Add(column =>
+        {
+            column.Name = "Email";
+            column.FieldName = "Email";
+            column.Caption = "Email";
+            column.ColumnType = MVCxGridViewColumnType.TextBox;
+            column.EditorProperties().TextBox(x =>
+            {
+                x.ValidationSettings.RequiredField.IsRequired = true;
+            });
+            i = i + 1;
+            column.VisibleIndex = i;
+        });
 
         settings.Columns.Add(column =>
         {
             column.Name = "Password";
             column.FieldName = "Password";
             column.ColumnType = MVCxGridViewColumnType.TextBox;
+            column.EditorProperties().TextBox(x =>
+            {
+                x.ValidationSettings.RequiredField.IsRequired = true;
+            });
             column.Caption = Globalization.Pass;
             var tmp = column.PropertiesEdit as TextBoxProperties;
             tmp.Password = true;
             column.Visible = false;
             column.EditFormSettings.Visible = DefaultBoolean.True;
-          
-            column.VisibleIndex = 2;
-
-
+            i = i + 1;
+            column.VisibleIndex = i;
 
         });
 
@@ -77,6 +99,8 @@
             column.ReadOnly = false;
             column.FieldName = "IsActive";
             column.Width = 20;
+            i = i + 1;
+            column.VisibleIndex = i;
 
         });
 
@@ -97,6 +121,7 @@
                 c.TextField = "Name";
                 c.ValueField = "Id";
                 c.ValueType = typeof(string);
+                c.ValidationSettings.RequiredField.IsRequired = true;
 
             });
         });
@@ -112,7 +137,6 @@
                 c.TextField = "Name";
                 c.ValueField = "Id";
                 c.ValueType = typeof(int);
-
             });
         });
 

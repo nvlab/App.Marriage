@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Marriage.Helpars;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,9 @@ namespace App.Marriage.Controllers
         // GET: ControlPanel
         public ActionResult Index()
         {
+            if (UserHelpar.GetUserType() != "Admin")
+                return RedirectToAction("Unauthorized", "Home", null);
+
             return View();
         }
     }

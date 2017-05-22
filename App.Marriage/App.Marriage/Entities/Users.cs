@@ -19,11 +19,11 @@ namespace App.Marriage.Entities
         {
             this.Messages = new HashSet<Messages>();
             this.Messages1 = new HashSet<Messages>();
-            this.Person = new HashSet<Person>();
             this.RelationRequest = new HashSet<RelationRequest>();
             this.RelationRequest1 = new HashSet<RelationRequest>();
             this.RelationRequest2 = new HashSet<RelationRequest>();
             this.ChatRoomMessage = new HashSet<ChatRoomMessage>();
+            this.Person = new HashSet<Person>();
         }
     
         public int Id { get; set; }
@@ -39,8 +39,6 @@ namespace App.Marriage.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RelationRequest> RelationRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RelationRequest> RelationRequest1 { get; set; }
@@ -49,5 +47,7 @@ namespace App.Marriage.Entities
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChatRoomMessage> ChatRoomMessage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> Person { get; set; }
     }
 }

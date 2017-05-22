@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using App.Marriage.Models.RegisterRequesMV;
 using App.Marriage.Models.PersonMV;
 using App.Marriage.DAL;
+using App.Marriage.Helpars;
+using App.Marriage.Models.RequestQuestionSenarioMV;
+using App.Marriage.Models.QuestionMV;
 
 namespace App.Marriage.Controllers
 {
@@ -15,6 +18,8 @@ namespace App.Marriage.Controllers
         // GET: RegisterRequest
         public ActionResult Index()
         {
+            if (!UserHelpar.CanDo(Permissons.AcceptUser))
+                return RedirectToAction("Unauthorized", "Home", null);
             return View();
         }
         #region RR
@@ -24,62 +29,16 @@ namespace App.Marriage.Controllers
             var model = RegisterRequestViewModels.Get_RegisterRequestsList();
             return PartialView("_RegisterRequestGVP", model);
         }
+        public ActionResult SendQuestions(int Id)
+        {
 
-        [HttpPost, ValidateInput(false)]
-        public ActionResult RegisterRequestGVPAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.RegisterRequesMV.RegisterRequestViewModels item)
-        {
-            var model = new object[0];
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Insert here a code to insert the new item in your model
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_RegisterRequestGVP", model);
+            RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
+            rrDAL.RegisterRequests.RequestStatus = 1;
+            rrDAL.Update();
+            return Json(new { error = false ,data = "تم الارسال بنجاح"}, JsonRequestBehavior.AllowGet);
+            //return Json(new { error = true }, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult RegisterRequestGVPUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.RegisterRequesMV.RegisterRequestViewModels item)
-        {
-            var model = new object[0];
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    // Insert here a code to update the item in your model
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            else
-                ViewData["EditError"] = "Please, correct all errors.";
-            return PartialView("_RegisterRequestGVP", model);
-        }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult RegisterRequestGVPDelete(System.Int32 Id)
-        {
-            var model = new object[0];
-            if (Id >= 0)
-            {
-                try
-                {
-                    // Insert here a code to delete the item from your model
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("_RegisterRequestGVP", model);
-        }
+        
         #endregion
         #region RR detail
         // GET: RegisterRequest
@@ -87,11 +46,94 @@ namespace App.Marriage.Controllers
         {
             RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
             RegisterRequestViewModels RR = new RegisterRequestViewModels(rrDAL.RegisterRequests);
-            PersonViewModel P = new PersonViewModel(rrDAL.RegisterRequests.Person);
+            PersonDAL PDAL = new PersonDAL(rrDAL.RegisterRequests.Person_Id.Value);
+            PersonViewModel P = new PersonViewModel(PDAL);
             ViewBag.Id = Id;
+            ViewBag.Status = RR.RequestStatus.GetValueOrDefault();
             ViewBag.RR = RR;
             ViewBag.P = P;
             return View();
+        }
+        #endregion
+
+        #region RequestQuestionGVP
+
+        [ValidateInput(false)]
+        public ActionResult QuestionBankGVP()
+        {
+            var model = QuestionBankViewModel.GetQuestionBankList();
+            return PartialView("_QuestionBankGVP", model);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult RequestQuestionGVP(int Id)
+        {
+            var model = new List<RequestQuestionSenarioViewModel>();
+            if (Id != 0)
+                model = RequestQuestionSenarioViewModel.GetRequestQuestionSenarioListByRegisterRequests_Id(Id);
+            ViewBag.Id = Id;
+            RegisterRequestsDAL RR = new RegisterRequestsDAL(Id);
+            ViewBag.Status = RR.RegisterRequests.RequestStatus.GetValueOrDefault();
+
+            return PartialView("_RequestQuestionGVP", model);
+        }
+        
+        [HttpPost, ValidateInput(false)]
+        public ActionResult RequestQuestionGVPUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] MVCxGridViewBatchUpdateValues<RequestQuestionSenarioViewModel, int> updateValues,int Id)
+        {
+            ViewBag.Id = Id;
+            RegisterRequestsDAL RR = new RegisterRequestsDAL(Id);
+            ViewBag.Status = RR.RegisterRequests.RequestStatus.GetValueOrDefault();
+
+            var model = RequestQuestionSenarioViewModel.GetRequestQuestionSenarioListByRegisterRequests_Id(Id);
+            // Insert all added values. 
+            var newId = model.Count > 0 ? model.Max(i => i.Id) : 0;
+            foreach (var item in updateValues.Insert)
+            {
+                try
+                {
+                    RequestQuestionSenarioViewModel RQS = new RequestQuestionSenarioViewModel();
+                    RQS.Question_id = item.Question_id;
+                    RQS.RegisterRequests_Id = Id;
+                    RQS.Create();
+                    model.Add(RQS);
+                }
+                catch (Exception e)
+                {
+                    updateValues.SetErrorText(item, e.Message);
+                }
+            }
+            // Update all edited values. 
+            foreach (var item in updateValues.Update)
+            {
+                try
+                {
+                    var modelItem = model.FirstOrDefault(it => it.Id == item.Id);
+                    if (modelItem != null)
+                    {
+                        item.Update();
+                    }
+                }
+                catch (Exception e)
+                {
+                    updateValues.SetErrorText(item, e.Message);
+                }
+            }
+            // Delete all values that were deleted on the client side from the data source. 
+            foreach (var ItemID in updateValues.DeleteKeys)
+            {
+                try
+                {
+                    var item = model.FirstOrDefault(it => it.Id == Convert.ToInt32(ItemID));
+                    if (item != null) item.Delete();
+                }
+                catch (Exception e)
+                {
+                    updateValues.SetErrorText(ItemID, e.Message);
+                }
+            }
+            
+            return PartialView("_RequestQuestionGVP", model);
         }
         #endregion
     }

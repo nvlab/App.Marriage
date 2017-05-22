@@ -116,20 +116,3 @@ function open_in_new_tab(url) {
     var win = window.open(url, '_blank');
     win.focus();
 };
-
-function GeneratePameter(Parametrs) {
-    var param = "";
-    if (Parametrs != null) {
-        if (Parametrs.length > 0) {
-            for (var i = 0; i < Parametrs.length; i++) {
-                if (i == 0) {
-                    param += "/?" + Parametrs[i][0] + "=" + Parametrs[i][1]
-                } else {
-                    param += "&" + Parametrs[i][0] + "=" + Parametrs[i][1]
-                }
-
-            }
-        }
-    }
-    return param;
-}

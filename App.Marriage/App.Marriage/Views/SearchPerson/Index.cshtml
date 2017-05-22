@@ -101,11 +101,12 @@
                    settings.Name = "Education";
                    settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.StartsWith;
                    settings.Properties.DropDownStyle = DropDownStyle.DropDown;
-                   settings.Properties.ValueType = typeof(string);
+                   settings.Properties.ValueType = typeof(int);
                    settings.Properties.ValueField = "Id";
                    settings.Properties.TextField = "Name";
                    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
                    settings.Style.Value = "form-control";
+                   settings.Properties.ValueType = typeof(string);
                }).BindList(ViewData["Education"]).GetHtml()
                 </div>
                 </div>

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using App.Marriage.Entities;
 using App.Marriage.Models.PersonMV;
+using App.Marriage.Models.RegisterRequesMV;
+using App.Marriage.DAL;
 
 namespace App.Marriage.Controllers.Person
 {
@@ -16,6 +18,7 @@ namespace App.Marriage.Controllers.Person
     {
         private SOKNAEntities db = new SOKNAEntities();
         private static string genderType;
+        private string personPV = "~/Views/Person/_PersonGVP.cshtml";
         // GET: Person
         //public ActionResult Index()
         //{
@@ -38,27 +41,11 @@ namespace App.Marriage.Controllers.Person
         //}
 
         // GET: Person/Create
-        public ActionResult Create(string id)//1 male, 2 female
+        public ActionResult Create(int id)//1 male, 2 female
         {
-            string socialEnumKey;
-            if (id == "1") genderType = "Male"; else genderType = "Female";
-            if (id == "1")
-                socialEnumKey = "SocialStatusM";
-            else
-                socialEnumKey = "SocialStatusF";
+            
 
-            SelectList natList = new SelectList(DAL.NationalityDAL.GetNationalitysComboList(),"Id","Name");
-            SelectList countryList = new SelectList(DAL.CountryDAL.GetCountrysComboList(), "Id", "Name");
-            SelectList socialStateList = new SelectList(DAL.EnumDAL.GetEnumsComboList(socialEnumKey),"Id","Name");
-            SelectList educationList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Education"), "Id", "Name");
-            SelectList cultureList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Culture"), "Id", "Name");
-
-            ViewData["Gender"] = id;
-            ViewData["NatCombo"] = natList;
-            ViewData["Social"] = socialStateList;
-            ViewData["Education"] = educationList;
-            ViewData["Culture"] = cultureList;
-            ViewData["Country"] = countryList;
+            FeedCombobox(id);
 
             return View();
         }
@@ -76,27 +63,56 @@ namespace App.Marriage.Controllers.Person
                 personViewModel.Create();
                 personViewModel.SaveCustomizeFlds();
 
+                // Added BY N
+                RegisterRequestViewModels RR = new RegisterRequestViewModels();
+                RR.Person_Id = personViewModel.Id;
+                RR.RequestStatus = 0;
+                RR.RequestDate = DateTime.Now;
+                RR.ResponseMessage = 1;
+                RR.Create();
+
                 //return RedirectToAction("Index");
                 return Content("<script language='javascript' type='text/javascript'>alert('تم حفظ بياناتك');</script>");
             }
+
 
             return View(personViewModel);
         }
 
         // GET: Person/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    //if (id == null)
-        //    //{
-        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    //}
-        //    //PersonViewModel personViewModel = db.PersonViewModels.Find(id);
-        //    //if (personViewModel == null)
-        //    //{
-        //    //    return HttpNotFound();
-        //    //}
-        //    //return View(personViewModel);
-        //}
+        public ActionResult Edit(int id)//person id
+        {
+            int gender;
+            
+            PersonDAL person = new PersonDAL(id);
+            if (person.Persons.Gender == "Male")
+                gender = 1;
+            else
+                gender = 2;
+            PersonViewModel personViewModel = new PersonViewModel(person);
+            if (personViewModel == null)
+            {
+                return HttpNotFound();
+            }
+            FeedCombobox(gender);
+            return View(personViewModel);
+        }
+        public ActionResult Profile(int id)
+        {
+            int gender;
+            PersonDAL person = new PersonDAL(id);
+            if (person.Persons.Gender == "Male")
+                gender = 1;
+            else
+                gender = 2;
+            PersonViewModel personViewModel = new PersonViewModel(person);
+            FeedCombobox(gender);
+            return View(personViewModel);
+        }
+        public ActionResult ShowAll()
+        {
+            return View();
+        }
 
         // POST: Person/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -107,38 +123,17 @@ namespace App.Marriage.Controllers.Person
         {
             if (ModelState.IsValid)
             {
-                db.Entry(personViewModel).State = EntityState.Modified;
-                db.SaveChanges();
+                personViewModel.Update();
+                personViewModel.SaveCustomizeFlds();
                 return RedirectToAction("Index");
             }
-            return View(personViewModel);
+            //return View("~/Views/Home/Index");
+            //return RedirectToAction("Index", "Home");
+            //return RedirectToAction("~/Home/Index");
+            return Redirect("~/Home/Index");
         }
 
-        // GET: Person/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    PersonViewModel personViewModel = db.PersonViewModels.Find(id);
-        //    if (personViewModel == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(personViewModel);
-        //}
-
-        // POST: Person/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    PersonViewModel personViewModel = db.PersonViewModels.Find(id);
-        //    db.PersonViewModels.Remove(personViewModel);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        
 
         protected override void Dispose(bool disposing)
         {
@@ -149,7 +144,103 @@ namespace App.Marriage.Controllers.Person
             base.Dispose(disposing);
         }
 
-      
+        private void FeedCombobox(int personGenderType)
+        {
+            string socialEnumKey;
+            if (personGenderType == 1)
+            {
+                genderType = "Male";
+                socialEnumKey = "SocialStatusM";
+            }
+               
+            else
+            {
+                genderType = "Female";
+                socialEnumKey = "SocialStatusF";
+            }
+                
+
+            SelectList natList = new SelectList(DAL.NationalityDAL.GetNationalitysComboList(), "Id", "Name");
+            SelectList countryList = new SelectList(DAL.CountryDAL.GetCountrysComboList(), "Id", "Name");
+            SelectList socialStateList = new SelectList(DAL.EnumDAL.GetEnumsComboList(socialEnumKey), "Id", "Name");
+            SelectList educationList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Education"), "Id", "Name");
+            SelectList cultureList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Culture"), "Id", "Name");
+
+            ViewData["Gender"] = personGenderType.ToString();
+            ViewData["NatCombo"] = natList;
+            ViewData["Social"] = socialStateList;
+            ViewData["Education"] = educationList;
+            ViewData["Din"] = cultureList;
+            ViewData["Country"] = countryList;
+        }
+
+
+
+        [ValidateInput(false)]
+        public ActionResult PersonGVP()
+        {
+            ViewData["Nationality"] = NationalityDAL.GetNationalitysComboList();
+            ViewData["Social"] = DAL.EnumDAL.GetEnumsComboList("SocialStatusM");
+            ViewData["Gender"] = DAL.EnumDAL.GetEnumsComboList("Gender");
+            var model = PersonViewModel.GetPersonList();
+            return PartialView(personPV, model);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult PersonGVPAddNew([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.PersonMV.PersonViewModel item)
+        {
+            var model = new object[0];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Insert here a code to insert the new item in your model
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("~/Views/Person/_PersonGVP.cshtml", model);
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult PersonGVPUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] App.Marriage.Models.PersonMV.PersonViewModel item)
+        {
+            var model = new object[0];
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Insert here a code to update the item in your model
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            return PartialView("~/Views/Person/_PersonGVP.cshtml", model);
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult PersonGVPDelete(System.Int32 Id)
+        {
+            var model = new object[0];
+            if (Id >= 0)
+            {
+                try
+                {
+                    // Insert here a code to delete the item from your model
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            return PartialView("~/Views/Person/_PersonGVP.cshtml", model);
+        }
     }
 
 

@@ -115,7 +115,10 @@ namespace App.Marriage.Models.RegisterRequesMV
         public void Create()
         {
             RegisterRequestsDAL Pa = new RegisterRequestsDAL();
-            Pa.RegisterRequests.Id = _Id;
+            Pa.RegisterRequests.Person_Id = _Person_Id;
+            Pa.RegisterRequests.RequestDate = _RequestDate;
+            Pa.RegisterRequests.RequestStatus = _RequestStatus;
+            Pa.RegisterRequests.ResponseMessage = _ResponseMessage;
 
             Pa.Create();
 
