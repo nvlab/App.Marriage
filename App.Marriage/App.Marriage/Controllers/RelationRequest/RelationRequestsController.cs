@@ -1,4 +1,6 @@
-﻿using App.Marriage.Models.RelationRequestMV;
+﻿using App.Marriage.Entities;
+using App.Marriage.Helpars;
+using App.Marriage.Models.RelationRequestMV;
 using DevExpress.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -86,5 +88,14 @@ namespace App.Marriage.Controllers.RelationRequest
             var model = RelationRequestViewModel.GetRelationRequestList();
             return PartialView(RquestRelationView, model);
         }
+
+
+        //public ActionResult UserRequestNewRelation(int TargetUserId)
+        //{
+        //    //if (!UserHelpar.CanDo(Helpars.Permissons.AcceptUser))
+        //    //    return RedirectToAction("Unauthorized", "Home", null);
+
+        //    //UserHelpar.GetUserId()
+        //}
     }
 }
