@@ -1412,6 +1412,10 @@
     <Content Include="Views\RegisterRequest\_RequestQuestionGVP.cshtml" />
     <Content Include="Views\RegisterRequest\QuestionBank.cshtml" />
     <Content Include="Views\RegisterRequest\_QuestionBankGVP.cshtml" />
+    <Content Include="Views\Person\Profile.cshtml" />
+    <Content Include="Views\Person\ShowAll.cshtml" />
+    <Content Include="Views\Person\_PersonGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

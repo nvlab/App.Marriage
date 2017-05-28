@@ -11,6 +11,7 @@
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "QuestionBank", Action = "QuestionBankGVPDelete" };
         settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
         settings.SettingsBehavior.ConfirmDelete = true;
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
 
         settings.CommandColumn.Visible = true;
         settings.CommandColumn.ShowNewButtonInHeader = true;

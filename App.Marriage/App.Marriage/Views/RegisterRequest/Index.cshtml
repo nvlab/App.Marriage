@@ -11,9 +11,9 @@
         if (e.buttonID === "detailsButton") {
             var destUrl = url + "/" + key;
             window.location.href = destUrl;
-        } 
+        }
         if (e.buttonID === "acceptButton") {
-            popup.Show();   
+            popup.Show();
         }
         if (e.buttonID === "rejectButton") {
             popup.Show();
@@ -29,41 +29,69 @@
     }
 
 </script>
-<h1>
-    طلبات التسيجل
-</h1>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            طلبات التسجيل
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> لوحة التحكم</a></li>
+            <li class="active">طلبات التسجيل</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">جدول الطلبات التسجيل</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
 
-@Html.Action("RegisterRequestGVP")
-@Html.DevExpress().PopupControl(settings =>
-{
-    settings.Name = "popup";
-    settings.ShowHeader = true;
-    settings.AllowDragging = true;
-    settings.AllowResize = true;
-    settings.PopupAction = PopupAction.None;
-    settings.PopupElementID = "GridView";
-    //settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
-    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
 
-    settings.HeaderText = "هل تود الاستمرار";
+                        @Html.Action("RegisterRequestGVP")
+                        @Html.DevExpress().PopupControl(settings =>
+                        {
+                            settings.Name = "popup";
+                            settings.ShowHeader = true;
+                            settings.AllowDragging = true;
+                            settings.AllowResize = true;
+                            settings.PopupAction = PopupAction.None;
+                            settings.PopupElementID = "GridView";
+                            //settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+                            settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
 
-    settings.SetContent(() =>
-    {
+                            settings.HeaderText = "هل تود الاستمرار";
 
-        @Html.DevExpress().Button(buttonSettings =>
-        {
-            buttonSettings.Name = "ButtonYes";
-            buttonSettings.Text = "نعم";
-            buttonSettings.UseSubmitBehavior = false;
-            buttonSettings.ClientSideEvents.Click = "OnClickYes";
-        }).Render();
-        @Html.DevExpress().Button(buttonSettings =>
-        {
-            buttonSettings.Name = "ButtonNo";
-            buttonSettings.Text = "لا";
-            buttonSettings.UseSubmitBehavior = false;
-            buttonSettings.ClientSideEvents.Click = "OnClickNo";
-        }).Render();
+                            settings.SetContent(() =>
+                            {
 
-    });
-}).GetHtml()
+                                @Html.DevExpress().Button(buttonSettings =>
+                                {
+                                    buttonSettings.Name = "ButtonYes";
+                                    buttonSettings.Text = "نعم";
+                                    buttonSettings.UseSubmitBehavior = false;
+                                    buttonSettings.ClientSideEvents.Click = "OnClickYes";
+                                }).Render();
+                                @Html.DevExpress().Button(buttonSettings =>
+                                {
+                                    buttonSettings.Name = "ButtonNo";
+                                    buttonSettings.Text = "لا";
+                                    buttonSettings.UseSubmitBehavior = false;
+                                    buttonSettings.ClientSideEvents.Click = "OnClickNo";
+                                }).Render();
+
+                            });
+                        }).GetHtml()
+
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
