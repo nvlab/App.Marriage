@@ -24,8 +24,8 @@ namespace App.Marriage.Entities
         public Nullable<int> ReciverUser_Id { get; set; }
         public Nullable<int> Person_Id { get; set; }
     
+        public virtual Person Person { get; set; }
         public virtual Users Users { get; set; }
         public virtual Users Users1 { get; set; }
-        public virtual Person Person { get; set; }
     }
 }
