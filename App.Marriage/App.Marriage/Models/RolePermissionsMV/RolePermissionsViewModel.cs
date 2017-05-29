@@ -104,6 +104,8 @@ namespace App.Marriage.Models.RoleMV
             if (_IsActive != null)
                 R.RolePermissions.IsActive = _IsActive;
 
+            R.RolePermissions.InsertDate = DateTime.Now;
+
             R.Update();
         }
 

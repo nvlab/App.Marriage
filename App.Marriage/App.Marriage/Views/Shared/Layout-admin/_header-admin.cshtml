@@ -34,6 +34,10 @@
                             {
                                 <li><a href="/RegisterRequest"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات التسجيل</a></li>
                             }
+                            @if (UserHelpar.CanDo(Permissons.AcceptUser))
+                            {
+                                <li><a href="/RelationRequests"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات ارتباط</a></li>
+                            }
                         </ul>
                     </li>
                     <li class="dropdown">

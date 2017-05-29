@@ -10,6 +10,7 @@ using App.Marriage.DAL;
 using App.Marriage.Helpars;
 using App.Marriage.Models.RequestQuestionSenarioMV;
 using App.Marriage.Models.QuestionMV;
+using System.Threading.Tasks;
 
 namespace App.Marriage.Controllers
 {
@@ -29,16 +30,76 @@ namespace App.Marriage.Controllers
             var model = RegisterRequestViewModels.Get_RegisterRequestsList();
             return PartialView("_RegisterRequestGVP", model);
         }
-        public ActionResult SendQuestions(int Id)
+        public async Task<ActionResult> SendQuestions(int Id)
         {
 
             RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
             rrDAL.RegisterRequests.RequestStatus = 1;
             rrDAL.Update();
+            var Email = rrDAL.RegisterRequests.Person.Email;
+            var Subject = "الاسئلة - موقع سكنا";
+            var Message = "اضغط هنا للاجابة على الاسئلة";
+
+            Message = "<a href=\"sokna.org\\RegisterRequests\\QA\\"+rrDAL.RegisterRequests.Id+" \">";
+
+            MailHelpar emailService = new MailHelpar();
+            //await emailService.SendEmailAsync(Email, Message, Subject);
+
             return Json(new { error = false ,data = "تم الارسال بنجاح"}, JsonRequestBehavior.AllowGet);
             //return Json(new { error = true }, JsonRequestBehavior.AllowGet);
         }
-        
+        public ActionResult QA(int Id)
+        {
+            var model = new List<RequestQuestionSenarioViewModel>();
+            if (Id != 0)
+                model = RequestQuestionSenarioViewModel.GetRequestQuestionSenarioListByRegisterRequests_Id(Id);
+
+            ViewBag.Id = Id;
+            RegisterRequestsDAL RR = new RegisterRequestsDAL(Id);
+
+            ViewBag.Status = RR.RegisterRequests.RequestStatus.GetValueOrDefault();
+
+            ViewBag.QA = model;
+            ViewBag.ReturnUrl = "RegisterRequest/QA/" + Id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult QA()
+        {
+            int Id = int.Parse(Request.Params["Id"]);
+            var model = new List<RequestQuestionSenarioViewModel>();
+            if (Id != 0)
+                model = RequestQuestionSenarioViewModel.GetRequestQuestionSenarioListByRegisterRequests_Id(Id);
+            foreach(var Q in model)
+            {
+                var Answers = Request.Params["Answers_"+Q.Id];
+                RequestQuestionSenarioDAL RQS = new RequestQuestionSenarioDAL(Q.Id);
+                RQS.RequestQuestionSenario.Answers = Answers;
+                RQS.Update();
+            }
+            RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
+            rrDAL.RegisterRequests.RequestStatus = 2;
+            rrDAL.Update();
+            ViewBag.ReturnUrl = "RegisterRequest/QA/"+ Id;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AcceptApplication(int Id)
+        {
+            RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
+            rrDAL.RegisterRequests.RequestStatus = 3;
+            rrDAL.Update();
+            return Json(new { error = false }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult RejecteApplication(int Id)
+        {
+            RegisterRequestsDAL rrDAL = new RegisterRequestsDAL(Id);
+            rrDAL.RegisterRequests.RequestStatus = 4;
+            rrDAL.Update();
+            return Json(new { error = false }, JsonRequestBehavior.AllowGet);
+        }
         #endregion
         #region RR detail
         // GET: RegisterRequest

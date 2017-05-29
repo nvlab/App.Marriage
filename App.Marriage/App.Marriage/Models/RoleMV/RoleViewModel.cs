@@ -106,7 +106,7 @@ namespace App.Marriage.Models.RoleMV
             return RList;
         }
 
-        public IEnumerable GetRoleComboList()
+        public static IEnumerable GetRoleComboList()
         {
             return RolesDAL.GetRolesComboList();
 

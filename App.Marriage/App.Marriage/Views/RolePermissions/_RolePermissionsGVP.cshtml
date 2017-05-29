@@ -1,4 +1,6 @@
 @using App.Marriage.Utils
+@using App.Marriage.Models.PermissonsMV
+@using App.Marriage.Models.RoleMV
 @{
     var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "RolePermissionsGV";
@@ -34,8 +36,15 @@
         {
             column.Name = "Permission_Id";
             column.FieldName = "Permission_Id";
-            column.Caption = "ÇáÕáÇÍíÉ";
+            column.Caption = "ÇáÊÕÑíÍ";
             column.ReadOnly = true;
+            column.EditorProperties().ComboBox(c =>
+            {
+                c.DataSource = PermissonsViewModel.GetPermissonsComboList();
+                c.TextField = "Name";
+                c.ValueField = "Id";
+                c.ValueType = typeof(int);
+            });
         });
 
         settings.Columns.Add(column =>
@@ -46,7 +55,7 @@
             column.ReadOnly = true;
             column.EditorProperties().ComboBox(c =>
             {
-                c.DataSource = ViewData["Role"];
+                c.DataSource = RoleViewModel.GetRoleComboList();
                 c.TextField = "Name";
                 c.ValueField = "Id";
                 c.ValueType = typeof(int);
