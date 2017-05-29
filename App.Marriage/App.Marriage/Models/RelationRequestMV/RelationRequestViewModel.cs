@@ -1,4 +1,5 @@
 ﻿using App.Marriage.DAL;
+using App.Marriage.Models.PersonMV;
 using App.Marriage.Utils;
 using System;
 using System.Collections;
@@ -146,9 +147,9 @@ namespace App.Marriage.Models.RelationRequestMV
             U.RelationRequest.RequestMessage = _RequestMessage;
             U.RelationRequest.ResponseMessage = _ResponseMessage;
             U.RelationRequest.RequestStatus = _RequestStatus;
-            U.RelationRequest.AllowChatRoom = _AllowChatRoom;
-            U.RelationRequest.ResponsibleManager_Id = _ResponsibleManager_Id;
-
+           // U.RelationRequest.AllowChatRoom = _AllowChatRoom;
+           // U.RelationRequest.ResponsibleManager_Id = _ResponsibleManager_Id;
+            
 
             U.Create();
 
@@ -234,6 +235,20 @@ namespace App.Marriage.Models.RelationRequestMV
         {
             return RelationRequestDAL.GetRelationRequestComboList();
         }
+
+
+        public static PersonViewModel GetSourcePerson(int Id)
+        {
+            RelationRequestDAL Rel = new DAL.RelationRequestDAL(Id);
+            return PersonViewModel.Find(RelationRequestDAL.GetPersonId(Rel.RelationRequest.SourceUsers.Id));
+        }
+
+        public static PersonViewModel GetTargetPerson(int Id)
+        {
+            RelationRequestDAL Rel = new DAL.RelationRequestDAL(Id);
+            return PersonViewModel.Find(RelationRequestDAL.GetPersonId(Rel.RelationRequest.TargetUsers.Id));
+        }
+
         #endregion
     }
 }

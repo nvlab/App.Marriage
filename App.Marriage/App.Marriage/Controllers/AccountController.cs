@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using App.Marriage.Models;
 using App.Marriage.DAL;
 using System.Web.Security;
+using App.Marriage.Models.RelationRequestMV;
+using App.Marriage.Utils;
 
 namespace App.Marriage.Controllers
 {
@@ -57,9 +59,10 @@ namespace App.Marriage.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl,int? relationRequestUserId)
         {
             ViewBag.ReturnUrl = returnUrl;
+            ViewBag.RelationRequestUserId = relationRequestUserId;
             return View();
         }
 
@@ -68,7 +71,7 @@ namespace App.Marriage.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl,int? RelationRequestUserId)
         {
             /*
             if (!ModelState.IsValid)
@@ -108,6 +111,16 @@ namespace App.Marriage.Controllers
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                 HttpContext.Response.Cookies.Add(authCookie);
+
+                if (RelationRequestUserId!=null)
+                {
+                    var Rel = new RelationRequestViewModel();
+                    Rel.RequestUser_Id = user.Users.Id;
+                    Rel.TargetUser_Id = RelationRequestUserId;
+                    Rel.RequestDate = DateTime.Now;
+                    Rel.RequestStatus = RelationStatus.Pending.ToString();
+                    Rel.Create();
+                }
                 return RedirectToAction("Index", "Home");
             }
 

@@ -28,6 +28,10 @@
                     {
                         <li><a href="/Categories"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; Categories</a></li>
                     }
+                    @if (UserHelpar.CanDo(Permissons.RelationRequest))
+                    {
+                        <li><a href="/RelationRequests"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات الخطبة</a></li>
+                    }
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">ادارة المستخدمين <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

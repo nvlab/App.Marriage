@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl , RelationRequestUserId =ViewBag.RelationRequestUserId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 <h4>قم بستجيل دخولك الى النظام</h4>
@@ -57,6 +57,17 @@
                     </div>
                 </div>
             }
+        </section>
+
+        <section id="register" class="section-story">
+            <h2>سجل بالموقع</h2>
+            <div class="section-intro">
+                <p>سجل الان بموقع سكنا واستفد من الخدمات المقدمة  وابقا على تواصل مع الادارة لتحصل على المساعدة في ايجاد الشريك المناسب لك</p>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-success" href="/Person/Create/1" style="color: #fff;outline: 0;font-weight: bold;">أضغط هنا للتسجيل</a>
+                <a class="btn btn-primary" href="/Person/Create/2">أضغطي هنا للتسجيل</a>
+            </div>
         </section>
     </div>
 </div>

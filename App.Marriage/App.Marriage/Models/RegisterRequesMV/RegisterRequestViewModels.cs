@@ -103,8 +103,8 @@ namespace App.Marriage.Models.RegisterRequesMV
             _Id = (int)type.GetProperty("Id").GetValue(item, null);
             _RequestDate = (DateTime)type.GetProperty("RequestDate").GetValue(item, null);
             _Person_Id = (int)type.GetProperty("Person_Id").GetValue(item, null);
-            _RequestStatus = (int)type.GetProperty("RequestStatus").GetValue(item, null);
-            _ResponseMessage = (int)type.GetProperty("ResponseMessage").GetValue(item, null);
+            _RequestStatus = (int?)type.GetProperty("RequestStatus").GetValue(item, null);
+            _ResponseMessage = (int?)type.GetProperty("ResponseMessage").GetValue(item, null);
             _Links = (string)type.GetProperty("Links").GetValue(item, null);
             _RequestMessage = (string)type.GetProperty("RequestMessage").GetValue(item, null);
 

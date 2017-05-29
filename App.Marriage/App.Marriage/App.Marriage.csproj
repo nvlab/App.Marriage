@@ -1275,6 +1275,7 @@
     <Content Include="Migrations\08-Add Email To User.sql" />
     <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Migrations\07-AddEnumVal.sql" />
+    <Content Include="Migrations\AddRelationEnums.sql" />
     <Content Include="Migrations\UpdateChatRoomId.sql" />
     <Content Include="Migrations\08-Enum.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1418,6 +1419,7 @@
     <Content Include="Views\RegisterRequest\_RequestQuestionGVP.cshtml" />
     <Content Include="Views\RegisterRequest\QuestionBank.cshtml" />
     <Content Include="Views\RegisterRequest\_QuestionBankGVP.cshtml" />
+    <Content Include="Views\RelationRequests\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -89,6 +89,18 @@ namespace App.Marriage.DAL
             }
 
         }
+
+        public static int GetPersonId(int User_Id)
+        {
+            using (var db = new SOKNAEntities())
+            {
+                var Res = (from Usr in db.Users
+                           join Per in db.Person on Usr.Id equals Per.User_Id
+                           where Usr.Id ==User_Id
+                           select Per.Id).FirstOrDefault();
+                return Res;
+            }
+        }
         #endregion
     }
 }
