@@ -39,7 +39,7 @@ namespace App.Marriage.DAL
         public UserDAL(string Email)
         {
             Db = new SOKNAEntities();
-            _users = Db.Users.Single(u => u.Email == Email);
+            _users = Db.Users.SingleOrDefault(u => u.Email == Email);
         }
         public UserDAL(string UserName,string Password)
         {
