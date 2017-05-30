@@ -1,4 +1,5 @@
-﻿<section id="hero" class="section-hero">
+﻿@using App.Marriage.Helpars
+<section id="hero" class="section-hero">
     <div class="owl-carousel owl-full-width owl-theme" style="direction: ltr;">
         <div class="item"><img src="~/Content/theme-01/images/image-1.jpg" alt="" class="img-as-bg"></div>
         <div class="item"><img src="~/Content/theme-01/images/image-2.jpg" alt="" class="img-as-bg"></div>
@@ -28,7 +29,17 @@
             </div>
         </div>
         <div class="cta">
-            <a href="#register" class="btn btn-primary scroll-link">سجل الان</a>
+            @if (!Request.IsAuthenticated)
+            {
+                <a href="#register" class="btn btn-info scroll-link">أشترك الان</a>
+                <a href="/Account/Login" class="btn btn-success">سجل دخول الى حسابك</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-default">
+                    اهلا بك @UserHelpar.GetUser().UserName
+                </a>
+            }
             <a href="#Search" class="btn btn-primary scroll-link">هل تبحث عن شريك ؟</a>
         </div>
     </div>

@@ -130,7 +130,7 @@ namespace App.Marriage.Helpars
     public enum Permissons
     {
         Users = 1,
-        Peesons = 2,
+        Persons = 2,
         Messages = 3,
         ChatRom = 4,
         QuationBank = 5,

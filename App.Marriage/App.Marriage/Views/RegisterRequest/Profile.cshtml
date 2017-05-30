@@ -1,0 +1,391 @@
+﻿@model App.Marriage.Models.PersonMV.PersonViewModel
+@{
+    Layout = "~/Views/Shared/_Layout-theme-01.cshtml";
+    var Person = ViewBag.P;
+}
+@{
+    ViewBag.Title = "الملف الشخصي";
+}
+
+<h2 style="text-align:center">عرض الملف الشخصي </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="width:90%; margin-right:5%; margin-left:5%">
+       
+        <hr />
+        
+      
+        <div class="panel panel-primary">
+            <div class="panel-heading">معلومات شخصية </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-xs-6 col-md-2">
+                        <img src="~/Upload/Images/img1.jpg" alt="..." style="width:170px;height:190px">
+                    </div>
+                    <div class="col-xs-8 col-md-2">
+                        <img src="~/Upload/Images/user.gif" alt="..." style="width:170px;height:190px">
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("الاسم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } }) 
+                        
+                    </div>
+                    @Html.Label("الكنية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.SurName, new { htmlAttributes = new { @class = "form-control" } })
+                        
+                    </div>
+
+                    @Html.Label("الاسم المستعار", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
+                        
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    @*@Html.LabelFor(model => model.FullName_IsHidden, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.Label("إخفاء الاسم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.FullName_IsHidden)
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء الكنية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.SurName_IsHidden)
+                            
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء الاسم المستعار", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.NickName_IsHidden)
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("اسم الأب", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Father, new { htmlAttributes = new { @class = "form-control" } })
+                        
+                    </div>
+                    @Html.Label("اسم الأم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control" } })
+                        
+                    </div>
+                    @Html.Label("العمر", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                       
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("الجنسية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DropDownListFor(model => model.Nationality_Id, new SelectList(ViewData["NatCombo"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" }, style = "width: 170px;", @disabled = "disabled" })
+                        
+                    </div>
+                    @Html.Label("وثيقة اثبات الشخصية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        
+                    </div>
+                    @Html.Label("تاريخ الميلاد", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+
+                       
+                        @Model.BirthDate.Value.ToString("dd/MM/yyyy")
+
+                    </div>
+                </div>
+               
+                <div class="form-group" >
+                    @Html.Label("إخفاء الصورة الشخصية 1", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Photo1_IsHidden)
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء الصورة الشخصية 2", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Photo2_IsHidden)
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+        <div class="panel panel-info">
+            <div class="panel-heading">معلومات التواصل </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("رقم الجوال", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Phone1, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    @Html.Label("واتس اب", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Phone2, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    @Html.Label("البريد الالكتروني", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("إخفاء رقم الجوال", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Phone1_IsHidden)
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء رقم الواتس اب", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Phone2_IsHidden)
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء البريد الالكتروني", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Email_IsHidden)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("من المحافظة / البلد الأم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.CountryState, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    @Html.Label("دولة الأقامة الحالية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3" style="padding-top: 6px">
+                        @Html.DropDownListFor(model => model.Residence_Country_Id, new SelectList(ViewData["Country"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" }, style = "width: 170px;", @disabled = "disabled" })
+                    </div>
+
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("عنوان السكن الحالي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-8" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("إخفاء العنوان", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Adress_IsHidden)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="panel panel-success">
+            <div class="panel-heading">معلومات اجتماعية </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("الحالة الاجتماعية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1" style="padding-top: 6px">
+                        @Html.DropDownListFor(model => model.SocialStatus, new SelectList(ViewData["Social"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" }, @disabled="disabled" })
+                    </div>
+                    @Html.Label("عدد الأولاد (بحال وجودهم)", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.ChildCount, new { htmlAttributes = new { @class = "form-control" } })
+                    
+                    </div>
+                    @Html.Label("عمر أكبرهم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.MaxChildAge, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    @Html.Label("عمر أصغرهم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-1" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.MinChildAge, new { htmlAttributes = new { @class = "form-control" } })
+               
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">التعليم والعمل</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("المستوى التعليمي", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DropDownListFor(model => model.Education, new SelectList(ViewData["Education"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" }, @disabled="disabled" })
+                 
+                    </div>
+                    @Html.Label("التخصص/ الفرع", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.EducationBranch, new { htmlAttributes = new { @class = "form-control" } })
+
+                    </div>
+                    @Html.Label("طبيعة العمل", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.WorkType, new { htmlAttributes = new { @class = "form-control" } })
+                      
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("اللغات", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control" } })
+              
+                    </div>
+                    @Html.Label("الحالة المادية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.LivingLevel, new { htmlAttributes = new { @class = "form-control" } })
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">مواصفات شخصية</div>
+            <div class="panel-body">
+                <div class="form-group" > 
+                    @Html.Label("العلامات الفارقة/ المواصفات", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Theams, new { htmlAttributes = new { @class = "form-control" } })
+                   
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("إخفاء العلامات الفارقة", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="padding-top: 6px">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Theams_IsHidden)
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("لون البشرة", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                   
+                    </div>
+                    @Html.Label("الطول /سم", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+              
+                    </div>
+                    @Html.Label("الوزن /كغ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+             
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("إخفاء لون البشرة", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Color_IsHidden)
+
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء الطول", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Height_IsHidden)
+         
+                        </div>
+                    </div>
+                    @Html.Label("إخفاء الوزن", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        <div class="checkbox">
+                            @Html.DisplayFor(model => model.Weight_IsHidden)
+          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">الهوايات</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("الهوايات", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="padding-top: 6px"> 
+                        @Html.DisplayFor(model => model.Hobbies, new { htmlAttributes = new { @class = "form-control" } })
+          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-success">
+            <div class="panel-heading">الدين</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("الديانة", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4" style="padding-top: 6px">
+                        @Html.DropDownListFor(model => model.Culture, new SelectList(ViewData["Din"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" }, style = "width: 170px;",})
+          
+                    </div>
+                    @Html.Label("مستوى التدين", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4" style="padding-top: 6px">
+                        @Html.DisplayFor(model => model.CultureLevel, new { htmlAttributes = new { @class = "form-control" } })
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">معلومات عامة</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("معلومات عامة / السيرة الذاتية", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="padding-top: 6px">
+                        @*@Html.TextAreaFor(model => model.GeneralInfo, new { htmlAttributes = new { @class = "form-control col-xs-12", @cols = 80, @rows = 10 } })*@
+                        @Html.DisplayFor(model => model.GeneralInfo, new { @class = "form-control col-xs-12", @cols = 80, @rows = 10 })
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="تعديل" class="btn btn-default" onclick="@("window.location.href='" + @Url.Action("Edit", "PersonController",new { id=13}) + "'");" />*@
+                
+                @Html.ActionLink("تعديل","Edit/" + Model.Id.ToString(), "Person")
+            </div>
+        </div>
+    </div>
+            }
+
+@*<div>
+        @Html.ActionLink("عودة", "Index")
+    </div>*@

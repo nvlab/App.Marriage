@@ -1,0 +1,47 @@
+﻿@using App.Marriage.DAL
+@{
+    ViewBag.Title = "QA";
+    var status = ViewBag.Status;
+}
+<div class="row">
+    <div class="col-md-8">
+        <section id="QA">
+            @if (status == 1)
+            {
+                using (Html.BeginForm("QA", "RegisterRequest", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+                    <input type="hidden" name="Id" value="@ViewBag.Id" />
+
+                    foreach (var Q in ViewBag.QA)
+                    {
+                        var quation = new QuestionBankDAL(Q.Question_id);
+                        <text>
+                        <div class="form-group">
+                            <label for="Answers">السؤال : @quation.QuestionBanks.Question</label>
+                            <textarea class="form-control" rows="3" name="Answers_@Q.Id" id="Answers" placeholder="الاجابة"></textarea>
+                        </div>
+                        </text>
+                    }
+                    <text>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="أرسال الاجابة" class="btn btn-primaray" />
+                        </div>
+                    </div>
+                    </text>
+                }
+            }
+            else
+            {
+                <div class="flowers"></div>
+                <h2>طلبك قيد المعالجة</h2>
+                <div class="section-intro">
+                    <p>سوف نرسل لك الرد في اقرب وقت</p>
+                </div>
+            }
+        </section>
+    </div>
+</div>

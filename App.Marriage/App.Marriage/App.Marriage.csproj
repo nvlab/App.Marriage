@@ -255,6 +255,7 @@
     <Compile Include="DAL\RelationRequestDAL.cs" />
     <Compile Include="DAL\RequestQuestionSenarioDAL.cs" />
     <Compile Include="DAL\RolePermissionsDAL.cs" />
+    <Compile Include="DAL\PermissonsDAL.cs" />
     <Compile Include="DAL\RolesDAL.cs" />
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="Entities\Articles.cs">
@@ -326,6 +327,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpars\MailHelpar.cs" />
     <Compile Include="Helpars\UserHelpar.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleMV\ArticleViewModel.cs" />
@@ -337,6 +339,7 @@
     <Compile Include="Models\QuestionMV\QuestionBankViewModel.cs" />
     <Compile Include="Models\RelationRequestMV\RelationRequestViewModel.cs" />
     <Compile Include="Models\RequestQuestionSenarioMV\RequestQuestionSenarioViewModel.cs" />
+    <Compile Include="Models\PermissonsMV\PermissonsViewModel.cs" />
     <Compile Include="Models\RolePermissionsMV\RolePermissionsViewModel.cs" />
     <Compile Include="Models\RoleMV\RoleViewModel.cs" />
     <Compile Include="Models\RegisterRequesMV\RegisterRequestViewModels.cs" />
@@ -1276,6 +1279,7 @@
     <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Migrations\07-AddEnumVal.sql" />
     <Content Include="Migrations\AddRelationEnums.sql" />
+    <Content Include="Migrations\11-RolePermission Seed Data.sql" />
     <Content Include="Migrations\UpdateChatRoomId.sql" />
     <Content Include="Migrations\08-Enum.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1404,7 +1408,6 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\_CategoryGVP.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
-    <Content Include="Views\ChatRoom\Index.cshtml" />
     <Content Include="Views\RelationRequests\Index.cshtml" />
     <Content Include="Views\RelationRequests\_RequestRelationGVP.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
@@ -1419,6 +1422,11 @@
     <Content Include="Views\RegisterRequest\_RequestQuestionGVP.cshtml" />
     <Content Include="Views\RegisterRequest\QuestionBank.cshtml" />
     <Content Include="Views\RegisterRequest\_QuestionBankGVP.cshtml" />
+    <Content Include="Views\Person\Profile.cshtml" />
+    <Content Include="Views\Person\ShowAll.cshtml" />
+    <Content Include="Views\Person\_PersonGVP.cshtml" />
+    <Content Include="Views\RegisterRequest\Profile.cshtml" />
+    <Content Include="Views\RegisterRequest\QA.cshtml" />
     <Content Include="Views\RelationRequests\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
