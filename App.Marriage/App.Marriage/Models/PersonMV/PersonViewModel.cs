@@ -1,8 +1,10 @@
 ﻿using App.Marriage.DAL;
 using App.Marriage.Entities;
+using App.Marriage.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -66,11 +68,16 @@ namespace App.Marriage.Models.PersonMV
             get { return _Id; }
             set { _Id = value; }
         }
+      
+        [Range(1,int.MaxValue,ErrorMessage = "يجب ادخال الجنسية")]
         public int? Nationality_Id
         {
             get { return _Nationality_Id; }
             set { _Nationality_Id = value; }
         }
+        [Required(ErrorMessage = "يجب ادخال الاسم")]
+        [StringLength(200, MinimumLength = 2 ,ErrorMessage ="ادخل الاسم بشكل صحيح")]
+        //[RegularExpression("[^0-9]", ErrorMessage = "أدخل أحرف فقط")]
         public string FullName
         {
             get { return _FullName; }
@@ -92,14 +99,15 @@ namespace App.Marriage.Models.PersonMV
             set { _Mother = value; }
         }
 
-
+        [Range(18, 50, ErrorMessage = "يجب أن يكون العمر مابين 18 و 50")]
         public int? Age
         {
             get { return _Age; }
             set { _Age = value; }
         }
 
-
+        [Required(ErrorMessage = "يجب ادخال تاريخ الولادة")]
+        
         public DateTime? BirthDate
         {
             get { return _BirthDate; }
@@ -126,18 +134,23 @@ namespace App.Marriage.Models.PersonMV
             set { _PlaceBirth = value; }
         }
 
+        
         public string Adress
         {
             get { return _Adress; }
             set { _Adress = value; }
         }
 
+        
+        [Range(1,int.MaxValue, ErrorMessage = "يجب ادخال دولة الاقامة الحالية")]
         public int? Residence_Country_Id
         {
             get { return _Residence_Country_Id; }
             set { _Residence_Country_Id = value; }
         }
 
+      
+        [Range(1,int.MaxValue,ErrorMessage = "يجب ادخال الحالة الاجتماعية")]
         public int? SocialStatus
         {
             get { return _SocialStatus; }
@@ -252,7 +265,8 @@ namespace App.Marriage.Models.PersonMV
             set { _MinChildAge = value; }
         }
 
-
+        [Required(ErrorMessage = "يجب ادخال مستوى التعليم")]
+       
         public string Education
         {
             get { return _Education; }
@@ -265,6 +279,7 @@ namespace App.Marriage.Models.PersonMV
             set { _EducationBranch = value; }
         }
 
+        [Required(ErrorMessage = "يجب ادخال العمل")]
         public string WorkType
         {
             get { return _WorkType; }

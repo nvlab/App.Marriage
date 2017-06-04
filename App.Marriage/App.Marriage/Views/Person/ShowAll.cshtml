@@ -1,11 +1,24 @@
 ﻿
 @{
-    ViewBag.Title = "ShowAll";
+    ViewBag.Title = "قائمة المشتركين";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>ShowAll</h2>
+<h2>قائمة المشتركين</h2>
 <div>
+    <script type="text/javascript">
+    function CustomButtonClick(s, e, url) {
+        var key = s.GetRowKey(e.visibleIndex);
+        //alert("Key Value is " + key);
+
+        if (e.buttonID === "btnMoreKey") {
+            var destUrl = url + "/" + key + "/2";
+            //alert("Destination Url is: " + destUrl);
+
+            window.location.href = destUrl;
+        }
+    }
+    </script>  
 
     @Html.Action("PersonGVP", "Person")
 

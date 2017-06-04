@@ -90,18 +90,11 @@
         settings.Columns.Add("WorkType","«·⁄„·");
         settings.Columns.Add("Email","«·«Ì„Ì·");
         settings.Columns.Add("Phone1","—ﬁ„ «·Â« ›");
-        settings.Columns.Add(column =>
-        {
-            column.Caption = " ›«’Ì·";
-            column.SetDataItemTemplateContent(c =>
-            {
-                ViewContext.Writer.Write(Html.ActionLink("«·„“Ìœ..", "Profile/13"));
-            });
-        });
-     
 
-       
-
+        settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btnMoreKey", Text = "«·„“Ìœ.." });
+        settings.ClientSideEvents.CustomButtonClick=string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Profile", "Person"));
+        settings.CommandColumn.VisibleIndex = 11;
+        settings.CommandColumn.Caption = " ›«’Ì·";
 
     });
     if (ViewData["EditError"] != null){

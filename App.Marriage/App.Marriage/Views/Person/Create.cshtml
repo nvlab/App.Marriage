@@ -31,9 +31,11 @@
             <div class="panel-heading">معلومات شخصية </div>
             <div class="panel-body">
                 <div class="form-group">
+                   
                     @Html.Label("الاسم", htmlAttributes: new { @class = "control-label col-md-2" })
+                   
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "input-validation-error form-control" } })
                         @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
                     </div>
                     @Html.Label("الكنية", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -87,11 +89,11 @@
                         @Html.EditorFor(model => model.Mother, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Mother, "", new { @class = "text-danger" })
                     </div>
-                    @Html.Label("العمر", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @*@Html.Label("العمر", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-                    </div>
+                    </div>*@
 
                 </div>
                 <div class="form-group">
@@ -125,7 +127,15 @@
                            الصورة الشخصية 1<input type="file" accept="image/*" name="Pic1">
                         </span>
                         <p style="text-align:center">
-                            <img src="~/Upload/Images/img1.jpg" alt="..." style="width:170px;height:190px;position:center">
+                            @if ((string)ViewData["Gender"] == "1")
+                            {
+                                <img src="~/Content/Img/anonymousMan.png" alt="..." style="width:170px;height:190px;position:center">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Img/anonymousGirl.png" alt="..." style="width:170px;height:190px;position:center">
+                            }
+                            
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -133,7 +143,14 @@
                             الصورة الشخصية 2 <input type="file" accept="image/*" name="Pic1">
                         </span>
                         <p style="text-align:center">
-                            <img src="~/Upload/Images/user.png" alt="..." style="width:170px;height:190px">
+                            @if ((string)ViewData["Gender"] == "1")
+                            {
+                                <img src="~/Content/Img/anonymousMan.png" alt="..." style="width:170px;height:190px;position:center">
+                            }
+                            else
+                            {
+                                <img src="~/Content/Img/anonymousGirl.png" alt="..." style="width:170px;height:190px;position:center">
+                            }
                         </p>
                     </div>
                 </div>
@@ -248,7 +265,7 @@
                 <div class="form-group">
                     @Html.Label("الحالة الاجتماعية", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-1">
-                        @Html.DropDownListFor(model => model.SocialStatus, new SelectList(ViewData["Social"] as SelectList, "Value", "Text"), new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.SocialStatus, new SelectList(ViewData["Social"] as SelectList, "Value", "Text",0), new { htmlAttributes = new { @class = "form-control" } })
                         @*@Html.EditorFor(model => model.SocialStatus, new { htmlAttributes = new { @class = "form-control" } })*@
                         @Html.ValidationMessageFor(model => model.SocialStatus, "", new { @class = "text-danger" })
                     </div>
@@ -278,7 +295,7 @@
                 <div class="form-group">
                     @Html.Label("المستوى التعليمي", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-2">
-                        @Html.DropDownListFor(model => model.Education,new SelectList(ViewData["Education"] as SelectList,"Value","Text"), new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.Education,new SelectList(ViewData["Edu"] as SelectList,"Value","Text"), new { htmlAttributes = new { @class = "form-control" } })
                        @* @Html.EditorFor(model => model.Education, new { htmlAttributes = new { @class = "form-control" } })*@
                         @Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })
                     </div>
@@ -416,16 +433,18 @@
                 </div>
             </div>
         </div>
+        @Html.TextBox("txt1")
 
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="إنشاء" class="btn btn-default" />
+            <div class="center-block" style="width:200px">
+              <input type="submit" value="إنشاء" class="btn btn-primary btn-lg btn-block" id="saveBtn" />
             </div>
         </div>
-      </div>
-            }
 
-                @*<div>
-                    @Html.ActionLink("عودة", "Index")
-                </div>*@
+      </div>
+ }
+
+
+
+

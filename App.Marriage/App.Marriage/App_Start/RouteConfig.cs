@@ -18,6 +18,12 @@ namespace App.Marriage
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Profile",
+                url: "{controller}/{action}/{id}/{arg}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, arg = UrlParameter.Optional }
+            );
         }
     }
 }
