@@ -2,29 +2,13 @@
 @using App.Marriage.Utils
 <script src="~/Scripts/JSCallAjax.js"></script>
 <script>
-    function SearchPerson() {
 
-        var url = "@Url.Action("GetPerson", "SearchPerson")";
-        var Parameter = [
-            ["Country", Country.GetValue()],
-            ["Ages",  $('#Ages').val()],
-            ["Education", Education.GetValue()],
-            ["Nationality", Nationality.GetValue()],
-            ["Gender", Gendr.GetValue()]
-        ];
-        CallContoller(url, Parameter, "Search");
-    };
 
-    function RegisterRequest(data) {
-        var url = '@Url.Action("Index", "Students")';
-        document.location.href = url+"?PersonId="+data;
-    };
-
-    function RefeshMethod(data) {
+    var RefeshMethod =  function (data) {
       //  alert(data);
-     
+        document.location.href = data;
     };
-    function WriteSearchResult(data) {
+    var WriteSearchResult = function (data) {
     //    var json = $.parseJSON(data);
         $("#search-result").empty();
         for (var i = 0; i < data.length; i++) {
@@ -50,6 +34,25 @@
           
         }
       
+    };
+
+    function SearchPerson() {
+
+        var url = "@Url.Action("GetPerson", "SearchPerson")";
+        var Parameter = [
+            ["Country", Country.GetValue()],
+            ["Ages",  $('#Ages').val()],
+            ["Education", Education.GetValue()],
+            ["Nationality", Nationality.GetValue()],
+            ["Gender", Gendr.GetValue()]
+        ];
+        CallContoller(url, Parameter, WriteSearchResult);
+    };
+
+    function RegisterRequest(data) {
+        var url = '@Url.Action("RegisterRelationAction", "SearchPerson")';
+        var Parameter = [["PersonId", data]];
+        CallContoller(url, Parameter, RefeshMethod);
     };
    
 </script>

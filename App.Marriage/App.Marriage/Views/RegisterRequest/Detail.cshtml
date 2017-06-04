@@ -7,6 +7,39 @@
     var RR = ViewBag.RR;
     var P = ViewBag.P;
 }
+<script>
+    function AcceptApplication_click(s,e) {
+        var r = confirm("هل انت متاكد على قبول المشترك");
+        if (r == true) {
+            txt = "You pressed OK!";
+            new ss().ajax("/RegisterRequest/AcceptApplication", {
+                Id: @ViewBag.Id,
+            }, function (e) {
+                if (!e.error) {
+                    location.reload();
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+    }
+    function RejecteApplication_click(s,e) {
+        var r = confirm("هل انت متاكد على رفض المشترك");
+        if (r == true) {
+            new ss().ajax("/RegisterRequest/RejecteApplication", {
+                Id: @ViewBag.Id,
+            }, function (e) {
+                if (!e.error) {
+                    location.reload();
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
+    }
+</script>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -16,9 +49,8 @@
             طلب تسجيل
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">User profile</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> لوحة التحكم</a></li>
+            <li class="active">طلبات التسجيل</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -34,7 +66,7 @@
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
                                 <b> الاب: </b> <strong>@P.Father</strong>
-</li>
+                            </li>
                             <li class="list-group-item">
                                 <b>الام : </b> <strong>@P.Mother</strong>
                             </li>
@@ -42,8 +74,45 @@
                                 <b>الجنس : </b> <strong>@P.Gender</strong>
                             </li>
                         </ul>
-                        <a href="#" class="btn btn-primary btn-block"><b>القبول</b></a>
-                        <a href="#" class="btn btn-danger btn-block"><b>الرفض</b></a>
+                            @if (ViewBag.Status == 3)
+                            {
+                                <text>
+                                <h3 class="bg-success text-center">مقبول</h3>
+                                </text>
+                            }
+                            @if (ViewBag.Status == 4)
+                            {
+                                <text>
+                                <h3 class="bg-danger text-center">مرفوض</h3>
+                                </text>
+                            }
+                            @if (ViewBag.Status != 3 && ViewBag.Status != 4 )
+                            {
+                                @Html.DevExpress().Button(
+                                settings =>
+                                {
+                                    settings.Name = "AcceptApplication";
+                                    settings.Text = "القبول";
+                                    settings.Styles.Native = true;
+                                    settings.UseSubmitBehavior = false;
+                                    settings.RenderMode = ButtonRenderMode.Link;
+                                    settings.ControlStyle.CssClass = "btn btn-primary btn-block";
+                                    settings.ClientSideEvents.Click = "AcceptApplication_click";
+                                }).GetHtml()
+                                    <br />
+                                    @Html.DevExpress().Button(
+                                settings =>
+                                {
+                                    settings.Name = "RejecteApplication";
+                                    settings.Text = "الرفض";
+                                    settings.Styles.Native = true;
+                                    settings.UseSubmitBehavior = false;
+                                    settings.RenderMode = ButtonRenderMode.Link;
+                                    settings.ControlStyle.CssClass = "btn btn-danger btn-block";
+                                    settings.ClientSideEvents.Click = "RejecteApplication_click";
+                                }).GetHtml()
+                            }
+                            
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -53,26 +122,18 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#info" data-toggle="tab">البيانات الشخصية</a></liclass="active">
-                        <li><a href="#Question" data-toggle="tab">الاسئلة و الاجوبة</a></li>
-                        <li><a href="#settings" data-toggle="tab">###</a></li>
+                        <li><a href="#info" data-toggle="tab">البيانات الشخصية</a></li>
+                        <li class="active"><a href="#Question" data-toggle="tab">الاسئلة و الاجوبة</a></li>
                     </ul>
                     <div class="tab-content">                        
                         <!-- /.tab-pane -->
-                        <div class="active tab-pane" id="info">
-
+                        <div class="tab-pane" id="info">
+                            @*@Html.Partial("Profile")*@
                         </div>
-                        <div class="tab-pane" id="Question">
+                        <div class="active tab-pane" id="Question">
                             <!-- Content -->
-
                             @Html.Action("RequestQuestionGVP")
-
-
                             <!-- /.Content -->
-                        </div>
-                        <!-- /.tab-pane -->
-                        <div class="tab-pane" id="settings">
-
                         </div>
                         <!-- /.tab-pane -->
                     </div>
@@ -147,17 +208,21 @@
         }
     };
     function SendQuestions() {
-        new ss().ajax("/RegisterRequest/SendQuestions", {
-            Id: @ViewBag.Id,
-        }, function (e) {
-            if (!e.error) {
-                alert(e.data);
-            }
-            else {
-                alert(e.data)
-            }
-        });
+        var r = confirm("سوف يتم ارسال الاسئلة الى المشترك هل انت متاكد ؟");
+        if (r == true) {
+            new ss().ajax("/RegisterRequest/SendQuestions", {
+                Id: @ViewBag.Id,
+            }, function (e) {
+                if (!e.error) {
+                    location.reload();
+                }
+                else {
+                    location.reload();
+                }
+            });
+        }
     }
+
 </script>
 @Html.DevExpress().PopupControl(settings =>
 {

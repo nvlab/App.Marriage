@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using App.Marriage.Models.RoleMV;
+using App.Marriage.DAL;
 
 namespace App.Marriage.Controllers.User
 {
@@ -54,7 +55,9 @@ namespace App.Marriage.Controllers.User
             //{
                 try
                 {
-                    item.Update();
+                    RolePermissionsDAL RP = new RolePermissionsDAL(item.Id);
+                    RP.RolePermissions.IsActive = item.IsActive; 
+                    RP.Update();
                     // Insert here a code to update the item in your model
                 }
                 catch (Exception e)

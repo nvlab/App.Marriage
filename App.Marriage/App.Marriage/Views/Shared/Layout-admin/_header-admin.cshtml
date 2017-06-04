@@ -13,21 +13,37 @@
                 <ul class="nav navbar-nav">
                     @if (UserHelpar.CanDo(Permissons.AcceptUser))
                     {
-                    <li><a href="/RegisterRequest"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات التسجيل</a></li>
+                        <li><a href="/Articles"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; المقالات</a></li>
                     }
                     @if (UserHelpar.CanDo(Permissons.AcceptUser))
                     {
-                        <li><a href="/QuestionBank"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; QuestionBank</a></li>
+                        <li><a href="/Categories"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; التصنيفات</a></li>
                     }
                     @if (UserHelpar.CanDo(Permissons.AcceptUser))
                     {
-                        <li><a href="/Articles"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; Articles</a></li>
+                        <li><a href="/QuestionBank"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; بنك الاسئلة</a></li>
                     }
-
-                    @if (UserHelpar.CanDo(Permissons.AcceptUser))
+                    @if (UserHelpar.CanDo(Permissons.RelationRequest))
                     {
-                        <li><a href="/Categories"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; Categories</a></li>
+                        <li><a href="/RelationRequests"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات الخطبة</a></li>
                     }
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ادارة المشتركين <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            @if (UserHelpar.CanDo(Permissons.Persons))
+                            {
+                                <li><a href="/Person/ShowAll"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; المشتركين</a></li>
+                            }
+                            @if (UserHelpar.CanDo(Permissons.AcceptUser))
+                            {
+                                <li><a href="/RegisterRequest"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات التسجيل</a></li>
+                            }
+                            @if (UserHelpar.CanDo(Permissons.AcceptUser))
+                            {
+                                <li><a href="/RelationRequests"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp; طلبات ارتباط</a></li>
+                            }
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">ادارة المستخدمين <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

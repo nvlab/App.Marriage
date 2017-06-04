@@ -34,7 +34,7 @@ namespace App.Marriage.DAL
         public RolePermissionsDAL(int Role_Id, int Perm_Id)
         {
             Db = new SOKNAEntities();
-            _RolePermissions = Db.RolePermissions.Single(r => r.Roles_Id == Role_Id && r.Permission_Id == Perm_Id);
+            _RolePermissions = Db.RolePermissions.SingleOrDefault(r => r.Roles_Id == Role_Id && r.Permission_Id == Perm_Id);
         }
         public RolePermissionsDAL(RolePermissions Ra)
         {

@@ -593,6 +593,11 @@ namespace App.Marriage.Models.PersonMV
             Pa.Delete();
         }
 
+        public static PersonViewModel Find(int Id)
+        {
+            return new PersonViewModel(new PersonDAL(Id));
+        }
+
 
         #endregion
         #region Business Function
@@ -626,6 +631,8 @@ namespace App.Marriage.Models.PersonMV
 
             return Person;
         }
+
+
         #endregion
 
         #region Search Parameters

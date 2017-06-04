@@ -39,7 +39,7 @@ namespace App.Marriage.DAL
         public UserDAL(string Email)
         {
             Db = new SOKNAEntities();
-            _users = Db.Users.Single(u => u.Email == Email);
+            _users = Db.Users.SingleOrDefault(u => u.Email == Email);
         }
         public UserDAL(string UserName,string Password)
         {
@@ -96,6 +96,15 @@ namespace App.Marriage.DAL
             using (var db = new SOKNAEntities())
             {
                 var Res = db.Users.Select(r => new { Name = r.UserName, Id = r.Id }).ToList();
+                return Res;
+            }
+
+        }
+        public static IEnumerable GetUsersNamesComboList()
+        {
+            using (var db = new SOKNAEntities())
+            {
+                var Res = db.Users.Select(r => new { Name = r.Person.FirstOrDefault().FullName, Id = r.Id }).ToList();
                 return Res;
             }
 

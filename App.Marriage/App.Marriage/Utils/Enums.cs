@@ -11,8 +11,11 @@ namespace App.Marriage.Utils
     /// </summary>
     public enum EnumType
     {
-        Geneder , Education , RequestStatus, CatType , ArticalStatus , Artical, Quation
+        Geneder, Education, RequestStatus, CatType, ArticalStatus, Artical, Quation, RelationStatus
     }
+
+
+    public enum RelationStatus{ Pending, NotAccepting, UnderStudy, Archive  }
 
     /// <summary>
     /// جنس الشخص
