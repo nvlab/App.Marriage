@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace App.Marriage.Controllers.RelationRequest
 {
     public class RelationRequestsController : Controller
@@ -17,7 +18,18 @@ namespace App.Marriage.Controllers.RelationRequest
         // GET: RelationRequests
         public ActionResult Index()
         {
+            if (!UserHelpar.CanDo(Helpars.Permissons.RelationRequest))
+                return RedirectToAction("Unauthorized", "Home", null);
             return View();
+        }
+
+        public ActionResult Details(int Id)
+        {
+            if (!UserHelpar.CanDo(Helpars.Permissons.RelationRequest))
+                return RedirectToAction("Unauthorized", "Home", null);
+            ViewBag.SPerson = RelationRequestViewModel.GetSourcePerson(Id);
+            ViewBag.TPerson = RelationRequestViewModel.GetTargetPerson(Id);
+            return View(RelationRequestViewModel.Find(Id));
         }
 
         [ValidateInput(false)]

@@ -71,14 +71,22 @@ namespace App.Marriage.Controllers.Person
                 RR.ResponseMessage = 1;
                 RR.Create();
 
-                //return RedirectToAction("Index");
-                return Content("<script language='javascript' type='text/javascript'>alert('تم حفظ بياناتك');</script>");
+                TempData["Caller"] = "PersonSaved";
+                return RedirectToAction("Unauthorized", "Home", null);
+                //return Content("<script language='javascript' type='text/javascript'>alert('تم حفظ بياناتك');</script>");
+
+
+
             }
 
 
             return View(personViewModel);
         }
 
+        public ActionResult SavePopup()
+        {
+            return View();
+        }
         // GET: Person/Edit/5
         public ActionResult Edit(int id)//person id
         {
@@ -97,7 +105,7 @@ namespace App.Marriage.Controllers.Person
             FeedCombobox(gender);
             return View(personViewModel);
         }
-        public ActionResult Profile(int id)
+        public new ActionResult Profile(int id, int arg)
         {
             int gender;
             PersonDAL person = new PersonDAL(id);
@@ -107,6 +115,11 @@ namespace App.Marriage.Controllers.Person
                 gender = 2;
             PersonViewModel personViewModel = new PersonViewModel(person);
             FeedCombobox(gender);
+            //arg//,  1 profile opened from user so show EDIT botton, 2: profile opened from admin page so hide EDIT button,
+            if (arg == 1)
+                ViewData["ShowEditBtn"] = true;
+            else
+                ViewData["ShowEditBtn"] = false;
             return View(personViewModel);
         }
         public ActionResult ShowAll()
@@ -125,12 +138,14 @@ namespace App.Marriage.Controllers.Person
             {
                 personViewModel.Update();
                 personViewModel.SaveCustomizeFlds();
-                return RedirectToAction("Index");
+                TempData["Caller"] = "PersonSaved";
+                return RedirectToAction("Unauthorized", "Home", null);
             }
             //return View("~/Views/Home/Index");
             //return RedirectToAction("Index", "Home");
             //return RedirectToAction("~/Home/Index");
-            return Redirect("~/Home/Index");
+            //return Redirect("~/Home/Index");
+            return View(personViewModel);
         }
 
         
@@ -160,18 +175,26 @@ namespace App.Marriage.Controllers.Person
             }
                 
 
+
             SelectList natList = new SelectList(DAL.NationalityDAL.GetNationalitysComboList(), "Id", "Name");
+            
             SelectList countryList = new SelectList(DAL.CountryDAL.GetCountrysComboList(), "Id", "Name");
             SelectList socialStateList = new SelectList(DAL.EnumDAL.GetEnumsComboList(socialEnumKey), "Id", "Name");
             SelectList educationList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Education"), "Id", "Name");
             SelectList cultureList = new SelectList(DAL.EnumDAL.GetEnumsComboList("Culture"), "Id", "Name");
 
             ViewData["Gender"] = personGenderType.ToString();
-            ViewData["NatCombo"] = natList;
-            ViewData["Social"] = socialStateList;
-            ViewData["Education"] = educationList;
-            ViewData["Din"] = cultureList;
-            ViewData["Country"] = countryList;
+            ViewData["NatCombo"] = AddFirstItem(natList, "--حدد الجنسية--","0");
+            ViewData["Social"] = AddFirstItem(socialStateList, "--حدد--","0");
+            ViewData["Edu"] = AddFirstItem(educationList,"--حدد التعليم--","");
+            ViewData["Din"] = AddFirstItem(cultureList,"--حدد الديانة--","0");
+            ViewData["Country"] = AddFirstItem(countryList,"--حدد دولة--","0");
+        }
+        private SelectList AddFirstItem(SelectList list, string explain,string val)
+        {
+            List<SelectListItem> _list = list.ToList();
+            _list.Insert(0, new SelectListItem() { Value = val, Text = explain });
+            return new SelectList((IEnumerable<SelectListItem>)_list, "Value", "Text");
         }
 
 
@@ -224,23 +247,8 @@ namespace App.Marriage.Controllers.Person
                 ViewData["EditError"] = "Please, correct all errors.";
             return PartialView("~/Views/Person/_PersonGVP.cshtml", model);
         }
-        [HttpPost, ValidateInput(false)]
-        public ActionResult PersonGVPDelete(System.Int32 Id)
-        {
-            var model = new object[0];
-            if (Id >= 0)
-            {
-                try
-                {
-                    // Insert here a code to delete the item from your model
-                }
-                catch (Exception e)
-                {
-                    ViewData["EditError"] = e.Message;
-                }
-            }
-            return PartialView("~/Views/Person/_PersonGVP.cshtml", model);
-        }
+       
+      
     }
 
 

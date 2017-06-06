@@ -392,6 +392,19 @@ namespace App.Marriage.Utils
             }
 
         }
+        public static string RequiredFldMsj
+        {
+            get
+            {
+                return (string)"ادخال هذه الخانة مطلوب ";
+            }
+        }
+        //public static string App_Age
+        //{
+        //    get
+        //    {
+        //        return (string)"العمر";
+        //    }
         public static string details
         {
             get

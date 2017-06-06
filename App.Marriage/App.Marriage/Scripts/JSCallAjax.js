@@ -1,5 +1,5 @@
 ﻿
-function CallContoller(url, Parametrs,Command) {
+function CallContoller(url, Parametrs,Method) {
 
   
     var param = "";
@@ -22,11 +22,11 @@ function CallContoller(url, Parametrs,Command) {
         async: true,
         dataType: "json",
         success: function (data) {
-            RefeshMethod(data);
+            Method(data);
         }
        
-    }).done( function (data) {
-        WriteSearchResult(data);
+    }).done(function (data) {
+        Method(data);
     });
 
 };

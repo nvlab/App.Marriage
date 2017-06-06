@@ -350,6 +350,8 @@
     <Compile Include="Utils\Globalization.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Img\anonymousGirl.png" />
+    <Content Include="Content\Img\anonymousMan.png" />
     <Content Include="Content\theme-01\css\chat-font-awesome.css" />
     <Content Include="Content\theme-01\css\chat-style.css" />
     <Content Include="Content\theme-01\images\1.jpg" />
@@ -1278,9 +1280,11 @@
     <Content Include="Migrations\08-Add Email To User.sql" />
     <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Migrations\07-AddEnumVal.sql" />
+    <Content Include="Migrations\AddRelationEnums.sql" />
     <Content Include="Migrations\11-RolePermission Seed Data.sql" />
     <Content Include="Migrations\UpdateChatRoomId.sql" />
     <Content Include="Migrations\08-Enum.sql" />
+    <Content Include="Migrations\11-Enum-Data.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -1335,6 +1339,7 @@
     <Content Include="Entities\Sokna.edmx.diagram">
       <DependentUpon>Sokna.edmx</DependentUpon>
     </Content>
+    <Content Include="Controllers\RegisterRequestController" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1426,6 +1431,7 @@
     <Content Include="Views\Person\_PersonGVP.cshtml" />
     <Content Include="Views\RegisterRequest\Profile.cshtml" />
     <Content Include="Views\RegisterRequest\QA.cshtml" />
+    <Content Include="Views\RelationRequests\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
