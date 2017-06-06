@@ -240,7 +240,9 @@ namespace App.Marriage.Models.RelationRequestMV
         public static PersonViewModel GetSourcePerson(int Id)
         {
             RelationRequestDAL Rel = new DAL.RelationRequestDAL(Id);
-            return PersonViewModel.Find(RelationRequestDAL.GetPersonId(Rel.RelationRequest.SourceUsers.Id));
+            var SourceUsers_Id = Rel.RelationRequest.SourceUsers.Id;
+            var GetPersonId = RelationRequestDAL.GetPersonId(SourceUsers_Id);
+            return PersonViewModel.Find(GetPersonId);
         }
 
         public static PersonViewModel GetTargetPerson(int Id)
