@@ -57,6 +57,7 @@
           <Property Name="EnumValue" Type="nvarchar" MaxLength="250" />
           <Property Name="NameL1" Type="nvarchar" MaxLength="250" />
           <Property Name="NameL2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Entity_Order" Type="int" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -621,6 +622,7 @@
           <Property Name="EnumValue" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="NameL1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="NameL2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Entity_Order" Type="Int32" />
         </EntityType>
         <EntityType Name="Messages">
           <Key>
@@ -1229,6 +1231,7 @@
           <EntitySetMapping Name="Enums">
             <EntityTypeMapping TypeName="SOKNAModel.Enums">
               <MappingFragment StoreEntitySet="Enums">
+                <ScalarProperty Name="Entity_Order" ColumnName="Entity_Order" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnumKey" ColumnName="EnumKey" />
                 <ScalarProperty Name="EnumValue" ColumnName="EnumValue" />

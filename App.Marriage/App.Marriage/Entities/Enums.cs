@@ -19,5 +19,6 @@ namespace App.Marriage.Entities
         public string EnumValue { get; set; }
         public string NameL1 { get; set; }
         public string NameL2 { get; set; }
+        public Nullable<int> Entity_Order { get; set; }
     }
 }

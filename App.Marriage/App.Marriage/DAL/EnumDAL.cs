@@ -84,7 +84,7 @@ namespace App.Marriage.DAL
         {
             using (var db = new SOKNAEntities())
             {
-                var Res = db.Enums.Where(r=>r.EnumKey == EnumType).Select(r => new { Name = r.NameL1, Id = r.EnumValue }).ToList().OrderBy(e => e.Id);
+                var Res = db.Enums.Where(r=>r.EnumKey == EnumType).OrderBy(enm => enm.Entity_Order).Select(r => new { Name = r.NameL1, Id = r.EnumValue }).ToList();
                 return Res;
             }
 
