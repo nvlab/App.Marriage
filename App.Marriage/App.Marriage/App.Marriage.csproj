@@ -361,6 +361,7 @@
     <Content Include="Content\theme-01\images\image-3.jpg" />
     <Content Include="Content\theme-01\images\image-4.jpg" />
     <Content Include="Content\theme-01\images\image-5.jpg" />
+    <Content Include="Content\theme-01\js\app.js" />
     <Content Include="Content\theme-01\rtl.css" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.css" />
     <Content Include="Content\theme-01\bootstrap-rtl\css\bootstrap-flipped.min.css" />
@@ -1432,12 +1433,12 @@
     <Content Include="Views\RegisterRequest\Profile.cshtml" />
     <Content Include="Views\RegisterRequest\QA.cshtml" />
     <Content Include="Views\RelationRequests\Details.cshtml" />
+    <Content Include="Views\Articles\_HtmlEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\theme-01\fonts\" />
     <Folder Include="Content\theme-01\img\" />
-    <Folder Include="Content\theme-01\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

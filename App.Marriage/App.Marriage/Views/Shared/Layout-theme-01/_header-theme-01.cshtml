@@ -1,4 +1,5 @@
 ﻿@using App.Marriage.Helpars
+@using Microsoft.AspNet.Identity
 <div class="preloader"></div>
 @{
     bool ShowSlider = (ViewData["ShowSlider"] != null ) ? true : false;
@@ -18,10 +19,21 @@
                     <li><a class="scroll-link" href="#people">قصص نجاح</a></li>
                     <li><a class="scroll-link" href="#gallery">المعرض</a></li>
                     <li><a class="scroll-link" href="#contact">تواصل معنا</a></li>
-                    <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    }
                     @if (UserHelpar.GetUserType() == "Admin")
                     {
                         <li><a class="link" href="/ControlPanel">لوحة التحكم</a></li>
+                    }
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li><a class="link Login-menu" href="Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i> تسجيل دخول</a></li>
+                    }
+                    else
+                    {
+                        <li class="menu-small-margin"><a class="link Logout-menu" onclick="Logout_user()" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> تسجيل خروج | <span class="login-info">@User.Identity.GetUserName()</span> </a></li>
                     }
                 </ul>
             </div>
@@ -44,11 +56,23 @@
                     <li><a class="" href="/#people">قصص نجاح</a></li>
                     <li><a class="" href="/#gallery">المعرض</a></li>
                     <li><a class="" href="/#contact">تواصل معنا</a></li>
-                    <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a class="" href="@Url.Action("Index", "ChatRoom")">غرفة المحادثة</a></li>
+                    }
                     @if (UserHelpar.GetUserType() == "Admin")
                     {
                         <li><a class="link" href="/ControlPanel">لوحة التحكم</a></li>
                     }
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li><a class="link Login-menu" href="Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i> تسجيل دخول</a></li>
+                    }
+                    else
+                    {
+                        <li class="menu-small-margin"><a class="link Logout-menu" onclick="Logout_user()" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i> تسجيل خروج | <span class="login-info">@User.Identity.GetUserName()</span> </a></li>
+                    }
+
                 </ul>
             </div>
         </nav>
@@ -56,6 +80,19 @@
     }
 }
 
-@Html.Partial("_LoginPartial")
+<script>
+    function Logout_user() {
+        new ss().ajax("/Account/LogOff", {
+                Id: "",
+            }, function (e) {
+                if (!e.error) {
+                    location.reload();
+                }
+                else {
+                    location.reload();
+                }
+            });
+    }
+</script>
 
 

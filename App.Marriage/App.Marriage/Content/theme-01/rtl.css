@@ -115,3 +115,36 @@ a:link, a:visited {
     color: #fadddd;
     outline: 0;
 }
+
+/*By N*/
+.btn-big{
+    font-size: 26px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+a.Login-menu{
+    background: #e86c6c;
+    color: white;
+    padding: 0 12px;
+}
+a.Login-menu:hover{
+    background: #EEEEEE;
+    color: black;
+    padding: 0 12px;
+}
+a.Logout-menu {
+    background: #EEEEEE;
+    color: white;
+    padding: 0 2px;
+}
+a.Logout-menu:hover {
+    background: #e86c6c;
+    color: black !important;
+    padding: 0 2px;
+}
+.login-info {
+    font-size:14px;
+}
+.menu-small-margin{
+    margin-right:10px !important;
+}
