@@ -1,4 +1,5 @@
-﻿using App.Marriage.Models.ArticleMV;
+﻿using App.Marriage.DAL;
+using App.Marriage.Models.ArticleMV;
 using DevExpress.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,19 @@ namespace App.Marriage.Controllers.Article
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult HtmlEditorPartial(string Id)
+        {
+            int Article_Id = Int32.Parse(Id);
+            ArticleViewModel article = new ArticleViewModel();
+            if (Article_Id > 0)
+            {
+                ArticleDAL articleDal = new ArticleDAL(Article_Id);
+                article = new ArticleViewModel(articleDal);
+            }
+
+            return PartialView("_HtmlEditor", article);
         }
 
         [ValidateInput(false)]
@@ -42,6 +56,8 @@ namespace App.Marriage.Controllers.Article
             }
             else
                 ViewData["EditError"] = Article.GetModelStateError(ModelState);
+
+            ViewData["ContentsValue"] = Article.Contents;
             var model = ArticleViewModel.GetArticalList();
             return PartialView(ArticleView, model);
         }
@@ -63,6 +79,8 @@ namespace App.Marriage.Controllers.Article
             }
             else
                 ViewData["EditError"] = Article.GetModelStateError(ModelState);
+
+            ViewData["ContentsValue"] = Article.Contents;
             var model = ArticleViewModel.GetArticalList();
             return PartialView(ArticleView, model);
         }

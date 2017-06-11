@@ -19,12 +19,12 @@
         settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
 
         // Custom Command Button
-        GridViewCommandColumnCustomButton DetailsButton = new GridViewCommandColumnCustomButton() { ID = "detailsButton", Text = "ÇáÊÝÇÕíá" };
-        GridViewCommandColumnCustomButton AcceptButton = new GridViewCommandColumnCustomButton() { ID = "acceptButton", Text = "ÇáÞÈæá" };
-        GridViewCommandColumnCustomButton RejectButton = new GridViewCommandColumnCustomButton() { ID = "rejectButton", Text = "ÇáÑÝÖ" };
+        GridViewCommandColumnCustomButton DetailsButton = new GridViewCommandColumnCustomButton() { ID = "detailsButton", Text = Globalization.details };
+        //GridViewCommandColumnCustomButton AcceptButton = new GridViewCommandColumnCustomButton() { ID = "acceptButton", Text = "ÇáÞÈæá" };
+        //GridViewCommandColumnCustomButton RejectButton = new GridViewCommandColumnCustomButton() { ID = "rejectButton", Text = "ÇáÑÝÖ" };
         settings.CommandColumn.CustomButtons.Add(DetailsButton);
-        settings.CommandColumn.CustomButtons.Add(AcceptButton);
-        settings.CommandColumn.CustomButtons.Add(RejectButton);
+        //settings.CommandColumn.CustomButtons.Add(AcceptButton);
+        //settings.CommandColumn.CustomButtons.Add(RejectButton);
         // DXCOMMENT - Handle the MVCxClientGridView.CustomButtonClick event to add actions on the custom button's click
         settings.ClientSideEvents.CustomButtonClick =
             string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Detail", "RegisterRequest"));
@@ -48,7 +48,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "RequestDate";
-            column.Caption = "RequestDate";
+            column.Caption = Globalization.RequestDate;
             column.EditFormSettings.VisibleIndex = i + 1;
             column.VisibleIndex = i;
             column.EditFormSettings.Visible = DefaultBoolean.True;
@@ -58,7 +58,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "Person_Id";
-            column.Caption = "Person_Id";
+            column.Caption = Globalization.Person;
             column.EditFormSettings.VisibleIndex = i + 1;
             column.VisibleIndex = i;
             column.EditFormSettings.Visible = DefaultBoolean.True;
@@ -73,7 +73,7 @@
         settings.Columns.Add(column =>
         {
             column.FieldName = "RequestStatus";
-            column.Caption = "RequestStatus";
+            column.Caption = Globalization.RequestStatus;
             column.EditFormSettings.VisibleIndex = i + 1;
             column.VisibleIndex = i;
             column.EditFormSettings.Visible = DefaultBoolean.True;

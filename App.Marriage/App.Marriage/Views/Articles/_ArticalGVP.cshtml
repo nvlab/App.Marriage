@@ -1,5 +1,7 @@
 @using App.Marriage.Utils
 @using App.Marriage.DAL
+@using App.Marriage.Models.ArticleMV;
+@model System.Collections.IEnumerable
 @{
 
     var grid = Html.DevExpress().GridView(settings => {
@@ -52,7 +54,7 @@
             column.EditFormSettings.VisibleIndex = i + 1;
             column.VisibleIndex = i;
             column.EditFormSettings.Visible = DefaultBoolean.True;
-            column.Visible = true;
+            column.Visible = false;
             column.EditorProperties().Memo(p =>
             {
                 p.ValidationSettings.RequiredField.IsRequired = true;
@@ -67,12 +69,18 @@
             column.EditFormSettings.VisibleIndex = i + 1;
             column.VisibleIndex = i;
             column.EditFormSettings.Visible = DefaultBoolean.True;
-            column.Visible = true;
-            column.EditorProperties().Memo(p =>
-            {
-                p.ValidationSettings.RequiredField.IsRequired = true;
-                p.Height = 50;
+            column.Visible = false;
 
+            column.EditFormSettings.ColumnSpan = 2;
+            column.EditFormSettings.CaptionLocation = ASPxColumnCaptionLocation.Top;
+
+            column.ColumnType = MVCxGridViewColumnType.Memo;
+            (column.PropertiesEdit as MemoProperties).EncodeHtml = false;
+
+            column.SetEditItemTemplateContent(c =>
+            {
+                var dataObject = c.Grid.IsNewRowEditing ? new ArticleViewModel() : c.Grid.GetRow(c.VisibleIndex);
+                Html.RenderPartial("_HtmlEditor", dataObject);
             });
         });
 

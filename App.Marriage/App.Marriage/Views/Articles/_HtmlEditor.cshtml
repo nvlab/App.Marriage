@@ -1,0 +1,16 @@
+@using App.Marriage.Models.ArticleMV;
+@model ArticleViewModel
+@{
+    if (ViewData["ContentsValue"] != null)
+    {
+        Model.Contents = ViewData["ContentsValue"].ToString();
+    }
+}
+
+
+@Html.DevExpress().HtmlEditor(settings =>
+{
+    settings.Name = "Contents";
+    settings.CallbackRouteValues = new { Controller = "Articles", Action = "HtmlEditorPartial", Id = Model.Id };
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+}).Bind(Model.Contents).GetHtml()

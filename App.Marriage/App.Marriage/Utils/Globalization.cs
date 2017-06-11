@@ -405,40 +405,46 @@ namespace App.Marriage.Utils
         //    {
         //        return (string)"العمر";
         //    }
+        public static string details
+        {
+            get
+            {
+                return (string)"التفاصيل";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+            }
+        public static string Person
+        {
+            get
+            {
+                return (string)"المشترك";
+            }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+        }
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
 
-        //}
-        //public static string App_Age
-        //{
-        //    get
-        //    {
-        //        return (string)"العمر";
-        //    }
+            //}
+            //public static string App_Age
+            //{
+            //    get
+            //    {
+            //        return (string)"العمر";
+            //    }
 
-        //}
+            //}
 
+        }
     }
-}

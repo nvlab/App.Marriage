@@ -31,18 +31,17 @@
         <div class="cta">
             @if (!Request.IsAuthenticated)
             {
-                <a href="#register" class="btn btn-info scroll-link">أشترك الان</a>
-                <a href="/Account/Login" class="btn btn-success">سجل دخول الى حسابك</a>
+                <a href="#register" class="btn btn-info scroll-link btn-big">أشترك الان</a>
+                <a href="/Account/Login" class="btn btn-success btn-big">سجل دخول الى حسابك</a>
             }
             else
             {
-                <a href="#" class="btn btn-default">
+                <a href="#" class="btn btn-default btn-big" style="color:#607D8B">
                     اهلا بك @UserHelpar.GetUser().UserName
                 </a>
             }
-            <a href="#Search" class="btn btn-primary scroll-link">هل تبحث عن شريك ؟</a>
+            <a href="#Search" class="btn btn-primary scroll-link btn-big">هل تبحث عن شريك ؟</a>
         </div>
     </div>
     <div class="scroll-down"></div>
 </section>
-
