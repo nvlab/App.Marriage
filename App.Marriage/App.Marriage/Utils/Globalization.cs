@@ -421,30 +421,223 @@ namespace App.Marriage.Utils
             }
 
         }
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-
-            //}
-            //public static string App_Age
-            //{
-            //    get
-            //    {
-            //        return (string)"العمر";
-            //    }
-
-            //}
+        public static string gender
+        {
+            get
+            {
+                return (string)"الجنس";
+            }
 
         }
+        public static string birthDate
+        {
+            get
+            {
+                return (string)"تاريخ الميلاد";
+            }
+
+        }
+        public static string nationalty
+        {
+            get
+            {
+                return (string)"الجنسية";
+            }
+
+        }
+        public static string more
+        {
+            get
+            {
+                return (string)"المزيد..";
+            }
+
+        }
+        public static string Id
+        {
+            get
+            {
+                return (string)"الرقم التسلسلي";
+            }
+
+        }
+        public static string name
+        {
+            get
+            {
+                return (string)"الاسم";
+            }
+
+        }
+        public static string lastname
+        {
+            get
+            {
+                return (string)"الكنية";
+            }
+
+        }
+        public static string RegisterRequest
+        {
+            get
+            {
+                return (string)"طلبات التسجيل";
+            }
+
+        }
+        public static string father
+        {
+            get
+            {
+                return (string)"الاب";
+            }
+
+        }
+        public static string mother
+        {
+            get
+            {
+                return (string)"الام";
+            }
+
+        }
+        public static string confrimRegister
+        {
+            get
+            {
+                return (string)"هل انت متاكد على قبول المشترك";
+            }
+
+        }
+        public static string RejectRegister
+        {
+            get
+            {
+                return (string)"هل انت متاكد على رفض المشترك";
+            }
+
+        }
+        public static string controlPanel
+        {
+            get
+            {
+                return (string)"لوحة التحكم";
+            }
+
+        }
+        public static string confrim
+        {
+            get
+            {
+                return (string)"قبول";
+            }
+
+        }
+        public static string Reject
+        {
+            get
+            {
+                return (string)"رفض";
+            }
+
+        }
+        public static string QuestionAndAnswwer
+        {
+            get
+            {
+                return (string)"الاسئلة و الاجوبة";
+            }
+
+        }
+        public static string msg_SendQuestions
+        {
+            get
+            {
+                return (string)"سوف يتم ارسال الاسئلة الى المشترك هل انت متاكد ؟";
+            }
+
+        }
+        public static string add
+        {
+            get
+            {
+                return (string)"اضافة";
+            }
+
+        }
+        public static string Answers
+        {
+            get
+            {
+                return (string)"الجواب";
+            }
+
+        }
+        public static string QuestionBank
+        {
+            get
+            {
+                return (string)"بنك الاسئلة";
+            }
+
+        }
+        public static string msg_SendtoUser
+        {
+            get
+            {
+                return (string)"أرسال الاسئلة الى المشترك";
+            }
+
+        }
+        public static string CancelChange
+        {
+            get
+            {
+                return (string)"الغاء التعديلات";
+            }
+
+        }
+        public static string QuestionType
+        {
+            get
+            {
+                return (string)"نوع الؤال";
+            }
+
+        }
+        public static string activate
+        {
+            get
+            {
+                return (string)"تفعيل";
+            }
+
+        }
+        public static string permission
+        {
+            get
+            {
+                return (string)"الصلاحية";
+            }
+
+        }
+        public static string users
+        {
+            get
+            {
+                return (string)"المستخدمين";
+            }
+
+        }
+        public static string logOff
+        {
+            get
+            {
+                return (string)"تسجيل خروج";
+            }
+
+        }
+
+
+    }
     }

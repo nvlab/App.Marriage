@@ -1,4 +1,5 @@
-﻿@{
+﻿@using App.Marriage.Utils;
+@{
     ViewBag.Title = "ControlPanel";
 }
 @{
@@ -9,7 +10,7 @@
 }
 <script>
     function AcceptApplication_click(s,e) {
-        var r = confirm("هل انت متاكد على قبول المشترك");
+        var r = confirm("@Globalization.confrimRegister");
         if (r == true) {
             txt = "You pressed OK!";
             new ss().ajax("/RegisterRequest/AcceptApplication", {
@@ -25,7 +26,7 @@
         }
     }
     function RejecteApplication_click(s,e) {
-        var r = confirm("هل انت متاكد على رفض المشترك");
+        var r = confirm("@Globalization.RejectRegister");
         if (r == true) {
             new ss().ajax("/RegisterRequest/RejecteApplication", {
                 Id: @ViewBag.Id,
@@ -46,11 +47,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            طلب تسجيل
+            @Globalization.RegisterRequest
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> لوحة التحكم</a></li>
-            <li class="active">طلبات التسجيل</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> @Globalization.controlPanel</a></li>
+            <li class="active">@Globalization.RegisterRequest</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -60,30 +61,32 @@
                 <!-- Profile Image -->
                 <div class="box box-primary">
                     <div class="box-body box-profile">
+                        @*
                         <img class="profile-user-img img-responsive img-circle" src="~/Content/admin/dist/img/avatar5.png" alt="User profile picture">
+                        *@
                         <h3 class="profile-username text-center">@P.FullName</h3>
                         <p class="text-muted text-center"></p>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b> الاب: </b> <strong>@P.Father</strong>
+                                <b> @Globalization.father: </b> <strong>@P.Father</strong>
                             </li>
                             <li class="list-group-item">
-                                <b>الام : </b> <strong>@P.Mother</strong>
+                                <b>@Globalization.mother : </b> <strong>@P.Mother</strong>
                             </li>
                             <li class="list-group-item">
-                                <b>الجنس : </b> <strong>@P.Gender</strong>
+                                <b>@Globalization.gender : </b> <strong>@((P.Gender == "Male")?"ذكر":"انثى)")</strong>
                             </li>
                         </ul>
                             @if (ViewBag.Status == 3)
                             {
                                 <text>
-                                <h3 class="bg-success text-center">مقبول</h3>
+                                <h3 class="bg-success text-center">@Globalization.confrim</h3>
                                 </text>
                             }
                             @if (ViewBag.Status == 4)
                             {
                                 <text>
-                                <h3 class="bg-danger text-center">مرفوض</h3>
+                                <h3 class="bg-danger text-center">@Globalization.Reject</h3>
                                 </text>
                             }
                             @if (ViewBag.Status != 3 && ViewBag.Status != 4 )
@@ -92,7 +95,7 @@
                                 settings =>
                                 {
                                     settings.Name = "AcceptApplication";
-                                    settings.Text = "القبول";
+                                    settings.Text = Globalization.confrim;
                                     settings.Styles.Native = true;
                                     settings.UseSubmitBehavior = false;
                                     settings.RenderMode = ButtonRenderMode.Link;
@@ -104,7 +107,7 @@
                                 settings =>
                                 {
                                     settings.Name = "RejecteApplication";
-                                    settings.Text = "الرفض";
+                                    settings.Text = Globalization.Reject;
                                     settings.Styles.Native = true;
                                     settings.UseSubmitBehavior = false;
                                     settings.RenderMode = ButtonRenderMode.Link;
@@ -122,8 +125,8 @@
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li><a href="#info" data-toggle="tab">البيانات الشخصية</a></li>
-                        <li class="active"><a href="#Question" data-toggle="tab">الاسئلة و الاجوبة</a></li>
+                        @*<li><a href="#info" data-toggle="tab">البيانات الشخصية</a></li>*@
+                        <li class="active"><a href="#Question" data-toggle="tab">@Globalization.QuestionAndAnswwer</a></li>
                     </ul>
                     <div class="tab-content">                        
                         <!-- /.tab-pane -->
@@ -208,7 +211,7 @@
         }
     };
     function SendQuestions() {
-        var r = confirm("سوف يتم ارسال الاسئلة الى المشترك هل انت متاكد ؟");
+        var r = confirm("@Globalization.msg_SendQuestions");
         if (r == true) {
             new ss().ajax("/RegisterRequest/SendQuestions", {
                 Id: @ViewBag.Id,
@@ -243,7 +246,7 @@
         Html.DevExpress().Button(settingsConfirmButton =>
         {
             settingsConfirmButton.Name = "ConfirmButton";
-            settingsConfirmButton.Text = "أضافة";
+            settingsConfirmButton.Text = Globalization.add;
             settingsConfirmButton.Styles.Native = true;
             settingsConfirmButton.UseSubmitBehavior = false;
             settingsConfirmButton.RenderMode = ButtonRenderMode.Link;
@@ -253,7 +256,7 @@
         Html.DevExpress().Button(settingsCancelButton =>
         {
             settingsCancelButton.Name = "CancelButton";
-            settingsCancelButton.Text = "الغاء";
+            settingsCancelButton.Text = Globalization.Cancel;
             settingsCancelButton.Styles.Native = true;
             settingsCancelButton.UseSubmitBehavior = false;
             settingsCancelButton.RenderMode = ButtonRenderMode.Link;

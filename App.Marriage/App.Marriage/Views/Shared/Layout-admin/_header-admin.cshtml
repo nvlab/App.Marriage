@@ -1,4 +1,5 @@
-﻿@using App.Marriage.Helpars
+﻿@using App.Marriage.Helpars;
+@using App.Marriage.Utils
 <header class="main-header">
     <nav class="navbar navbar-static-top">
         <div class="container">
@@ -78,6 +79,7 @@
                             الموقع
                         </a>
                     </li>
+                    @*
                      <!-- Messages: style can be found in dropdown.less-->
                     <li class="dropdown messages-menu">
                         <!-- Menu toggle button -->
@@ -175,6 +177,7 @@
                             </li>
                         </ul>
                     </li>
+                    *@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
@@ -185,11 +188,8 @@
                         <ul class="dropdown-menu">
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left flip">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
-                                <div class="pull-right flip">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <div class="flip">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="Logout_user()" >@Globalization.logOff</a>
                                 </div>
                             </li>
                         </ul>
@@ -201,3 +201,18 @@
         <!-- /.container-fluid -->
     </nav>
 </header>
+
+<script>
+    function Logout_user() {
+        new ss().ajax("/Account/LogOff", {
+                Id: "",
+            }, function (e) {
+                if (!e.error) {
+                    location.reload();
+                }
+                else {
+                    location.reload();
+                }
+            });
+    }
+</script>

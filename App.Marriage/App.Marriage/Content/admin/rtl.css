@@ -20,3 +20,7 @@
 .btn.dxgvCommandColumnItem_Material,.dxflNestedControlCell_Material  .btn {
     margin-right:2px;
 }
+textarea#QuestionBankGV_DXEFL_DXEditor2_I{
+    border-left: 1px solid #dcdcdc;
+    width:99% !important;
+}

@@ -112,7 +112,7 @@
                 Html.RenderPartial("_HtmlEditor", dataObject);
             });
         });
-
+        /*
         settings.Columns.Add(column =>
         {
             column.FieldName = "Status";
@@ -130,6 +130,7 @@
                 p.ValidationSettings.RequiredField.IsRequired = true;
             });
         });
+*/
 
         settings.Columns.Add(column =>
         {
@@ -158,6 +159,12 @@
             column.EditFormSettings.Visible = DefaultBoolean.True;
             column.Visible = true;
             column.ColumnType = MVCxGridViewColumnType.SpinEdit;
+            column.EditorProperties().SpinEdit(p =>
+            {
+                p.MinValue = 0;
+                p.MaxValue = int.MaxValue;
+
+            });
         });
 
 

@@ -11,7 +11,7 @@ namespace App.Marriage.Utils
     /// </summary>
     public enum EnumType
     {
-        Geneder, Education, RequestStatus, CatType, ArticalStatus, Artical, Quation, RelationStatus
+        Geneder, Education, RequestStatus, CatType, ArticalStatus, Artical, Quation, RelationStatus, RegisterRequestStatus
     }
 
 

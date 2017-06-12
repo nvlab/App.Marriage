@@ -1,5 +1,6 @@
 @using App.Marriage.Models.PersonMV;
 @using App.Marriage.Utils;
+@using App.Marriage.DAL;
 @{
     var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "RegisterRequestGV";
@@ -83,7 +84,7 @@
                 p.TextField = "Name";
                 p.ValueField = "Id";
                 p.ValueType = typeof(int);
-                p.DataSource = GetEnumList.GetRequestStatusList();
+                p.DataSource = EnumDAL.GetEnumsComboList(EnumType.RegisterRequestStatus.ToString());
             });
         });
         settings.Columns.Add(column =>

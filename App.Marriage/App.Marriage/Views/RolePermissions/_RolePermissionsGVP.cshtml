@@ -47,8 +47,10 @@
         settings.SettingsCommandButton.NewButton.Text = Globalization.New;
         settings.KeyFieldName = "Id";
 
+
+        settings.SettingsBehavior.AllowFixedGroups = true;
         settings.SettingsPager.Visible = true;
-        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowGroupPanel = true;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
 
@@ -62,7 +64,7 @@
         {
             column.Name = "Permission_Id";
             column.FieldName = "Permission_Id";
-            column.Caption = "ÇáÊÕÑíÍ";
+            column.Caption = Globalization.permission;
             column.ReadOnly = true;
             column.EditorProperties().ComboBox(c =>
             {
@@ -77,8 +79,9 @@
         {
             column.Name = "Roles_Id";
             column.FieldName = "Roles_Id";
-            column.Caption = Globalization.Role;
+            column.Caption = Globalization.users;
             column.ReadOnly = true;
+            column.GroupIndex = 0;
             column.EditorProperties().ComboBox(c =>
             {
                 c.DataSource = RoleViewModel.GetRoleComboList();
@@ -91,9 +94,16 @@
         {
             column.Name = "IsActive";
             column.FieldName = "IsActive";
-            column.Caption = "ÊÕÑíÍ";
+            column.Caption = Globalization.activate;
             column.ColumnType = MVCxGridViewColumnType.CheckBox;
         });
+
+        settings.PreRender = (s, e) =>
+        {
+            MVCxGridView RolePermissionsGV = s as MVCxGridView;
+            if (RolePermissionsGV != null)
+                RolePermissionsGV.ExpandAll();
+        };
     });
     if (ViewData["EditError"] != null){
         grid.SetEditErrorText((string)ViewData["EditError"]);

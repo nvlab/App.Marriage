@@ -1,4 +1,4 @@
-
+@using App.Marriage.Utils
 @{
     var grid = Html.DevExpress().GridView(settings => {
         settings.Name = "PersonGV";
@@ -28,15 +28,15 @@
         settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
         settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
 
-        settings.Columns.Add("Id","«·—ﬁ„ «· ”·”·Ì");
-        settings.Columns.Add("FullName","«·«”„");
-        settings.Columns.Add("SurName","«·ﬂ‰Ì…");
+        settings.Columns.Add("Id",Globalization.Id);
+        settings.Columns.Add("FullName",Globalization.name);
+        settings.Columns.Add("SurName",Globalization.lastname);
         //settings.Columns.Add("Gender");
         settings.Columns.Add(column =>
         {
             column.Name = "Gender";
             column.FieldName = "Gender";
-            column.Caption = "«·Ã‰”";
+            column.Caption = Globalization.gender;
             column.EditorProperties().ComboBox(c =>
             {
                 c.DataSource = ViewData["Gender"];
@@ -50,7 +50,7 @@
         {
             column.Name = "BirthDate";
             column.FieldName = "BirthDate";
-            column.Caption = " «—ÌŒ «·„Ì·«œ";
+            column.Caption = Globalization.birthDate;
             column.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
         }
 
@@ -60,7 +60,7 @@
         {
             column.Name = "Nationality_Id";
             column.FieldName = "Nationality_Id";
-            column.Caption = "«·Ã‰”Ì…";
+            column.Caption = Globalization.nationalty;
             column.EditorProperties().ComboBox(c =>
             {
                 c.DataSource = ViewData["Nationality"];
@@ -77,7 +77,7 @@
         {
             column.Name = "SocialStatus";
             column.FieldName = "SocialStatus";
-            column.Caption = "«·Õ«·… «·«Ã „«⁄Ì…";
+            column.Caption = Globalization.App_SocialStatus;
             column.EditorProperties().ComboBox(c =>
             {
                 c.DataSource = ViewData["Social"];
@@ -87,14 +87,16 @@
             });
         }
         );
+        /*
         settings.Columns.Add("WorkType","«·⁄„·");
         settings.Columns.Add("Email","«·«Ì„Ì·");
-        settings.Columns.Add("Phone1","—ﬁ„ «·Â« ›");
+        */
+        settings.Columns.Add("Phone1",Globalization.ManagerPhone);
 
-        settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btnMoreKey", Text = "«·„“Ìœ.." });
+        settings.CommandColumn.CustomButtons.Add(new GridViewCommandColumnCustomButton() { ID = "btnMoreKey", Text = Globalization.more });
         settings.ClientSideEvents.CustomButtonClick=string.Format("function(s, e) {{ CustomButtonClick(s, e, '{0}'); }}", Url.Action("Profile", "Person"));
         settings.CommandColumn.VisibleIndex = 11;
-        settings.CommandColumn.Caption = " ›«’Ì·";
+        settings.CommandColumn.Caption = Globalization.details;
 
     });
     if (ViewData["EditError"] != null){
