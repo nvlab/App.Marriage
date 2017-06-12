@@ -19,6 +19,32 @@
         settings.CommandColumn.ShowDeleteButton = false;
         settings.CommandColumn.ShowEditButton = true;
 
+        settings.SettingsCommandButton.CancelButton.Styles.Native = true;
+        settings.SettingsCommandButton.CancelButton.RenderMode = GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.CancelButton.Styles.Style.CssClass = "btn btn-danger";
+        settings.SettingsCommandButton.CancelButton.Text = Globalization.Cancel;
+
+        settings.SettingsCommandButton.UpdateButton.Styles.Native = true;
+        settings.SettingsCommandButton.UpdateButton.RenderMode = GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.UpdateButton.Styles.Style.CssClass = "btn btn-success";
+        settings.SettingsCommandButton.UpdateButton.Text = Globalization.Save;
+
+        settings.SettingsCommandButton.DeleteButton.Styles.Native = true;
+        settings.SettingsCommandButton.DeleteButton.RenderMode = GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.DeleteButton.Styles.Style.CssClass = "btn btn-danger";
+        settings.SettingsCommandButton.DeleteButton.Text = Globalization.Delete;
+
+
+        settings.SettingsCommandButton.EditButton.Styles.Native = true;
+        settings.SettingsCommandButton.EditButton.RenderMode = GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.EditButton.Styles.Style.CssClass = "btn btn-primary";
+        settings.SettingsCommandButton.EditButton.Text = Globalization.Edit;
+
+
+        settings.SettingsCommandButton.NewButton.Styles.Native = true;
+        settings.SettingsCommandButton.NewButton.RenderMode = GridCommandButtonRenderMode.Button;
+        settings.SettingsCommandButton.NewButton.Styles.Style.CssClass = "btn btn-success";
+        settings.SettingsCommandButton.NewButton.Text = Globalization.New;
 
         settings.SettingsCommandButton.EditButton.Text = Globalization.Edit;
         settings.SettingsCommandButton.NewButton.Text = Globalization.New;

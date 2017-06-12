@@ -17,3 +17,6 @@
 .btn-margin {
  margin : 2px; 2px;
 }
+.btn.dxgvCommandColumnItem_Material,.dxflNestedControlCell_Material  .btn {
+    margin-right:2px;
+}
