@@ -1281,6 +1281,8 @@
     <Content Include="Migrations\08-Add Email To User.sql" />
     <Content Include="Migrations\10-Enum-Data.js" />
     <Content Include="Migrations\07-AddEnumVal.sql" />
+    <Content Include="Migrations\12-SM-AddColumnToEnumTbl.sql" />
+    <Content Include="Migrations\13-SM-UpdateEnum.sql" />
     <Content Include="Migrations\AddRelationEnums.sql" />
     <Content Include="Migrations\11-RolePermission Seed Data.sql" />
     <Content Include="Migrations\UpdateChatRoomId.sql" />

@@ -99,7 +99,7 @@ namespace App.Marriage.Models.PersonMV
             set { _Mother = value; }
         }
 
-        [Range(18, 50, ErrorMessage = "يجب أن يكون العمر مابين 18 و 50")]
+        [Range(15, 50, ErrorMessage = "يجب أن يكون العمر مابين 15 و 50")]
         public int? Age
         {
             get { return _Age; }
@@ -114,13 +114,14 @@ namespace App.Marriage.Models.PersonMV
             set { _BirthDate = value; }
         }
 
-
+        [Range(145, 200, ErrorMessage = "يجب أن يكون الطول مابين 145 و 200")]
         public int? Height
         {
             get { return _height; }
             set { _height = value; }
         }
 
+        [Range(40, 200, ErrorMessage = "يجب أن يكون الوزن مابين 40 و 200")]
         public int? Weight
         {
             get { return _Weight; }
@@ -134,7 +135,7 @@ namespace App.Marriage.Models.PersonMV
             set { _PlaceBirth = value; }
         }
 
-        
+        [StringLength(200, MinimumLength = 0, ErrorMessage = "لقد تجاوزت عدد الأحرف المسموح به لحقل العنوان، وهو 200 حرف")]
         public string Adress
         {
             get { return _Adress; }
@@ -226,7 +227,6 @@ namespace App.Marriage.Models.PersonMV
             get { return _Phone2; }
             set { _Phone2 = value; }
         }
-
         public string GeneralInfo
         {
             get { return _GeneralInfo; }
@@ -248,17 +248,19 @@ namespace App.Marriage.Models.PersonMV
             get { return _CountryState; }
             set { _CountryState = value; }
         }
+        [Range(0, 15, ErrorMessage = "أدخل رقم بين 0 و 15")]
         public byte? ChildCount
         {
             get { return _ChildCount; }
             set { _ChildCount = value; }
         }
+        [Range(0, 40, ErrorMessage = "أدخل رقم بين 0 و 40")]
         public byte? MaxChildAge
         {
             get { return _MaxChildAge; }
             set { _MaxChildAge = value; }
         }
-
+        [Range(0, 40, ErrorMessage = "أدخل رقم بين 0 و 40")]
         public byte? MinChildAge
         {
             get { return _MinChildAge; }
@@ -266,7 +268,6 @@ namespace App.Marriage.Models.PersonMV
         }
 
         [Required(ErrorMessage = "يجب ادخال مستوى التعليم")]
-       
         public string Education
         {
             get { return _Education; }
@@ -285,7 +286,7 @@ namespace App.Marriage.Models.PersonMV
             get { return _WorkType; }
             set { _WorkType = value; }
         }
-
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "الحد المسموح به هو 100 حرف")]
         public string Languages
         {
             get { return _Languages; }
@@ -298,12 +299,13 @@ namespace App.Marriage.Models.PersonMV
             set { _LivingLevel = value; }
         }
 
+        [StringLength(500, MinimumLength = 0, ErrorMessage = "الحد المسموح به هو 500 حرف ")]
         public string Theams
         {
             get { return _Theams; }
             set { _Theams = value; }
         }
-
+        [StringLength(255, MinimumLength = 0, ErrorMessage = "الحد المسموح به هو 255 حرف ")]
         public string Hobbies
         {
             get { return _Hobbies; }
@@ -526,6 +528,9 @@ namespace App.Marriage.Models.PersonMV
             Pa.Persons.Hobbies = _Hobbies;
             Pa.Persons.Culture = _Culture;
             Pa.Persons.CultureLevel = _CultureLevel;
+            Pa.Persons.PassportNumber = _PassportNumber;
+            Pa.Persons.Email = _Email;
+
 
             Pa.Create();
 
